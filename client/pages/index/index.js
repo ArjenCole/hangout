@@ -9,11 +9,14 @@ Page({
         logged: false,
         takeSession: false,
         requestResult: '',
-        imgUrl:''
+        imgUrl:'',
+
+        recordList:[]
     },
     
     onShow: function () {
-      this.autoGetUserInfo()
+      this.autoGetUserInfo();
+
     },
 
     bindGetUserInfo: function () {
@@ -31,8 +34,9 @@ Page({
       if (session) {
         qcloud.loginWithCode({
           success: res => {
-            this.setData({ userInfo: res, logged: true })
-            util.showSuccess('登录成功')
+            //this.setData({ userInfo: res, logged: true })
+            //util.showSuccess('登录成功')
+            this.autoGetUserInfoSu(res);
           },
           fail: err => {
             console.error(err)
@@ -42,8 +46,9 @@ Page({
       } else {
         qcloud.login({
           success: res => {
-            this.setData({ userInfo: res, logged: true })
-            util.showSuccess('登录成功')
+            //this.setData({ userInfo: res, logged: true })
+            //util.showSuccess('登录成功')
+            this.autoGetUserInfoSu(res);
           },
           fail: err => {
             console.error(err)
@@ -51,10 +56,32 @@ Page({
           }
         })
       }
-
-
     },
+  autoGetUserInfoSu: function (res) {
+    this.setData({ userInfo: res, logged: true })
+    util.showSuccess('登录成功')
 
+    var newR = util.newRecord(undefined, 1, 0, "1sdf", "www", "测试1");
+
+    var newApt = util.newAppointment(this.data.userInfo);
+    newApt.records.push(newR);
+    
+    var t=[];
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    t.push(newApt);
+    this.setData({ recordList:t})
+  },
+  bindItemClick:function(){
+    console.log("123");
+  },
 
     // 切换是否带有登录态
     switchRequestMode: function (e) {

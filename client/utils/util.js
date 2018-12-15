@@ -39,4 +39,43 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+const newAppointment = userInfo => {
+  let rtApt = {};
+
+  rtApt.creatorId = userInfo.openId;
+  rtApt.creatorAv = userInfo.avatarUrl;
+  rtApt.creatorNn = userInfo.nickName;
+
+  rtApt.title = "新活动";
+
+  rtApt.timeStart = new Date();
+  rtApt.timeEnd = new Date();
+
+  rtApt.place = "";
+  rtApt.liaisons = "";
+
+  rtApt.records = [];
+
+  rtApt.messBoard = [];
+
+  return rtApt;
+}
+
+const newRecord = (userInfo, attend = 1, pending = 0, openId = "", avatarUrl = "", nickName = "") => {
+  let rtRecord = {};
+  rtRecord.attend = attend;
+  rtRecord.pending = pending;
+  if (userInfo) {
+    rtRecord.openId = userInfo.openId;
+    rtRecord.avatarURL = userInfo.avatarUrl;
+    rtRecord.nickName = userInfo.nickName;
+  } else {
+    rtRecord.openId = openId;
+    rtRecord.avatarURL = avatarUrl;
+    rtRecord.nickName = nickName;
+  }
+  return rtRecord;
+}
+
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, newAppointment, newRecord }
