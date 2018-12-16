@@ -12,9 +12,9 @@ App({
     },
 
     globalData: {
-    userInfo: null,
-    db: null,
-    aptCollection: null,
-    userCollection: null,
-  }
+      userInfo: null,
+      db: null,
+      aptCollection: null,
+      userCollection: null,
+    }
 })

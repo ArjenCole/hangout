@@ -75,19 +75,14 @@ const newAppointment = (pUserInfo, pTitle, pDate, pTimeStart, pTimeEnd, pPlace, 
   return rtApt;
 }
 
-const newRecord = (userInfo, attend = 1, pending = 0, openId = "", avatarUrl = "", nickName = "") => {
+const newRecord = (pUserInfo, pAttends) => {//1:出席 0:待定 -1:拒绝
   let rtRecord = {};
-  rtRecord.attend = attend;
-  rtRecord.pending = pending;
-  if (userInfo) {
-    rtRecord.openId = userInfo.openId;
-    rtRecord.avatarURL = userInfo.avatarUrl;
-    rtRecord.nickName = userInfo.nickName;
-  } else {
-    rtRecord.openId = openId;
-    rtRecord.avatarURL = avatarUrl;
-    rtRecord.nickName = nickName;
-  }
+  rtRecord.attends = pAttends;
+  if (pUserInfo) {
+    rtRecord.openId = pUserInfo.openId;
+    rtRecord.avatarURL = pUserInfo.avatarUrl;
+    rtRecord.nickName = pUserInfo.nickName;
+  } 
   return rtRecord;
 }
 
