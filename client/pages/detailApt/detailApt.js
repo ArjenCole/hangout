@@ -70,17 +70,11 @@ Page({
 
   getApt: function (pId) {
     var that = this;
-    console.log(this)
     app.globalData.aptCollection.where({
       _id: pId
     }).get({
       success: function (res) {
-        console.log("res", res.data[0])
-        var t = res.data[0]
-        console.log("t", t)
-        that.setData({ apt: t })
-        console.log("t1", t)
-
+        that.setData({ apt: res.data[0] })
       }
     })
   },

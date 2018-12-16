@@ -14,19 +14,9 @@
     </view>
 </view>
 
-<block wx:for="{{postList}}"wx:key="postId">
-  <view data-item="{{item}}"  class="weui_cell" bindtap="bindItemClick">
-    <view class="weui_cell_bd">
-      <view data-item="{{item}}" class="weui_cell_bd_t"> {{item.title}}</view>
-      <view data-item="{{item}}" class="weui_cell_bd_p"> {{item.timeStart}}~{{item.timeEnd}}</view>
-      <view data-item="{{item}}" class="weui_cell_bd_p"> 地址:{{item.place}}</view>
-      <view data-item="{{item}}" class="weui_cell_bd_p"> 联系人:{{item.liaisons}}</view>
-    </view>
-  </view>
-</block>
-
-    <view class="page__bd page__bd_spacing">
-        <view class="kind-list">
+    
+<view class="page__bd page__bd_spacing">
+  <view class="kind-list">
             <block wx:for="{{list}}" wx:key="id">
                 <view class="kind-list__item">
                     <view id="{{item.id}}" class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
@@ -52,9 +42,8 @@
                     </view>
                 </view>
             </block>
-        </view>
-    </view>
-
+  </view>
+</view>
 
 <view class="container">
   <view class="bottom50">

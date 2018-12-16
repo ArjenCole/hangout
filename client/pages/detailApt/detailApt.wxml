@@ -4,7 +4,7 @@
         <view class="page__title">{{apt.title}}</view>
         <view class="page__desc">{{apt.creatorNn}}</view>
     </view>
-    <view class="page__bd">
+    <view class="page__bd page__bd_spacing">
         <view class="weui-form-preview">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
