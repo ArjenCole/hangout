@@ -26,7 +26,7 @@
 
 button{  
   margin-top: 10px;
-	width: 300px;
+	width: 250px;
 	background: #79899b;
 	color: #fff;
 	text-align: center;

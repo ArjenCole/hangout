@@ -2,3 +2,16 @@
 .weui-form-preview{
     margin-bottom: 25px;
 }
+
+.box{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.item {
+  height: 50px;
+  width: 50px;
+  margin-left: 5px;
+  border-radius: 50%;
+}

@@ -28,11 +28,27 @@
                     <view class="weui-form-preview__value">{{showApt.tips}}</view>
                 </view>
             </view>
-            <view class="weui-form-preview__ft">
-                <button class="weui-form-preview__btn weui-form-preview__btn_deny"    hover-class="weui-form-preview__btn_active" bindtap="bindDenyTap">拒绝</button>
-                <button class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap="bindPendTap">待定</button>
+            <view class="box">
+                <button class="weui-form-preview__btn_deny"    hover-class="weui-form-preview__btn_active" bindtap="bindDenyTap">拒绝</button>
+                <button class="weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap="bindPendTap">待定</button>
                 <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindJoinTap">参加</button>
             </view>
+
+        </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">    
+        <view class="page__desc">参加：</view>
+        <view class="box">
+            <block wx:for="{{showApt.records}}" wx:for-item="record" wx:key="*this">
+              <image class="item" src="{{record.avatarURL}}" wx:if="{{record.attends==1}}" />
+            </block>
+        </view>
+        <view class="page__desc">待定：</view>
+        <view class="box">
+            <block wx:for="{{showApt.records}}" wx:for-item="record" wx:key="*this">
+              <image class="item" src="{{record.avatarURL}}" wx:if="{{record.attends==0}}" />
+            </block>
         </view>
     </view>
 </view>

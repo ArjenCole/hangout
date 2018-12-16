@@ -31,12 +31,12 @@
     <input name="Place" placeholder="XX路 XX号 XX活动中心……" />
   </view>
   <view class="section">
-    <text class="section__title" space="ensp">联  络  人   </text>
-    <input name="Liaisons" type="number" placeholder="小张 XXX-XX……，选填" />
+    <text class="section__title" space="ensp">联 络 人 </text>
+    <input name="Liaisons" placeholder="小张 XXX-XX……，选填" /><!--type="number"-->
   </view>
   <view class="section">
-    <text class="section__title" space="ensp">备      注   </text>
-    <input name="Tips" type="number" placeholder="其他注意事项，选填" />
+    <text class="section__title" space="ensp">备    注 </text>
+    <input name="Tips" placeholder="其他注意事项，选填" />
   </view>
 
 <view wx:if="{{isSubmit}}" class="warning">

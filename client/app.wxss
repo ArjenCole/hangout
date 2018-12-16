@@ -7,10 +7,10 @@ page{
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
 .page__hd {
-    padding: 40px;
+    padding: 20px;
 }
 .page__bd {
-    padding-bottom: 40px;
+    padding-bottom: 10px;
 }
 .page__bd_spacing {
     padding-left: 15px;

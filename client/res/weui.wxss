@@ -233,7 +233,7 @@ icon {
 
 .weui-form-preview:before {
   top: 0;
-  border-top: 1rpx solid #d9d9d9
+  /*border-top: 1rpx solid #d9d9d9*/
 }
 
 .weui-form-preview:after,.weui-form-preview:before {
@@ -287,7 +287,7 @@ icon {
 
 .weui-form-preview__ft {
   position: relative;
-  line-height: 50px;
+  line-height: 20px;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex
@@ -300,8 +300,6 @@ icon {
   top: 0;
   right: 0;
   height: 1px;
-  border-top: 1rpx solid #d5d5d6;
-  color: #d5d5d6
 }
 
 .weui-form-preview__item {
@@ -354,15 +352,29 @@ icon {
 }
 
 .weui-form-preview__btn_default {
-  color: #999
+	background: #79899b63;
+  color: rgb(255, 255, 255);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .weui-form-preview__btn_primary {
 	background: #79899b;
-  color: #ffffff
+  color: #ffffff;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 .weui-form-preview__btn_deny {
-  color: #d41b1b
+	background: #79899b63;
+  color: #d41b1b;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 .weui-cell_select {
   padding: 0
@@ -926,7 +938,7 @@ icon {
 
 .weui-media-box {
   padding: 15px;
-  position: relative
+  position: relative; 
 }
 
 .weui-media-box:before {
@@ -960,7 +972,7 @@ icon {
 .weui-media-box__desc {
   color: #999;
   font-size: 13px;
-  line-height: 1.2;
+  line-height: 1.8; 
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
