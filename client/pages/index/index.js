@@ -46,7 +46,7 @@ Page({
   },
 
   onShow: function () {
-    this.autoGetUserInfo();
+    //this.autoGetUserInfo();
     if (this.data.logged) {
       this.getPostList() 
       this.getPartList()
@@ -55,7 +55,7 @@ Page({
   },
 
   bindGetUserInfo: function () {
-    //this.autoGetUserInfo()
+    this.autoGetUserInfo()
   },
   bindItemClick: function (e) {
     var currentApt = e.currentTarget.dataset.item

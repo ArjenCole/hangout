@@ -8,7 +8,7 @@
             background-size="cover"
         ></image>
         <view>
-            <button class="plusButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击登陆</button>
+            <button class="plusButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button>
             <text class="page__title" wx:else>{{userInfo.nickName}}</text>
         </view>
     </view>
