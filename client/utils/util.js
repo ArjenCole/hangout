@@ -6,7 +6,20 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+const formatDate = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  return [year, month, day].map(formatNumber).join('-') 
+}
+const formatHM = date => {
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+
+  return [hour, minute].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -48,6 +61,7 @@ const newAppointment = userInfo => {
 
   rtApt.title = "新活动";
 
+  rtApt.date = new Date();
   rtApt.timeStart = new Date();
   rtApt.timeEnd = new Date();
 
@@ -78,4 +92,4 @@ const newRecord = (userInfo, attend = 1, pending = 0, openId = "", avatarUrl = "
 }
 
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, newAppointment, newRecord }
+module.exports = { formatTime, formatDate, formatHM, showBusy, showSuccess, showModel, newAppointment, newRecord }

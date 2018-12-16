@@ -1,1 +1,34 @@
 /* client/pages/newApt/newApt.wxss */
+
+.section{
+  display: flex;
+  flex-direction: row;
+  margin: 75rpx;
+	color: #79899b;
+	font-size: 16px;
+	border-bottom: 1px solid #dadada;
+}
+
+.section view{
+  margin-right: 30rpx;
+}
+
+.warning{
+  margin: 75rpx;
+	font-size: 14px;
+	color: #d81919;
+}
+
+.btn-area{
+  position: fixed;
+  bottom: 20px;
+}
+
+button{  
+  margin-top: 10px;
+	width: 300px;
+	background: #79899b;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+}

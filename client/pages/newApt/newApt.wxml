@@ -1,2 +1,59 @@
 <!--client/pages/newApt/newApt.wxml-->
-<text>client/pages/newApt/newApt.wxml</text>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section">
+    <view class="section__title">活动名称</view>
+    <input name="Text" placeholder="足球、网球、羽毛球……" />
+  </view>
+  <view class="section">
+    <view class="section__title">活动日期</view>
+    <picker mode="date" value="{{aptDate}}" start="{{today}}" end="2150-09-01" bindchange="bindDateChange">
+      <view class="picker">
+        {{aptDate}}
+      </view>
+    </picker>
+  </view>
+  <view class="section">
+    <view class="section__title">开始时间</view>
+    <picker mode="time" value="{{aptTimeStart}}" start="00:00" end="23:59" bindchange="bindTimeStartChange">
+      <view class="picker">
+        {{aptTimeStart}}
+      </view>
+    </picker>
+  </view>
+  <view class="section">
+    <view class="section__title">结束时间</view>
+    <picker mode="time" value="{{aptTimeEnd}}" start="00:00" end="23:59" bindchange="bindTimeEndChange">
+      <view class="picker">
+        {{aptTimeEnd}}
+      </view>
+    </picker>
+  </view>
+  <view class="section">
+    <view class="section__title">活动地点</view>
+    <input name="Text" placeholder="XX路 XX号 XX活动中心……" />
+  </view>
+
+
+  <view class="section">
+    <text class="section__title" space="ensp">联  络  人   </text>
+    <input name="Bonds" type="number" placeholder="小张 1XX XXXX XXXX" />
+  </view>
+
+
+<view wx:if="{{isSubmit}}" class="warning">
+  {{warn ? warn : ""}}
+</view>
+
+
+
+<view class="container">
+  <view class="btn-area">
+    <button formType="submit">提交</button>
+    <button formType="reset">重置</button>
+  </view>
+</view>
+
+</form>
+
+
+
