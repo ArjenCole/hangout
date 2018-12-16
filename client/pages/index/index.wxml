@@ -25,7 +25,7 @@
                     </view>
                     <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
                         <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
-                            <block wx:for="{{item.apts}}" wx:for-item="item" wx:key="*this">
+                            <block wx:for="{{item.apts}}" wx:for-item="item" wx:key="itemId">
                                 <navigator url="../detailApt/detailApt?aptId={{item._id}}" class="weui-cell weui-cell_access">
                                     <!--view class="weui-cell__ft weui-cell__ft_in-access"></view-->
                                     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">

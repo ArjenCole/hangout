@@ -95,7 +95,6 @@ Page({
 
   updateArr: function (pArr, pAttends) {
     var tArr = util.deepClone(pArr)
-    console.log(app.globalData.userInfo)
     var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
     var flag = false;
     for (var i in tArr) {
@@ -139,6 +138,7 @@ Page({
   },
   addUser: function () {
     var tUser={}
+    tUser._id = app.globalData.userInfo.openId
     tUser.apts=[]
     tUser.apts.push(this.data.apt._id)
     const col = app.globalData.userCollection;
