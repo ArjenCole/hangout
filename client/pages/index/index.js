@@ -47,6 +47,7 @@ Page({
 
   onShow: function () {
     this.autoGetUserInfo();
+    if (this.data.logged) { this.getPostList() }
 
   },
 
@@ -108,9 +109,7 @@ Page({
     }).get({
       success: function (res) {
         var tList = that.data.list
-        tList[0].apts=res.data
-        console.log(tList)
-        //that.setData({ postList: res.data }) 
+        tList[0].apts = util.showAptList(res.data)
         that.setData({list : tList})
       }
     })

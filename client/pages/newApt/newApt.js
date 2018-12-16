@@ -91,9 +91,9 @@ Page({
       isSubmit: true,
     });
     var tUserInfo = app.globalData.userInfo;
-    var tAptDate = this.data.aptDate;
-    var tAptTimeStart = this.data.aptTimeStart;
-    var tAptTimeEnd = this.data.aptTimeEnd;
+    var tAptDate = new Date(this.data.aptDate) 
+    var tAptTimeStart = new Date(this.data.aptDate + " " + this.data.aptTimeStart)
+    var tAptTimeEnd = new Date(this.data.aptDate + " " + this.data.aptTimeEnd)
 
     var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
     this.addRecord(newApt);

@@ -1,4 +1,5 @@
 // client/pages/detailApt/detailApt.js
+var util = require('../../utils/util.js')
 var app=getApp()
 
 Page({
@@ -8,7 +9,7 @@ Page({
    */
   data: {
     apt: {},
-    test :"2"
+    showApt: {},
   },
 
   /**
@@ -74,7 +75,10 @@ Page({
       _id: pId
     }).get({
       success: function (res) {
-        that.setData({ apt: res.data[0] })
+        that.setData({ 
+          apt: res.data[0],
+          showApt: util.showAppointment(res.data[0])
+        })
       }
     })
   },

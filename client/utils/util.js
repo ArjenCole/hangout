@@ -91,5 +91,26 @@ const newRecord = (userInfo, attend = 1, pending = 0, openId = "", avatarUrl = "
   return rtRecord;
 }
 
+const showAptList = (pList) => {
+  var tList = deepClone(pList);
+  for (var i in tList) {
+    tList[i] = showAppointment(tList[i])
+  }
+  return tList
+}
 
-module.exports = { formatTime, formatDate, formatHM, showBusy, showSuccess, showModel, newAppointment, newRecord }
+const showAppointment = (pApt) => {
+  var tApt = deepClone(pApt)
+  tApt.date = formatDate(new Date(tApt.date))
+  tApt.timeStart = formatHM(new Date(tApt.timeStart))
+  tApt.timeEnd = formatHM(new Date(tApt.timeEnd))
+  return tApt
+}
+
+var deepClone = (a) => {
+  var c = {};
+  c = JSON.parse(JSON.stringify(a));
+  return c;
+}
+
+module.exports = { formatTime, formatDate, formatHM, showBusy, showSuccess, showModel, newAppointment, newRecord, showAptList, showAppointment, deepClone}

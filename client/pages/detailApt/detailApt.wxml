@@ -1,31 +1,31 @@
 <!--client/pages/detailApt/detailApt.wxml-->
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">{{apt.title}}</view>
-        <view class="page__desc">{{apt.creatorNn}}</view>
+        <view class="page__title">{{showApt.title}}</view>
+        <view class="page__desc">{{showApt.creatorNn}}</view>
     </view>
     <view class="page__bd page__bd_spacing">
         <view class="weui-form-preview">
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">日期</view>
-                    <view class="weui-form-preview__value">{{apt.date}}</view>
+                    <view class="weui-form-preview__value">{{showApt.date}}</view>
                 </view>
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">时间</view>
-                    <view class="weui-form-preview__value">{{apt.timeStart}}~{{apt.timeEnd}}</view>
+                    <view class="weui-form-preview__value">{{showApt.timeStart}}~{{showApt.timeEnd}}</view>
                 </view>
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">地点</view>
-                    <view class="weui-form-preview__value">{{apt.place}}</view>
+                    <view class="weui-form-preview__value">{{showApt.place}}</view>
                 </view>
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">联系人</view>
-                    <view class="weui-form-preview__value">{{apt.liaisons}}</view>
+                    <view class="weui-form-preview__value">{{showApt.liaisons}}</view>
                 </view>
                 <view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">备注</view>
-                    <view class="weui-form-preview__value">{{apt.tips}}</view>
+                    <view class="weui-form-preview__value">{{showApt.tips}}</view>
                 </view>
             </view>
             <view class="weui-form-preview__ft">
