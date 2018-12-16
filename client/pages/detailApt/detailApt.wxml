@@ -29,9 +29,9 @@
                 </view>
             </view>
             <view class="weui-form-preview__ft">
-                <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</navigator>
-                <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">待定</navigator>
-                <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">参加</navigator>
+                <button class="weui-form-preview__btn weui-form-preview__btn_deny" hover-class="weui-form-preview__btn_active">拒绝</button>
+                <button class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">待定</button>
+                <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">参加</button>
             </view>
         </view>
     </view>

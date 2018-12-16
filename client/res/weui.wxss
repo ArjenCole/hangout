@@ -358,9 +358,12 @@ icon {
 }
 
 .weui-form-preview__btn_primary {
-  color: #0bb20c
+	background: #79899b;
+  color: #ffffff
 }
-
+.weui-form-preview__btn_deny {
+  color: #d41b1b
+}
 .weui-cell_select {
   padding: 0
 }
