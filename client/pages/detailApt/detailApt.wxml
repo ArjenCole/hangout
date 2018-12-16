@@ -29,8 +29,8 @@
                 </view>
             </view>
             <view class="weui-form-preview__ft">
-                <button class="weui-form-preview__btn weui-form-preview__btn_deny" hover-class="weui-form-preview__btn_active">拒绝</button>
-                <button class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">待定</button>
+                <button class="weui-form-preview__btn weui-form-preview__btn_deny"    hover-class="weui-form-preview__btn_active" bindtap="bindDenyTap">拒绝</button>
+                <button class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" bindtap="bindPendTap">待定</button>
                 <button class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="bindJoinTap">参加</button>
             </view>
         </view>

@@ -69,23 +69,14 @@ Page({
 
   },
 
+  bindDenyTap: function () {
+    this.updateApt(this.updateArr(this.data.apt.records, -1))
+  },
+  bindPendTap: function () {
+    this.updateApt(this.updateArr(this.data.apt.records, 0))
+  },
   bindJoinTap: function () {
     this.updateApt(this.updateArr(this.data.apt.records, 1))
-  },
-
-  updateArr: function (pArr, pAttends) {
-    var tArr = util.deepClone(pArr)
-    console.log(app.globalData.userInfo)
-    var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
-    var flag = false;
-    for (var i in tArr) {
-      if (tArr[i]._openid == app.globalData.userInfo._openid) {
-        tArr[i] = tRecord
-        flag=true
-      }
-    }
-    if (!flag) { tArr.push(tRecord)}
-    return tArr
   },
 
   getApt: function (pId) {
@@ -100,6 +91,21 @@ Page({
         })
       }
     })
+  },
+
+  updateArr: function (pArr, pAttends) {
+    var tArr = util.deepClone(pArr)
+    console.log(app.globalData.userInfo)
+    var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
+    var flag = false;
+    for (var i in tArr) {
+      if (tArr[i]._openid == app.globalData.userInfo._openid) {
+        tArr[i] = tRecord
+        flag = true
+      }
+    }
+    if (!flag) { tArr.push(tRecord) }
+    return tArr
   },
   updateApt: function (pRecords){
     var that = this
@@ -116,6 +122,7 @@ Page({
       }
     })
   },
+
   checkUser: function () {
     var that = this;
     app.globalData.userCollection.where({
@@ -139,20 +146,18 @@ Page({
       data: tUser,
       success: function (res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-        console.log("add?")
       }
     })
   },
   updateUser: function () {
     var tID = app.globalData.userInfo.openId;
-    console.log("tID", app.globalData.userInfo)
     const _ = app.globalData.db.command
     app.globalData.userCollection.doc(tID).update({
       data: {
         apts: _.push(this.data.apt._id)
       },
       success: function (res) {
-        console.log("res")
+        
       },
       fail: function (e) {
         console.log(e);
