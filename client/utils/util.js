@@ -52,21 +52,22 @@ var showModel = (title, content) => {
     })
 }
 
-const newAppointment = userInfo => {
+const newAppointment = (pUserInfo, pTitle, pDate, pTimeStart, pTimeEnd, pPlace, pLiaisons, pTips) => {
   let rtApt = {};
 
-  rtApt.creatorId = userInfo.openId;
-  rtApt.creatorAv = userInfo.avatarUrl;
-  rtApt.creatorNn = userInfo.nickName;
+  rtApt.creatorId = pUserInfo.openId;
+  rtApt.creatorAv = pUserInfo.avatarUrl;
+  rtApt.creatorNn = pUserInfo.nickName;
 
-  rtApt.title = "新活动";
+  rtApt.title = pTitle;
 
-  rtApt.date = new Date();
-  rtApt.timeStart = new Date();
-  rtApt.timeEnd = new Date();
+  rtApt.date = pDate;
+  rtApt.timeStart = pTimeStart;
+  rtApt.timeEnd = pTimeEnd;
 
-  rtApt.place = "";
-  rtApt.liaisons = "";
+  rtApt.place = pPlace;
+  rtApt.liaisons = pLiaisons;
+  rtApt.tips = pTips;
 
   rtApt.records = [];
 

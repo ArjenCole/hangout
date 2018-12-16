@@ -2,6 +2,8 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
+var app=getApp()
+
 
 Page({
   data: {
@@ -70,6 +72,7 @@ Page({
     },
   autoGetUserInfoSu: function (res) {
     this.setData({ userInfo: res, logged: true })
+    app.globalData.userInfo = res
     util.showSuccess('登录成功')
 
     var newR = util.newRecord(undefined, 1, 0, "1sdf", "www", "测试1");

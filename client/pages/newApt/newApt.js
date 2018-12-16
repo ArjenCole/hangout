@@ -1,5 +1,8 @@
 // client/pages/newApt/newApt.js
 var util = require('../../utils/util.js')
+
+var app=getApp()
+
 Page({
 
   /**
@@ -69,6 +72,50 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  formSubmit: function (e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    let { Title, Place, Liaisons, Tips } = e.detail.value;
+    if (!Title || !Place) {
+      this.setData({
+        warn: "缺少必须的信息！",
+        isSubmit: true
+      })
+      return;
+    }
+
+
+    this.setData({
+      warn: "",
+      isSubmit: true,
+    });
+    var tUserInfo = app.globalData.userInfo;
+    var tAptDate = this.data.aptDate;
+    var tAptTimeStart = this.data.aptTimeStart;
+    var tAptTimeEnd = this.data.aptTimeEnd;
+
+    var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
+    this.addRecord(newApt);
+  },
+  addRecord: function (pApt) {
+    const db = app.globalData.db;
+    const col = app.globalData.col;
+    col.add({
+      data: pApt,
+      success: function (res) {
+        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+        //console.log(res)    
+        wx.navigateBack()
+      }
+    })
+  },
+
+  formReset: function () {
+    console.log('form发生了reset事件');
+    this.setData({
+      DateEnd: util.formatDate(new Date()),
+    })
   },
 
   bindDateChange: function (e) {
