@@ -55,7 +55,6 @@ var showModel = (title, content) => {
 const newAppointment = (pUserInfo, pTitle, pDate, pTimeStart, pTimeEnd, pPlace, pLiaisons, pTips) => {
   let rtApt = {};
 
-  rtApt.creatorId = pUserInfo.openId;
   rtApt.creatorAv = pUserInfo.avatarUrl;
   rtApt.creatorNn = pUserInfo.nickName;
 

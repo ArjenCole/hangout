@@ -26,9 +26,10 @@ Page({
     //this.autoGetUserInfo()
   },
   bindItemClick: function (e) {
-    console.log(e.currentTarget)
+    console.log(e.currentTarget.dataset.item)
+    var currentApt = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '../detailApt/detailApt?user_id=111'
+      url: '../detailApt/detailApt?aptId=' + currentApt._id
     })
   },
   bindNewItem: function () {
