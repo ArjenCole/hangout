@@ -99,8 +99,7 @@ Page({
     this.addRecord(newApt);
   },
   addRecord: function (pApt) {
-    const db = app.globalData.db;
-    const col = app.globalData.col;
+    const col = app.globalData.aptCollection;
     col.add({
       data: pApt,
       success: function (res) {

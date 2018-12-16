@@ -13,7 +13,8 @@ Page({
     requestResult: '',
     imgUrl: '',
 
-    recordList: []
+    postList: [],
+    partList: [],
   },
 
   onShow: function () {
@@ -36,63 +37,54 @@ Page({
     })
   },
 
-    // 获得用户信息
-    autoGetUserInfo:function(){
-      if (this.data.logged) return
-
-      util.showBusy('正在登录')
-
-      const session = qcloud.Session.get()
-
-      if (session) {
-        qcloud.loginWithCode({
-          success: res => {
-            //this.setData({ userInfo: res, logged: true })
-            //util.showSuccess('登录成功')
-            this.autoGetUserInfoSu(res);
-          },
-          fail: err => {
-            console.error(err)
-            util.showModel('登录错误', err.message)
-          }
-        })
-      } else {
-        qcloud.login({
-          success: res => {
-            //this.setData({ userInfo: res, logged: true })
-            //util.showSuccess('登录成功')
-            this.autoGetUserInfoSu(res);
-          },
-          fail: err => {
-            console.error(err)
-            util.showModel('登录错误', err.message)
-          }
-        })
-      }
-    },
-  autoGetUserInfoSu: function (res) {
+  // 获得用户信息
+  autoGetUserInfo:function () {
+    if (this.data.logged) return
+    util.showBusy('正在登录')
+    const session = qcloud.Session.get()
+    if (session) {
+      qcloud.loginWithCode({
+        success: res => {
+          this.getUserInfoSu(res);
+        },
+        fail: err => {
+          this.getUserInfoSu(err);
+        }
+      })
+    } else {
+      qcloud.login({
+        success: res => {
+          this.getUserInfoSu(res);
+        },
+        fail: err => {
+          this.getUserInfoSu(err);
+        }
+      })
+    }
+  },
+  getUserInfoSu: function (res) {
     this.setData({ userInfo: res, logged: true })
     app.globalData.userInfo = res
     util.showSuccess('登录成功')
-
-    var newR = util.newRecord(undefined, 1, 0, "1sdf", "www", "测试1");
-
-    var newApt = util.newAppointment(this.data.userInfo);
-    newApt.records.push(newR);
-    
-    var t=[];
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    t.push(newApt);
-    this.setData({ recordList:t})
+    this.getPostList()
   },
+  getUserInfoFail: function (err) {
+    console.error(err)
+    util.showModel('登录错误', err.message)
+  },
+
+  getPostList: function () {
+    var that = this
+    app.globalData.aptCollection.where({
+      _openid: app.globalData.userInfo.openId
+    }).get({
+      success: function (res) {
+        that.setData({ postList: res.data }) 
+      }
+    })
+  },
+
+
 
 
     // 切换是否带有登录态

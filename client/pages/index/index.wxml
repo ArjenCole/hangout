@@ -14,7 +14,7 @@
     </view>
 </view>
 
-<block wx:for="{{recordList}}"wx:key="recordId">
+<block wx:for="{{postList}}"wx:key="postId">
   <view data-item="{{item}}"  class="weui_cell" bindtap="bindItemClick">
     <view class="weui_cell_bd">
       <view data-item="{{item}}" class="weui_cell_bd_t"> {{item.title}}</view>

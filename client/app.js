@@ -7,12 +7,14 @@ App({
       qcloud.setLoginUrl(config.service.loginUrl)
       wx.cloud.init({ env: 'test-f83f7a' });
       this.globalData.db = wx.cloud.database();
-      this.globalData.col = this.globalData.db.collection('hangout');
+      this.globalData.aptCollection = this.globalData.db.collection('hangout_apt');
+      this.globalData.userCollection = this.globalData.db.collection('hangout_user');
     },
 
     globalData: {
     userInfo: null,
     db: null,
-    col: null,
+    aptCollection: null,
+    userCollection: null,
   }
 })
