@@ -20,13 +20,13 @@ Page({
       {
         id: 'post',
         name: '发起的活动',
-        open: true,
+        open: false,
         apts: []
       },
       {
         id: 'part',
         name: '受邀的活动',
-        open: false,
+        open: true,
         apts: []
       },
     ]
@@ -47,7 +47,10 @@ Page({
 
   onShow: function () {
     this.autoGetUserInfo();
-    if (this.data.logged) { this.getPostList() }
+    if (this.data.logged) {
+      this.getPostList() 
+      this.getPartList()
+    }
 
   },
 
@@ -96,6 +99,7 @@ Page({
     app.globalData.userInfo = res
     util.showSuccess('登录成功')
     this.getPostList()
+    this.getPartList()
   },
   getUserInfoFail: function (err) {
     console.error(err)
@@ -108,14 +112,35 @@ Page({
       _openid: app.globalData.userInfo.openId
     }).get({
       success: function (res) {
-        var tList = that.data.list
+        let tList = that.data.list
         tList[0].apts = util.showAptList(res.data)
         that.setData({list : tList})
       }
     })
   },
-
-
+  getPartList: function () {
+    var that = this
+    app.globalData.userCollection.where({
+      _openid: app.globalData.userInfo.openId
+    }).get({
+      success: function (res) {
+        that.getPartListApts(res.data[0].apts)
+      }
+    })
+  },
+  getPartListApts: function (pList) {
+    var that = this
+    const _ = app.globalData.db.command
+    app.globalData.aptCollection.where({
+      _id: _.in(pList)
+    }).get({
+      success: function (res) {
+        let tList = that.data.list
+        tList[1].apts = util.showAptList(res.data)
+        that.setData({ list: tList })
+      }
+    })
+  },
 
 
     // 切换是否带有登录态
