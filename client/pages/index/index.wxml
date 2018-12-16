@@ -15,12 +15,12 @@
 </view>
 
 <block wx:for="{{recordList}}"wx:key="recordId">
-  <view class="weui_cell" bindtap="bindItemClick">
+  <view data-item="{{item}}"  class="weui_cell" bindtap="bindItemClick">
     <view class="weui_cell_bd">
-      <view data-item="{{record}}" class="weui_cell_bd_t"> {{item.title}}</view>
-      <view data-item="{{record}}" class="weui_cell_bd_p"> {{item.timeStart}}~{{item.timeEnd}}</view>
-      <view data-item="{{record}}" class="weui_cell_bd_p"> 地址:{{item.place}}</view>
-      <view data-item="{{record}}" class="weui_cell_bd_p"> 联系人:{{item.liaisons}}</view>
+      <view data-item="{{item}}" class="weui_cell_bd_t"> {{item.title}}</view>
+      <view data-item="{{item}}" class="weui_cell_bd_p"> {{item.timeStart}}~{{item.timeEnd}}</view>
+      <view data-item="{{item}}" class="weui_cell_bd_p"> 地址:{{item.place}}</view>
+      <view data-item="{{item}}" class="weui_cell_bd_p"> 联系人:{{item.liaisons}}</view>
     </view>
   </view>
 </block>
