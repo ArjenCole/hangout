@@ -15,6 +15,34 @@ Page({
 
     postList: [],
     partList: [],
+
+    list: [
+      {
+        id: 'post',
+        name: '发起的活动',
+        open: true,
+        apts: []
+      },
+      {
+        id: 'part',
+        name: '参与的活动',
+        open: false,
+        apts: []
+      },
+    ]
+  },
+  kindToggle: function (e) {
+    var id = e.currentTarget.id, list = this.data.list;
+    for (var i = 0, len = list.length; i < len; ++i) {
+      if (list[i].id == id) {
+        list[i].open = !list[i].open
+      } else {
+        list[i].open = false
+      }
+    }
+    this.setData({
+      list: list
+    });
   },
 
   onShow: function () {
@@ -26,7 +54,6 @@ Page({
     //this.autoGetUserInfo()
   },
   bindItemClick: function (e) {
-    console.log(e.currentTarget.dataset.item)
     var currentApt = e.currentTarget.dataset.item
     wx.navigateTo({
       url: '../detailApt/detailApt?aptId=' + currentApt._id
@@ -80,7 +107,11 @@ Page({
       _openid: app.globalData.userInfo.openId
     }).get({
       success: function (res) {
-        that.setData({ postList: res.data }) 
+        var tList = that.data.list
+        tList[0].apts=res.data
+        console.log(tList)
+        //that.setData({ postList: res.data }) 
+        that.setData({list : tList})
       }
     })
   },
