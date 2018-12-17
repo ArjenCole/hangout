@@ -2,13 +2,60 @@
 .weui-form-preview{
     margin-bottom: 25px;
 }
+.titleBox{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}.buttonShare {
+  flex-grow: 1;
+  width: 120px;
+	font-size: 15px;
+  align-content: left;
+  background: #03A9F4;
+	color: #fff;
+}
+
+.sheet{
+  background-color: #F8F8F8;
+  font-size: 16px;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.sheet-preview {
+  position: relative;
+}
+.sheet-preview:before {
+  top: 0;
+  border-top: 1rpx solid #d9d9d9
+}
+
+.sheet-preview:after,.sheet-preview:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: #d9d9d9
+}
+.sheet-preview__bd {
+  padding: 10px 15px;
+  text-align: right;
+  background-color: #fff;
+  color: #999;
+  line-height: 2
+}
 
 .buttonBox{
   display: -webkit-flex; /* Safari */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding-bottom: -15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 25px; 
 }
 .buttonDeny{
   flex-grow: 1;

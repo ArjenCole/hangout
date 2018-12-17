@@ -42,8 +42,15 @@ page {
   bottom: 20px;
 }
 
+.logInButton {    
+	width: 270px;
+	background: #79899b;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+}
 .plusButton {    
-	width: 250px;
+	width: 300px;
 	background: #79899b;
 	color: #fff;
 	text-align: center;

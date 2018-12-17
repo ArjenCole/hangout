@@ -115,6 +115,7 @@ Page({
       },
       success: function (res) {
         that.checkUser()
+        that.getApt(that.data.apt._id)
       },
       fail: function (e) {
         console.log(e);
