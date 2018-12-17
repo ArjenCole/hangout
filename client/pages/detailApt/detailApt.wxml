@@ -6,7 +6,7 @@
       <view class="page__desc">发起人:{{showApt.creatorNn}}</view>
     </view>    
     <view class="page__hd">
-      <button class="buttonShare">分享活动</button>
+      <button class="buttonShare" open-type='share'>分享活动</button>
     </view>
   </view>
     <view class="sheet">

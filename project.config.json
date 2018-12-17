@@ -8,5 +8,38 @@
 	},
 	"appid": "wxeaf289464a1bf1cb",
 	"projectname": "hangout",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "测试群0",
+					"pathName": "pages/detailApt/detailApt",
+					"query": "aptId=XBY-apT75u22jWhu",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "pxlL_Ws0649btIGCq8HYyrJH-RmRtjkNVOfM98fIVs0@cr4dev",
+						"shareKey": "gcyazXgHnYsWUXQQE8qlTxmYWTJV4I1rNzs6JfYJQcwsm8x5qQL2ldx4cazAT5bTPuzqtJffJABCMExf_jU61g~~"
+					}
+				}
+			]
+		}
+	}
 }
