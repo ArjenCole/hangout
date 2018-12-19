@@ -101,7 +101,7 @@ Page({
       success: function (res) {
         that.setData({ 
           apt: res.data[0],
-          showApt: util.showAppointment(res.data[0])
+          showApt: util.showAppointment(res.data[0],app.globalData.userInfo.openId)
         })
       }
     })

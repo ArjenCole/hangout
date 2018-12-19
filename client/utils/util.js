@@ -1,3 +1,4 @@
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -94,11 +95,16 @@ const showAptList = (pList) => {
   return tList
 }
 
-const showAppointment = (pApt) => {
+const showAppointment = (pApt, userOpenId) => {
   var tApt = deepClone(pApt)
   tApt.date = formatDate(new Date(tApt.date))
   tApt.timeStart = formatHM(new Date(tApt.timeStart))
   tApt.timeEnd = formatHM(new Date(tApt.timeEnd))
+  for(var i in tApt.records){
+    if (tApt.records[i].openId == userOpenId){
+      tApt.attends = tApt.records[i].attends
+    }
+  }
   return tApt
 }
 
@@ -107,5 +113,6 @@ var deepClone = (a) => {
   c = JSON.parse(JSON.stringify(a));
   return c;
 }
+
 
 module.exports = { formatTime, formatDate, formatHM, showBusy, showSuccess, showModel, newAppointment, newRecord, showAptList, showAppointment, deepClone}
