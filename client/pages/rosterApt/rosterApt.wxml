@@ -1,0 +1,19 @@
+<!--client/pages/rosterApt/rosterApt.wxml-->
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{apt.title}}</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells__title">带说明的列表项</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">标题文字</view>
+                <view class="weui-cell__ft">说明文字</view>
+            </view>
+        </view>
+
+    </view>
+</view>

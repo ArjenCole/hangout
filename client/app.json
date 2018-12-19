@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/account/account",
     "pages/newApt/newApt",
-    "pages/detailApt/detailApt"
+    "pages/detailApt/detailApt",
+    "pages/rosterApt/rosterApt"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

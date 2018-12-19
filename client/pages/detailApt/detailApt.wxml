@@ -42,7 +42,7 @@
                 <button class="buttonJoin" bindtap="bindJoinTap" wx:if="{{showApt.attends!=1}}">参加</button>
             </view>
 
-    <view class="page__bd page__bd_spacing">    
+    <navigator url="../rosterApt/rosterApt?aptId={{showApt._id}}" class="page__bd page__bd_spacing">    
         <view class="page__desc">参加：</view>
         <view class="box">
             <block wx:for="{{showApt.records}}" wx:for-item="record" wx:key="*this">
@@ -55,5 +55,5 @@
               <image class="item" src="{{record.avatarURL}}" wx:if="{{record.attends==0}}" />
             </block>
         </view>
-    </view>
+    </navigator>
 </view>

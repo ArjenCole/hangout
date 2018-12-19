@@ -16,5 +16,7 @@ App({
       db: null,
       aptCollection: null,
       userCollection: null,
+
+      currentApt: null,
     }
 })

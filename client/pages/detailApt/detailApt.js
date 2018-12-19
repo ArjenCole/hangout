@@ -31,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -103,6 +103,7 @@ Page({
           apt: res.data[0],
           showApt: util.showAppointment(res.data[0],app.globalData.userInfo.openId)
         })
+        app.globalData.currentApt=that.data.apt
       }
     })
   },
