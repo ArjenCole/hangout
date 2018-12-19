@@ -697,7 +697,9 @@ icon {
 .weui-footer {
   color: #999;
   font-size: 14px;
-  text-align: center
+  text-align: center;
+  margin-top: 55px;
+  margin-bottom: 55px
 }
 
 .weui-footer_fixed-bottom {

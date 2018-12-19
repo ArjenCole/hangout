@@ -9,6 +9,7 @@
         ></image>
         <view>
             <button class="logInButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button>
+            <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewItem"> 发 起 活 动 </button>
             <text class="page__title" wx:else>{{userInfo.nickName}}</text>
         </view>
     </view>
@@ -17,7 +18,7 @@
     
 <view class="page__bd page__bd_spacing">
   <view class="kind-list">
-            <block wx:for="{{list}}" wx:key="id">
+        <block wx:for="{{list}}" wx:key="id">
                 <view class="kind-list__item">
                     <view id="{{item.id}}" class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
                         <view class="weui-flex__item">{{item.name}}</view>
@@ -41,12 +42,21 @@
                         </view>
                     </view>
                 </view>
-            </block>
+        </block>
+        <view class="weui-footer">
+            <view class="weui-footer__links">
+                <navigator url="" class="weui-footer__link">报名首页</navigator>
+            </view>
+            <view class="weui-footer__text">Copyright © 2008-2020</view>
+        </view>
   </view>
+
 </view>
+
+
 
 <view class="container">
   <view class="bottom50">
-    <button class="plusButton" bindtap="bindNewItem"> 发 起 活 动 </button>
+    <button class="plusButton" wx:if="{{false}}" bindtap="bindNewItem"> 发 起 活 动 </button>
   </view>
 </view>
