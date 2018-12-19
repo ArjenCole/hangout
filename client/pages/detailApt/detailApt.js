@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    console.log("options",options.aptId)
     this.getApt(options.aptId)
   },
 
@@ -101,7 +101,7 @@ Page({
       success: function (res) {
         that.setData({ 
           apt: res.data[0],
-          showApt: util.showAppointment(res.data[0],app.globalData.userInfo.openId)
+          showApt: util.showAppointment(res.data[0],app.globalData.userInfo)
         })
         app.globalData.currentApt=that.data.apt
       }

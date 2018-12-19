@@ -95,14 +95,16 @@ const showAptList = (pList) => {
   return tList
 }
 
-const showAppointment = (pApt, userOpenId) => {
+const showAppointment = (pApt, pUserInfo = null) => {
   var tApt = deepClone(pApt)
   tApt.date = formatDate(new Date(tApt.date))
   tApt.timeStart = formatHM(new Date(tApt.timeStart))
   tApt.timeEnd = formatHM(new Date(tApt.timeEnd))
-  for(var i in tApt.records){
-    if (tApt.records[i].openId == userOpenId){
-      tApt.attends = tApt.records[i].attends
+  if (pUserInfo !== null) {
+    for (var i in tApt.records) {
+      if (tApt.records[i].openId == pUserInfo.openId) {
+        tApt.attends = tApt.records[i].attends
+      }
     }
   }
   return tApt
