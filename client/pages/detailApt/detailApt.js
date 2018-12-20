@@ -1,4 +1,5 @@
 // client/pages/detailApt/detailApt.js
+var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var util = require('../../utils/util.js')
 var app=getApp()
 
@@ -84,13 +85,25 @@ Page({
   },
 
   bindDenyTap: function () {
-    this.updateApt(this.updateArr(this.data.apt.records, -1))
+    if (app.globalData.userInfo == null) { 
+      this.askForLogIn() 
+    }else{
+      this.updateApt(this.updateArr(this.data.apt.records, -1))
+    }
   },
   bindPendTap: function () {
-    this.updateApt(this.updateArr(this.data.apt.records, 0))
+    if (app.globalData.userInfo == null) {
+      this.askForLogIn()
+    } else {
+      this.updateApt(this.updateArr(this.data.apt.records, 0))
+    }
   },
   bindJoinTap: function () {
-    this.updateApt(this.updateArr(this.data.apt.records, 1))
+    if (app.globalData.userInfo == null) {
+      this.askForLogIn()
+    } else {
+      this.updateApt(this.updateArr(this.data.apt.records, 1))
+    }
   },
 
   getApt: function (pId) {
@@ -106,6 +119,58 @@ Page({
         app.globalData.currentApt=that.data.apt
       }
     })
+  },
+
+  askForLogIn: function () {
+    var that=this
+      wx.showModal({
+        title: '提示',
+        content: '参与活动需要先登陆',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            that.autoGetUserInfo()
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+            return false
+          }
+        }
+      })
+  },
+  // 获得用户信息
+  autoGetUserInfo: function () {
+    util.showBusy('正在登录')
+    const session = qcloud.Session.get()
+    if (session) {
+      qcloud.loginWithCode({
+        success: res => {
+          this.getUserInfoSu(res);
+        },
+        fail: err => {
+          this.getUserInfoSu(err);
+        }
+      })
+    } else {
+      qcloud.login({
+        success: res => {
+          this.getUserInfoSu(res);
+        },
+        fail: err => {
+          this.getUserInfoSu(err);
+        }
+      })
+    }
+  },
+  getUserInfoSu: function (res) {
+    app.globalData.userInfo = res
+    this.setData({
+      showApt: util.showAppointment(this.data.apt, app.globalData.userInfo)
+    })
+    util.showSuccess('登录成功')
+  },
+  getUserInfoFail: function (err) {
+    console.error(err)
+    util.showModel('登录错误', err.message)
   },
 
   updateArr: function (pArr, pAttends) {

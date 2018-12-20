@@ -37,9 +37,9 @@
         </view>
     </view>
             <view class="buttonBox">
-                <button class="buttonDeny" bindtap="bindDenyTap" wx:if="{{showApt.attends!=-1}}">拒绝</button>
-                <button class="buttonPend" bindtap="bindPendTap" wx:if="{{showApt.attends!=0}}">待定</button>
-                <button class="buttonJoin" bindtap="bindJoinTap" wx:if="{{showApt.attends!=1}}">参加</button>
+                <button class="buttonDeny" open-type="getUserInfo" bindtap="bindDenyTap" wx:if="{{showApt.attends!=-1}}">拒绝</button>
+                <button class="buttonPend" open-type="getUserInfo" bindtap="bindPendTap" wx:if="{{showApt.attends!=0}}">待定</button>
+                <button class="buttonJoin" open-type="getUserInfo" bindtap="bindJoinTap" wx:if="{{showApt.attends!=1}}">参加</button>
             </view>
 
     <navigator url="../rosterApt/rosterApt?aptId={{showApt._id}}" class="page__bd page__bd_spacing">    
