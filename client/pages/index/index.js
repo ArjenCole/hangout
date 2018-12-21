@@ -70,11 +70,13 @@ Page({
   },
 
   // 获得用户信息
-  autoGetUserInfo:function () {
-    if (this.data.logged) return
+  autoGetUserInfo: function () {
+    if (this.data.logged) return 
     util.showBusy('正在登录')
     const session = qcloud.Session.get()
     if (session) {
+    //if (false) {
+      console.log(1)
       qcloud.loginWithCode({
         success: res => {
           this.getUserInfoSu(res);
@@ -84,26 +86,30 @@ Page({
         }
       })
     } else {
-      qcloud.login({
-        success: res => {
-          this.getUserInfoSu(res);
-        },
-        fail: err => {
-          this.getUserInfoFail(err);
-        }
-      })
+      this.logIn()
     }
   },
+  logIn: function () {
+    qcloud.login({
+      success: res => {
+        this.getUserInfoSu(res);
+      },
+      fail: err => {
+        this.getUserInfoFail(err);
+      }
+    })
+  },
   getUserInfoSu: function (res) {
-    this.setData({ userInfo: res, logged: true })
+    this.setData({ userInfo: res, logged: true }) 
     app.globalData.userInfo = res
     util.showSuccess('登录成功')
     this.getPostList()
-    this.getPartList()
+    this.getPartList() 
   },
   getUserInfoFail: function (err) {
     console.error(err)
     util.showModel('登录错误', err.message)
+    //this.logIn()
   },
 
   getPostList: function () {
