@@ -110,6 +110,7 @@ const showAppointment = (pApt, pUserInfo = null) => {
   if (pUserInfo !== null) {
     tApt.logged = true
     for (var i in tApt.records) {
+      if(tApt.records[i]==null){continue}
       if (tApt.records[i].openId == pUserInfo.openId) {
         tApt.attends = tApt.records[i].attends
       }

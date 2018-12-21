@@ -91,6 +91,8 @@ Page({
   bindDenyTap: function () {
     if (app.globalData.userInfo !== null) { 
       this.updateApt(this.updateArr(this.data.apt.records, -1))
+    }else{
+      console.log("尚未登陆")
     }
   },
   bindPendTap: function () {
@@ -168,7 +170,8 @@ Page({
     var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
     var flag = false;
     for (var i in tArr) {
-      if (tArr[i]._openid == app.globalData.userInfo._openid) {
+      if(tArr[i]==null){continue}
+      if (tArr[i]._openid == app.globalData.userInfo.openid) {
         tArr[i] = tRecord
         flag = true
       }
