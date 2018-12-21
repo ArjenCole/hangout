@@ -80,7 +80,7 @@ Page({
           this.getUserInfoSu(res);
         },
         fail: err => {
-          this.getUserInfoSu(err);
+          this.getUserInfoFail(err);
         }
       })
     } else {
@@ -89,7 +89,7 @@ Page({
           this.getUserInfoSu(res);
         },
         fail: err => {
-          this.getUserInfoSu(err);
+          this.getUserInfoFail(err);
         }
       })
     }
