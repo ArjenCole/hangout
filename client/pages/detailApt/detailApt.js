@@ -166,17 +166,22 @@ Page({
   },
 
   updateArr: function (pArr, pAttends) {
+    //console.log("p",pArr)
+
     var tArr = util.deepClone(pArr)
+    //console.log("t",tArr)
     var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
     var flag = false;
     for (var i in tArr) {
       if(tArr[i]==null){continue}
-      if (tArr[i]._openid == app.globalData.userInfo.openid) {
+      if (tArr[i].openId == app.globalData.userInfo.openId) {
+        console.log(tArr[i].openId, "==", app.globalData.userInfo.openId)
         tArr[i] = tRecord
         flag = true
       }
     }
     if (!flag) { tArr.push(tRecord) }
+    console.log(tArr)
     return tArr
   },
   updateApt: function (pRecords){

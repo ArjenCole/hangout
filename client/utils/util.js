@@ -124,7 +124,9 @@ const showAppointment = (pApt, pUserInfo = null) => {
 
 var deepClone = (a) => {
   var c = {};
+  //console.log("a",a)
   c = JSON.parse(JSON.stringify(a));
+  //console.log("c", c)
   return c;
 }
 
