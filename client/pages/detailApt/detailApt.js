@@ -84,24 +84,21 @@ Page({
 
   },
 
+  bindGetUserInfo: function () {
+    this.autoGetUserInfo()
+  },
   bindDenyTap: function () {
-    if (app.globalData.userInfo == null) { 
-      this.askForLogIn() 
-    }else{
+    if (app.globalData.userInfo !== null) { 
       this.updateApt(this.updateArr(this.data.apt.records, -1))
     }
   },
   bindPendTap: function () {
-    if (app.globalData.userInfo == null) {
-      this.askForLogIn()
-    } else {
+    if (app.globalData.userInfo !== null) {
       this.updateApt(this.updateArr(this.data.apt.records, 0))
     }
   },
   bindJoinTap: function () {
-    if (app.globalData.userInfo == null) {
-      this.askForLogIn()
-    } else {
+    if (app.globalData.userInfo !== null) {
       this.updateApt(this.updateArr(this.data.apt.records, 1))
     }
   },
@@ -121,27 +118,12 @@ Page({
     })
   },
 
-  askForLogIn: function () {
-    var that=this
-      wx.showModal({
-        title: '提示',
-        content: '参与活动需要先登陆',
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-            that.autoGetUserInfo()
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-            return false
-          }
-        }
-      })
-  },
   // 获得用户信息
   autoGetUserInfo: function () {
     util.showBusy('正在登录')
     const session = qcloud.Session.get()
     if (session) {
+      console.log(1)
       qcloud.loginWithCode({
         success: res => {
           this.getUserInfoSu(res);
@@ -151,15 +133,20 @@ Page({
         }
       })
     } else {
-      qcloud.login({
-        success: res => {
-          this.getUserInfoSu(res);
-        },
-        fail: err => {
-          this.getUserInfoFail(err);
-        }
-      })
+      console.log(2)
+      this.logIn()
     }
+  },
+  logIn : function () {
+    qcloud.login({
+      success: res => {
+        this.getUserInfoSu(res);
+      },
+      fail: err => {
+        console.log(4)
+        this.getUserInfoFail(err);
+      }
+    })
   },
   getUserInfoSu: function (res) {
     app.globalData.userInfo = res
@@ -169,8 +156,10 @@ Page({
     util.showSuccess('登录成功')
   },
   getUserInfoFail: function (err) {
+    console.log(5)
     console.error(err)
     util.showModel('登录错误', err.message)
+    //this.logIn()
   },
 
   updateArr: function (pArr, pAttends) {

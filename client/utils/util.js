@@ -101,11 +101,15 @@ const showAppointment = (pApt, pUserInfo = null) => {
   tApt.timeStart = formatHM(new Date(tApt.timeStart))
   tApt.timeEnd = formatHM(new Date(tApt.timeEnd))
   if (pUserInfo !== null) {
+    tApt.logged = true
     for (var i in tApt.records) {
       if (tApt.records[i].openId == pUserInfo.openId) {
         tApt.attends = tApt.records[i].attends
       }
     }
+  }
+  else{
+    tApt.logged=false
   }
   return tApt
 }
