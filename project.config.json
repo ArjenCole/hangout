@@ -30,8 +30,8 @@
 				{
 					"id": 0,
 					"name": "测试群0",
-					"pathName": "pages/detailApt/detailApt",
-					"query": "aptId=XBY-apT75u22jWhu",
+					"pathName": "pages/index/index",
+					"query": "aptId=XBzZdZT75u22qml9",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",

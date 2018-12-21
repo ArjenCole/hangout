@@ -45,8 +45,21 @@ Page({
     });
   },
 
+  /**
+ * 生命周期函数--监听页面加载
+ */
+  onLoad: function (options) {
+    if (options !== null) {
+      wx.navigateTo({
+        url: '../detailApt/detailApt?aptId=' + options.aptId
+      })
+    }
+  },
   onShow: function () {
-    //this.autoGetUserInfo();
+    if (app.globalData.userInfo !== null) {
+      this.setData({ userInfo: app.globalData.userInfo, logged: true }) 
+    }
+
     if (this.data.logged) {
       this.getPostList() 
       this.getPartList()
