@@ -92,9 +92,11 @@ Page({
     });
     var tUserInfo = app.globalData.userInfo;
     var tAptDate = new Date(this.data.aptDate) 
-    var tAptTimeStart = new Date(this.data.aptDate + " " + this.data.aptTimeStart)
-    var tAptTimeEnd = new Date(this.data.aptDate + " " + this.data.aptTimeEnd)
+    var tAptTimeStart = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeStart)
+    var tAptTimeEnd = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeEnd)
 
+    console.log(this.data.aptDate + " " + this.data.aptTimeStart)
+    console.log(tAptTimeStart)
     var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
     this.addRecord(newApt);
   },

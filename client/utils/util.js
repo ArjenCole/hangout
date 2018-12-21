@@ -22,6 +22,13 @@ const formatHM = date => {
 
   return [hour, minute].map(formatNumber).join(':')
 }
+function dateFromString(time) {
+  var time = "2014-08-12 09:25:24 "
+  time = time.replace(/-/g, ':').replace(' ', ':')
+  time = time.split(':')
+  var time1 = new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5])
+  return time1
+}
 
 const formatNumber = n => {
   n = n.toString()
@@ -121,4 +128,4 @@ var deepClone = (a) => {
 }
 
 
-module.exports = { formatTime, formatDate, formatHM, showBusy, showSuccess, showModel, newAppointment, newRecord, showAptList, showAppointment, deepClone}
+module.exports = { formatTime, formatDate, formatHM, dateFromString, showBusy, showSuccess, showModel, newAppointment, newRecord, showAptList, showAppointment, deepClone}
