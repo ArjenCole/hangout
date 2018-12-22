@@ -4,7 +4,13 @@
 	"miniprogramRoot": "client/",
 	"qcloudRoot": "server/",
 	"setting": {
-		"newFeature": true
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": true,
+		"autoAudits": false
 	},
 	"appid": "wxeaf289464a1bf1cb",
 	"projectname": "hangout",
@@ -24,6 +30,7 @@
 		"game": {
 			"list": []
 		},
+		"cloudfunctionRoot": "./cloud-functions/",
 		"miniprogram": {
 			"current": 0,
 			"list": [
