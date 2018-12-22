@@ -107,14 +107,21 @@ const showAppointment = (pApt, pUserInfo = null) => {
   tApt.date = formatDate(new Date(tApt.date))
   tApt.timeStart = formatHM(new Date(tApt.timeStart))
   tApt.timeEnd = formatHM(new Date(tApt.timeEnd))
-  console.log(tApt.date, ",", formatDate(new Date()), tApt.date < formatDate(new Date()))
+
   if (tApt.date < formatDate(new Date())){
     tApt.overDue=true
   }else{
     tApt.overDue=false
   }
+  
   if (pUserInfo !== null) {
     tApt.logged = true
+    if (tApt._openid == pUserInfo.openId){
+      tApt.editAble=true
+    }else{
+      tApt.editAble=false
+    }
+
     for (var i in tApt.records) {
       if(tApt.records[i]==null){continue}
       if (tApt.records[i].openId == pUserInfo.openId) {

@@ -3,11 +3,12 @@
   <view class='titleBox'>
     <view class="page__hd">
       <view class="page__title">{{showApt.title}}</view>
-      <view class="page__desc">发起人:{{showApt.creatorNn}}</view>
+      <view class="page__desc" wx:if="{{!showApt.editAble}}">发起人:{{showApt.creatorNn}}</view>
+      <view class="page__desc" wx:if="{{showApt.editAble}}">点此编辑活动</view>
     </view>    
     <view class="page__hd">
       <button class="buttonShare" open-type='share'>分享活动</button>
-    </view>
+    </view>    
   </view>
     <view class="sheet">
         <view class="sheet-preview">
