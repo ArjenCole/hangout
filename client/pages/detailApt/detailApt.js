@@ -107,14 +107,11 @@ Page({
   },
 
   getApt: function (pId) {
-    console.log("getApt", pId)
     var that = this;
     app.globalData.aptCollection.where({
       _id: pId
     }).get({
       success: function (res) {
-        console.log("getAptSu", res)
-        console.log("getAptSu1", util.showAppointment(res.data[0], app.globalData.userInfo))
         that.setData({ 
           apt: res.data[0],
           showApt: util.showAppointment(res.data[0],app.globalData.userInfo)
@@ -188,7 +185,7 @@ Page({
   updateApt: function (pRecords){
     var that = this
     var tID = this.data.apt._id;
-    app.globalData.aptCollection.doc(tID).update({
+    /*app.globalData.aptCollection.doc(tID).update({
       data: {
         records: pRecords
       },
@@ -199,7 +196,22 @@ Page({
       fail: function (e) {
         console.log(e);
       }
+    })*/
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'updateApt',
+      // 传给云函数的参数
+      data: {
+        pId: tID,
+        pRecords: pRecords,
+      },
     })
+      .then(res => {
+        console.log("res1", res.result) // 3
+        that.checkUser()
+        that.getApt(that.data.apt._id)
+      })
+      .catch(console.error)
   },
 
   checkUser: function () {
