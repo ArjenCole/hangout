@@ -107,6 +107,12 @@ const showAppointment = (pApt, pUserInfo = null) => {
   tApt.date = formatDate(new Date(tApt.date))
   tApt.timeStart = formatHM(new Date(tApt.timeStart))
   tApt.timeEnd = formatHM(new Date(tApt.timeEnd))
+  console.log(tApt.date, ",", formatDate(new Date()), tApt.date < formatDate(new Date()))
+  if (tApt.date < formatDate(new Date())){
+    tApt.overDue=true
+  }else{
+    tApt.overDue=false
+  }
   if (pUserInfo !== null) {
     tApt.logged = true
     for (var i in tApt.records) {
