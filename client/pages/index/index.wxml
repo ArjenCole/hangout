@@ -44,10 +44,10 @@
                 </view>
         </block>
         <view class="weui-footer">
-            <view class="weui-footer__links">
+            <!--view class="weui-footer__links">
                 <navigator url="" class="weui-footer__link">报名首页</navigator>
-            </view>
-            <view class="weui-footer__text">Copyright © 2008-2020</view>
+            </view-->       
+            <image src="../../res/181222arjencole.png" style="width: 100px; height: 19px;"></image>
         </view>
   </view>
 

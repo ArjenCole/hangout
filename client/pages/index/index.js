@@ -26,7 +26,7 @@ Page({
       {
         id: 'part',
         name: '受邀的活动',
-        open: false,
+        open: true,
         apts: []
       },
     ]
