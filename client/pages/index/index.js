@@ -121,8 +121,11 @@ Page({
   },
   getUserInfoFail: function (err) {
     console.error(err)
-    util.showModel('登录错误', err.message)
-    //this.logIn()
+    if (err.message =="用户未登录过，请先使用 login() 登录"){
+      this.logIn()
+    } else {
+      util.showModel('登录错误', err.message)
+    }
   },
 
   getPostList: function () {
