@@ -107,6 +107,7 @@ Page({
   },
 
   getApt: function (pId) {
+    console.log("getApt",pId)
     var that = this;
     app.globalData.aptCollection.where({
       _id: pId
@@ -117,6 +118,10 @@ Page({
           showApt: util.showAppointment(res.data[0],app.globalData.userInfo)
         })
         app.globalData.currentApt=that.data.apt
+        console.log("getAptSu")
+      },
+      fail:function (res){
+        console.log("getAptFail",res)
       }
     })
   },
@@ -166,16 +171,15 @@ Page({
   },
 
   updateArr: function (pArr, pAttends) {
-    //console.log("p",pArr)
-
+    console.log("p",pArr)
     var tArr = util.deepClone(pArr)
-    //console.log("t",tArr)
+    console.log("t",tArr)
     var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
     var flag = false;
     for (var i in tArr) {
       if(tArr[i]==null){continue}
       if (tArr[i].openId == app.globalData.userInfo.openId) {
-        console.log(tArr[i].openId, "==", app.globalData.userInfo.openId)
+        //console.log(tArr[i].openId, "==", app.globalData.userInfo.openId)
         tArr[i] = tRecord
         flag = true
       }
@@ -194,6 +198,7 @@ Page({
       success: function (res) {
         that.checkUser()
         that.getApt(that.data.apt._id)
+
       },
       fail: function (e) {
         console.log(e);
@@ -207,6 +212,15 @@ Page({
       _openid: app.globalData.userInfo.openId
     }).get({
       success: function (res) {
+        wx.showModal({
+          title: 'checkUser成功提示',
+          content: res.data.length.toString(),
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            }
+          }
+        });
         if(res.data.length==0){
           that.addUser()
         } else {

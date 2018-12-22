@@ -49,7 +49,7 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onLoad: function (options) {
-    if (options !== null) {
+    if (typeof (options.aptId) !== "undefined") {
       wx.navigateTo({
         url: '../detailApt/detailApt?aptId=' + options.aptId
       })
