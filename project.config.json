@@ -3,6 +3,7 @@
 	"svr": "server/",
 	"miniprogramRoot": "client/",
 	"qcloudRoot": "server/",
+  "cloudfunctionRoot": "./cloud-functions/",
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
@@ -30,7 +31,6 @@
 		"game": {
 			"list": []
 		},
-		"cloudfunctionRoot": "./cloud-functions/",
 		"miniprogram": {
 			"current": 0,
 			"list": [
