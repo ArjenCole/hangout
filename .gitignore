@@ -3,6 +3,7 @@
 Thumbs.db
 $RECYCLE.BIN/
 server/config.php
+server/config.js
 
 # macOS
 .DS_Store
@@ -11,6 +12,7 @@ server/config.php
 .TemporaryItems
 .Trashes
 server/config.php
+server/config.js
 
 # Node.js
 node_modules/
