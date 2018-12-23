@@ -40,13 +40,13 @@
   <view class="buttonBox">
     <button class="buttonLogIn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{!showApt.logged}}">点 击 登 陆 参 加 活 动</button>
     <form name='pushMsgFm' class="buttonDeny" report-submit='true' bindsubmit='getFormID' wx:if="{{(showApt.attends!=-1)&&(showApt.logged)}}"> 
-      <button class="buttonDeny" bindtap="bindDenyTap">拒绝</button>
+      <button form-type='submit' class="buttonDeny" bindtap="bindDenyTap">拒绝</button>
     </form>
     <form name='pushMsgFm' class="buttonPend" report-submit='true' bindsubmit='getFormID' wx:if="{{(showApt.attends!=0)&&(showApt.logged)}}"> 
-      <button class="buttonPend" bindtap="bindPendTap">待定</button>
+      <button form-type='submit' class="buttonPend" bindtap="bindPendTap">待定</button>
     </form>
     <form name='pushMsgFm' class="buttonJoin" report-submit='true' bindsubmit='getFormID' wx:if="{{(showApt.attends!=1)&&(showApt.logged)}}"> 
-      <button class="buttonJoin" bindtap="bindJoinTap">参加</button>
+      <button form-type='submit' class="buttonJoin" bindtap="bindJoinTap">参加</button>
     </form>
   </view>
 
