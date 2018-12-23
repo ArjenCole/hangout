@@ -203,7 +203,7 @@ Page({
     })*/
     wx.cloud.callFunction({
       // 云函数名称
-      name: 'updateApt',
+      name: 'updateAptRecords',
       // 传给云函数的参数
       data: {
         pId: tID,
