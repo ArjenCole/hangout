@@ -17,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("options",options.aptId)
     this.getApt(options.aptId)
   },
 
@@ -84,7 +83,12 @@ Page({
     }
 
   },
-
+  bindEditTap: function () {
+    if (!this.data.showApt.editAble) { return }
+    wx.navigateTo({
+      url: '../newApt/newApt?aptId=' + this.data.apt._id,
+    })
+  },
   bindGetUserInfo: function () {
     this.autoGetUserInfo()
   },
