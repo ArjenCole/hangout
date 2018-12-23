@@ -9,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    inApt: null,//传入的apt
+    showApt: null,
+
     aptName:"",
     aptDate: util.formatDate(new Date()),
     aptTimeStart: util.formatHM(new Date()),
@@ -22,7 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getApt(options.aptId)
   },
 
   /**
@@ -95,10 +98,13 @@ Page({
     var tAptTimeStart = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeStart)
     var tAptTimeEnd = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeEnd)
 
-    console.log(this.data.aptDate + " " + this.data.aptTimeStart)
-    console.log(tAptTimeStart)
     var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
-    this.addRecord(newApt);
+    if (this.data.inApt !== null) {
+      newApt._id=this.data.inApt._id
+      this.updateApt(newApt)
+    } else {
+      this.addRecord(newApt)
+    }
   },
   addRecord: function (pApt) {
     const col = app.globalData.aptCollection;
@@ -135,6 +141,49 @@ Page({
     //console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       aptTimeEnd: e.detail.value
+    })
+  },
+
+  getApt: function (pId) {
+    if (typeof (pId) == "undefined") { return }
+    var that = this;
+    app.globalData.aptCollection.where({
+      _id: pId
+    }).get({
+      success: function (res) {
+        that.setData({
+          inApt: res.data[0],
+          showApt: util.showAppointment(res.data[0], app.globalData.userInfo),
+          aptDate: util.formatDate(res.data[0].date),
+          aptTimeStart: util.formatHM(res.data[0].timeStart),
+          aptTimeEnd: util.formatHM(res.data[0].timeEnd),
+        })
+      },
+      fail: function (res) {
+        console.log("getAptFail", res)
+      }
+    })
+  },
+
+  updateApt: function (pApt) {
+    console.log(pApt)
+    app.globalData.aptCollection.doc(pApt._id).update({
+      data: {
+        title:pApt.title,
+        date: pApt.date,
+        timeStart: pApt.timeStart,
+        timeEnd: pApt.timeEnd,
+        place:pApt.place,
+        liaisons:pApt.liaisons,
+        tips:pApt.tips
+      },
+      success: function (res) {
+        wx.navigateBack()
+        console.log(res);
+      },
+      fail: function (e) {
+        console.log(e);
+      }
     })
   },
 })

@@ -2,11 +2,11 @@
 <form bindsubmit="formSubmit" bindreset="formReset">
   <view class="section">
     <view class="section__title">活动名称</view>
-    <input name="Title" placeholder="足球、网球、羽毛球……" />
+    <input name="Title" placeholder="足球、网球、羽毛球……" value='{{showApt.title}}' />
   </view>
   <view class="section">
     <view class="section__title">活动日期</view>
-    <picker mode="date" value="{{aptDate}}" start="{{today}}" end="2150-09-01" bindchange="bindDateChange">
+    <picker mode="date" value="{{aptDate}}" start="{{aptDate}}" end="2150-09-01" bindchange="bindDateChange">
       <view class="picker">
         {{aptDate}}
       </view>
@@ -28,15 +28,15 @@
   </view>
   <view class="section">
     <view class="section__title">活动地点</view>
-    <input name="Place" placeholder="XX路 XX号 XX活动中心……" />
+    <input name="Place" placeholder="XX路 XX号 XX活动中心……" value='{{showApt.place}}' />
   </view>
   <view class="section">
     <text class="section__title" space="ensp">联 络 人 </text>
-    <input name="Liaisons" placeholder="小张 XXX-XX……，选填" /><!--type="number"-->
+    <input name="Liaisons" placeholder="小张 XXX-XX……，选填" value='{{showApt.liaisons}}' /><!--type="number"-->
   </view>
   <view class="section">
     <text class="section__title" space="ensp">备    注 </text>
-    <input name="Tips" placeholder="其他注意事项，选填" />
+    <input name="Tips" placeholder="其他注意事项，选填" value='{{showApt.tips}}' />
   </view>
 
 <view wx:if="{{isSubmit}}" class="warning">
