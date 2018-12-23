@@ -23,7 +23,7 @@ const formatHM = date => {
   return [hour, minute].map(formatNumber).join(':')
 }
 function dateFromString(time) {
-  var time = "2014-08-12 09:25:24 "
+  //var time = "2014-08-12 09:25:24 "
   time = time.replace(/-/g, ':').replace(' ', ':')
   time = time.split(':')
   var time1 = new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5])

@@ -95,8 +95,8 @@ Page({
     });
     var tUserInfo = app.globalData.userInfo;
     var tAptDate = new Date(this.data.aptDate) 
-    var tAptTimeStart = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeStart)
-    var tAptTimeEnd = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeEnd)
+    var tAptTimeStart = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeStart + ":00 ")
+    var tAptTimeEnd = util.dateFromString(this.data.aptDate + " " + this.data.aptTimeEnd + ":00 ")
 
     var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
     if (this.data.inApt !== null) {
@@ -178,6 +178,14 @@ Page({
         tips:pApt.tips
       },
       success: function (res) {
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];   //当前页面
+        var prevPage = pages[pages.length - 2]; 
+        prevPage.setData({
+          apt: pApt,
+          showApt: util.showAppointment(pApt, app.globalData.userInfo)
+        })
+
         wx.navigateBack()
         console.log(res);
       },
