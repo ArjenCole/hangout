@@ -13,6 +13,9 @@ Page({
     requestResult: '',
     imgUrl: '',
 
+    xcxCodeImageData:{},
+    Access_Token:"",
+
     postList: [],
     partList: [],
 
@@ -320,6 +323,35 @@ Page({
           console.log(e);
         }
       })
-    }
-    
+    },
+
+
+/*
+
+  bindGetMiniProgrameCode : function () {
+    wx.cloud.callFunction({
+      name: 'getImage',   // 云函数名称
+      data: {    // 小程序码所需的参数
+        access_token: this.data.Access_Token,
+        page: "pages/detailApt/detailApt",
+        id: "id123",
+      },
+      complete: res => {
+        console.log('getImage: ', res)
+      }
+    })
+  },
+  bindGetAccessToken: function () {
+    wx.cloud.callFunction({
+      name: 'getAccessToken',   // 云函数名称
+      complete: res => {
+        console.log('getAccessToken: ', res)
+        this.setData({
+          Access_Token: res.result.token
+        })
+      }
+    })
+  },   
+
+  */
 })
