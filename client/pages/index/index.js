@@ -343,17 +343,16 @@ Page({
   },
   bindGetAccessToken: function () {
     wx.cloud.callFunction({
-      name: 'getAccessToken',   // 云函数名称
-      complete: res => {
+      name: 'getAccessToken',
+    })
+      .then(res => {
         console.log('getAccessToken: ', res)
         this.setData({
           Access_Token: res.result.data[0].token
         })
         console.log('Token: ', this.data.Access_Token)
-
-      }
-    })
-
+      })
+      .catch(console.error) 
   },   
 
   
