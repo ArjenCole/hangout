@@ -14,7 +14,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2]; 
 
+    this.setData({
+      apt: prevPage.data.apt
+    })
   },
 
   /**
@@ -28,9 +34,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      apt: app.globalData.currentApt
-    })
+
   },
 
   /**

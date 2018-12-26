@@ -134,7 +134,6 @@ Page({
           apt: res.data[0],
           showApt: util.showAppointment(res.data[0],app.globalData.userInfo)
         })
-        app.globalData.currentApt=that.data.apt
       },
       fail:function (res){
         console.log("getAptFail", res)
