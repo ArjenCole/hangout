@@ -326,7 +326,7 @@ Page({
     },
 
 
-/*
+
 
   bindGetMiniProgrameCode : function () {
     wx.cloud.callFunction({
@@ -347,11 +347,14 @@ Page({
       complete: res => {
         console.log('getAccessToken: ', res)
         this.setData({
-          Access_Token: res.result.token
+          Access_Token: res.result.data[0].token
         })
+        console.log('Token: ', this.data.Access_Token)
+
       }
     })
+
   },   
 
-  */
+  
 })
