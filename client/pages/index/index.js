@@ -24,13 +24,15 @@ Page({
         id: 'post',
         name: '发起的活动',
         open: false,
-        apts: []
+        apts: [],
+        showApts: []
       },
       {
         id: 'part',
         name: '受邀的活动',
         open: true,
-        apts: []
+        apts: [],
+        showApts: []
       },
     ]
   },
@@ -137,7 +139,8 @@ Page({
     }).get({
       success: function (res) {
         let tList = that.data.list
-        tList[0].apts = util.showAptList(res.data)
+        tList[0].apts = res.data
+        tList[0].showApts = util.showAptList(res.data)
         that.setData({list : tList})
       }
     })
@@ -160,7 +163,8 @@ Page({
     }).get({
       success: function (res) {
         let tList = that.data.list
-        tList[1].apts = util.showAptList(res.data)
+        tList[1].apts = res.data
+        tList[1].showApts = util.showAptList(res.data)
         that.setData({ list: tList })
       }
     })

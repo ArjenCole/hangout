@@ -17,7 +17,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getApt(options.aptId)
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2]; 
+
+    var tListIdx=0;
+    if(options.list=="post"){
+      tListIdx = 0;
+    }else{
+      tListIdx = 1;
+    }
+    var tApt = prevPage.data.list[tListIdx].apts[options.idx]
+    this.setData({
+      apt: tApt,
+      showApt: util.showAppointment(tApt, app.globalData.userInfo)
+    }) 
+    //this.getApt(options.aptId)
   },
 
   /**
