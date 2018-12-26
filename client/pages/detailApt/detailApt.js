@@ -32,7 +32,6 @@ Page({
       apt: tApt,
       showApt: util.showAppointment(tApt, app.globalData.userInfo)
     }) 
-    //this.getApt(options.aptId)
   },
 
   /**
@@ -198,7 +197,6 @@ Page({
       }
     }
     if (!flag) { tArr.push(tRecord) }
-    console.log(tArr)
     return tArr
   },
   updateApt: function (pRecords){
@@ -278,7 +276,7 @@ Page({
 
 
   getFormID: function (e) {
-    console.log(e.detail)
+    /*console.log(e.detail)
     var self = this;
     let _access_token = '5_E1pZJQzTC-lC0r-JJz9wVAZv5Zv22CNtmV_7C1T0sqC9TV7mGE4FTmDX2B0PVM4LaGtaTfXwzfJLnD7fDKTg8DOICJNkKBQgn_Ot2zYmBJyY1g1VXoBNdtwUE0QaP8_9tWlbR-Zq7L1OyrrPKCIjAEAOGM';
     let url = 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + _access_token; 
@@ -307,6 +305,6 @@ Page({
       complete: function (res) {
         console.log("request completed!");
       }
-    })
+    })*/
   }
 })
