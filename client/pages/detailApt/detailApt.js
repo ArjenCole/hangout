@@ -18,16 +18,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (typeof (options.aptId)=='undefined'){
+      this.getAptFromIndex(options)
+    } else {
+      this.getApt(options._id)
+    }
+  },
+  getAptFromIndex: function (options) {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
     this.setData({
-      prevPage : pages[pages.length - 2]
+      prevPage: pages[pages.length - 2]
     })
 
-    var tListIdx=0;
-    if(options.list=="post"){
+    var tListIdx = 0;
+    if (options.list == "post") {
       tListIdx = 0;
-    }else{
+    } else {
       tListIdx = 1;
     }
     var tApt = this.data.prevPage.data.list[tListIdx].apts[options.idx]
@@ -36,47 +43,21 @@ Page({
       showApt: util.showAppointment(tApt, app.globalData.userInfo)
     }) 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  getApt: function (pId) {
+    var that = this;
+    app.globalData.aptCollection.where({
+      _id: pId
+    }).get({
+      success: function (res) {
+        that.setData({
+          apt: res.data[0],
+          showApt: util.showAppointment(res.data[0], app.globalData.userInfo)
+        })
+      },
+      fail: function (res) {
+        console.log("getAptFail", res)
+      }
+    })
   },
 
   /**
@@ -120,23 +101,6 @@ Page({
     if (app.globalData.userInfo !== null) {
       this.updateApt(this.updateArr(this.data.apt.records, "join"), "join")
     }
-  },
-
-  getApt: function (pId) {
-    var that = this;
-    app.globalData.aptCollection.where({
-      _id: pId
-    }).get({
-      success: function (res) {
-        that.setData({ 
-          apt: res.data[0],
-          showApt: util.showAppointment(res.data[0],app.globalData.userInfo)
-        })
-      },
-      fail:function (res){
-        console.log("getAptFail", res)
-      }
-    })
   },
 
   // 获得用户信息

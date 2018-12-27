@@ -3,7 +3,7 @@
 	"svr": "server/",
 	"miniprogramRoot": "client/",
 	"qcloudRoot": "server/",
-  "cloudfunctionRoot": "./cloud-functions/",
+	"cloudfunctionRoot": "cloud-functions/",
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
@@ -38,7 +38,7 @@
 					"id": 0,
 					"name": "测试群0",
 					"pathName": "pages/index/index",
-					"query": "aptId=XB3OcsDR1TiNBKCb",
+					"query": "aptId=XCS9ud7E7L4w8uvX",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",
