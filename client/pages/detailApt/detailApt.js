@@ -233,10 +233,30 @@ Page({
     })
   },
   deleteUser: function () {
-    var partList = this.data.prevPage.data.partList
+    var partList = null
+    if (typeof (this.data.prevPage.data)=='undefined'){
+      this.getPartList()
+    }else{
+      partList = this.data.prevPage.data.partList
+      this.deleteUser1(partList)
+    }
+
+
+  },
+  getPartList: function () {
+    var that = this
+    app.globalData.userCollection.where({
+      _openid: app.globalData.userInfo.openId
+    }).get({
+      success: function (res) {
+        that.deleteUser1(res.data[0].apts) 
+      }
+    })
+  },
+  deleteUser1: function (partList) {
     var tID = app.globalData.userInfo.openId;
     var index = -1
-    for(var i in partList){
+    for (var i in partList) {
       if (partList[i] == this.data.apt._id) { index = i }
     }
     if (index < 0) { return }
