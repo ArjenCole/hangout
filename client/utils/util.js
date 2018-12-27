@@ -83,9 +83,9 @@ const newAppointment = (pUserInfo, pTitle, pDate, pTimeStart, pTimeEnd, pPlace, 
   return rtApt;
 }
 
-const newRecord = (pUserInfo, pAttends) => {//1:出席 0:待定 -1:拒绝
+const newRecord = (pUserInfo) => {//1:出席 0:待定 -1:拒绝
   let rtRecord = {};
-  rtRecord.attends = pAttends;
+  rtRecord.attends = 1;
   if (pUserInfo) {
     rtRecord.openId = pUserInfo.openId;
     rtRecord.avatarURL = pUserInfo.avatarUrl;

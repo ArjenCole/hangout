@@ -151,6 +151,9 @@ Page({
       _openid: app.globalData.userInfo.openId
     }).get({
       success: function (res) {
+        that.setData({
+          partList: res.data[0].apts
+        }) 
         that.getPartListApts(res.data[0].apts)
       }
     })

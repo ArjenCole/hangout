@@ -74,6 +74,7 @@
   flex-grow: 1;
   height: 37px;
   border-radius: 0px;
+  border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background: #79899b77;
 	color: #fff;
@@ -81,20 +82,11 @@
 	font-size: 15px;
 }
 .buttonDeny::after{ border: none; }  
-.buttonPend{
-  flex-grow: 1;
-  height: 37px;
-  border-radius: 0px;
-  background: #79899b77;
-	color: #fff;
-	text-align: center;
-	font-size: 15px;
-}
-.buttonPend::after{ border: none; }  
 .buttonJoin{
   flex-grow: 2;
   height: 37px;
   border-radius: 0px;
+  border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: #79899b;
 	color: #fff;

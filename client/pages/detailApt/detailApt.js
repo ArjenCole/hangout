@@ -11,6 +11,7 @@ Page({
   data: {
     apt: {},
     showApt: {},
+    prevPage: {},
   },
 
   /**
@@ -19,7 +20,9 @@ Page({
   onLoad: function (options) {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
-    var prevPage = pages[pages.length - 2]; 
+    this.setData({
+      prevPage : pages[pages.length - 2]
+    })
 
     var tListIdx=0;
     if(options.list=="post"){
@@ -27,7 +30,7 @@ Page({
     }else{
       tListIdx = 1;
     }
-    var tApt = prevPage.data.list[tListIdx].apts[options.idx]
+    var tApt = this.data.prevPage.data.list[tListIdx].apts[options.idx]
     this.setData({
       apt: tApt,
       showApt: util.showAppointment(tApt, app.globalData.userInfo)
@@ -108,19 +111,14 @@ Page({
   },
   bindDenyTap: function () {
     if (app.globalData.userInfo !== null) { 
-      this.updateApt(this.updateArr(this.data.apt.records, -1))
+      this.updateApt(this.updateArr(this.data.apt.records, "deny"), "deny")
     }else{
       console.log("尚未登陆")
     }
   },
-  bindPendTap: function () {
-    if (app.globalData.userInfo !== null) {
-      this.updateApt(this.updateArr(this.data.apt.records, 0))
-    }
-  },
   bindJoinTap: function () {
     if (app.globalData.userInfo !== null) {
-      this.updateApt(this.updateArr(this.data.apt.records, 1))
+      this.updateApt(this.updateArr(this.data.apt.records, "join"), "join")
     }
   },
 
@@ -186,37 +184,31 @@ Page({
 
   updateArr: function (pArr, pAttends) {
     var tArr = util.deepClone(pArr)
-    var tRecord = util.newRecord(app.globalData.userInfo, pAttends)
-    var flag = false;
+    var tRecord = util.newRecord(app.globalData.userInfo)
+    var index =-1
     for (var i in tArr) {
       if(tArr[i]==null){continue}
       if (tArr[i].openId == app.globalData.userInfo.openId) {
-        tArr[i] = tRecord
-        flag = true
+        index=i
+        continue
       }
     }
-    if (!flag) { tArr.push(tRecord) }
+    if (index >= 0) {
+      if (pAttends == "join") {
+        tArr[index] = tRecord
+      } else {
+        tArr.splice(index, 1)
+      }
+    } else {
+      tArr.push(tRecord) 
+    }
     return tArr
   },
-  updateApt: function (pRecords){
+  updateApt: function (pRecords, pAttends){
     var that = this
     var tID = this.data.apt._id;
-    /*app.globalData.aptCollection.doc(tID).update({
-      data: {
-        records: pRecords
-      },
-      success: function (res) {
-        that.checkUser()
-        that.getApt(that.data.apt._id)
-      },
-      fail: function (e) {
-        console.log(e);
-      }
-    })*/
     wx.cloud.callFunction({
-      // 云函数名称
       name: 'updateAptRecords',
-      // 传给云函数的参数
       data: {
         pId: tID,
         pRecords: pRecords,
@@ -224,7 +216,11 @@ Page({
     })
       .then(res => {
         console.log("res1", res.result) // 3
-        that.checkUser()
+        if(pAttends=="join"){
+          that.checkUser()
+        }else{
+          that.deleteUser()
+        }
         that.getApt(that.data.apt._id)
       })
       .catch(console.error)
@@ -272,7 +268,28 @@ Page({
       }
     })
   },
+  deleteUser: function () {
+    var partList = this.data.prevPage.data.partList
+    var tID = app.globalData.userInfo.openId;
+    var index = -1
+    for(var i in partList){
+      if (partList[i] == this.data.apt._id) { index = i }
+    }
+    if (index < 0) { return }
+    partList.splice(index, 1)
+    const _ = app.globalData.db.command
+    app.globalData.userCollection.doc(tID).update({
+      data: {
+        apts: partList
+      },
+      success: function (res) {
 
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+  },
 
   getFormID: function (e) {
     /*console.log(e.detail)
