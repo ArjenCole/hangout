@@ -121,8 +121,11 @@ page {
 
 .kind-list__item {
 	margin: 10px 0;
-	background-color: #ffffffdc;
-	border-radius: 2px;
+	background-color: #ffffffe1;
+	color: #79899b;
+  font-size: 17px;
+  font-weight:500;
+	border-radius: 6px;
 	overflow: hidden
 }
 

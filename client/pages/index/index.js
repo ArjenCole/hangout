@@ -29,7 +29,7 @@ Page({
       },
       {
         id: 'part',
-        name: '受邀的活动',
+        name: '参加的活动',
         open: true,
         apts: [],
         showApts: []

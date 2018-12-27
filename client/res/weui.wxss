@@ -958,6 +958,7 @@ icon {
 }
 
 .weui-media-box__title {
+  color: rgba(0, 0, 0, 0.774);
   font-weight: 400;
   font-size: 17px;
   width: auto;
