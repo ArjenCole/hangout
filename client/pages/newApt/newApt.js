@@ -25,7 +25,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getApt(options.aptId)
+    if (typeof(options.aptId) == "undefined") { return }
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];   //前页面
+
+    var prevApt =prevPage.data.apt
+    this.setData({
+      inApt: prevApt,
+      showApt: util.showAppointment(prevApt, app.globalData.userInfo),
+      aptDate: util.formatDate(prevApt.date),
+      aptTimeStart: util.formatHM(prevApt.timeStart),
+      aptTimeEnd: util.formatHM(prevApt.timeEnd),
+    })
   },
 
   /**
@@ -141,27 +153,6 @@ Page({
     //console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       aptTimeEnd: e.detail.value
-    })
-  },
-
-  getApt: function (pId) {
-    if (typeof (pId) == "undefined") { return }
-    var that = this;
-    app.globalData.aptCollection.where({
-      _id: pId
-    }).get({
-      success: function (res) {
-        that.setData({
-          inApt: res.data[0],
-          showApt: util.showAppointment(res.data[0], app.globalData.userInfo),
-          aptDate: util.formatDate(res.data[0].date),
-          aptTimeStart: util.formatHM(res.data[0].timeStart),
-          aptTimeEnd: util.formatHM(res.data[0].timeEnd),
-        })
-      },
-      fail: function (res) {
-        console.log("getAptFail", res)
-      }
     })
   },
 
