@@ -85,7 +85,7 @@ const newAppointment = (pUserInfo, pTitle, pDate, pTimeStart, pTimeEnd, pPlace, 
 
 const newRecord = (pUserInfo) => {//1:出席 0:待定 -1:拒绝
   let rtRecord = {};
-  rtRecord.attends = 1;
+  rtRecord.attends = "join";
   if (pUserInfo) {
     rtRecord.openId = pUserInfo.openId;
     rtRecord.avatarURL = pUserInfo.avatarUrl;
@@ -125,7 +125,7 @@ const showAppointment = (pApt, pUserInfo = null) => {
     for (var i in tApt.records) {
       if(tApt.records[i]==null){continue}
       if (tApt.records[i].openId == pUserInfo.openId) {
-        tApt.attends = tApt.records[i].attends
+        tApt.attends = "join"
       }
     }
   }
