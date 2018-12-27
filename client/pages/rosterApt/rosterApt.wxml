@@ -6,37 +6,13 @@
     <view class="sheet">
         <view class="weui-cells__title">参加：</view>
         <block wx:for="{{apt.records}}" wx:for-item="item" wx:key="id">
-          <view class="weui-cells weui-cells_after-title" wx:if="{{item.attends==1}}">
+          <view class="weui-cells weui-cells_after-title" wx:if="{{item.attends=='join'}}">
               <view class="weui-cell">
                   <view class="weui-cell__hd">
                       <image src="{{item.avatarURL}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
                   </view>
                   <view class="weui-cell__bd">{{item.nickName}}</view>
                   <view class="weui-cell__ft">参加</view>
-              </view>
-          </view>
-        </block>
-        <view class="weui-cells__title">待定：</view>
-        <block wx:for="{{apt.records}}" wx:for-item="item" wx:key="id">
-          <view class="weui-cells weui-cells_after-title" wx:if="{{item.attends==0}}">
-              <view class="weui-cell">
-                  <view class="weui-cell__hd">
-                      <image src="{{item.avatarURL}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-                  </view>
-                  <view class="weui-cell__bd">{{item.nickName}}</view>
-                  <view class="weui-cell__ft">待定</view>
-              </view>
-          </view>
-        </block>
-        <view class="weui-cells__title">拒绝：</view>
-        <block wx:for="{{apt.records}}" wx:for-item="item" wx:key="id">
-          <view class="weui-cells weui-cells_after-title" wx:if="{{item.attends==-1}}">
-              <view class="weui-cell">
-                  <view class="weui-cell__hd">
-                      <image src="{{item.avatarURL}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-                  </view>
-                  <view class="weui-cell__bd">{{item.nickName}}</view>
-                  <view class="weui-cell__ft">拒绝</view>
               </view>
           </view>
         </block>
