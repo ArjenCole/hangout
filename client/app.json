@@ -1,11 +1,12 @@
 {
-  "cloud":true,
+  "cloud": true,
   "pages": [
     "pages/index/index",
     "pages/account/account",
     "pages/newApt/newApt",
     "pages/detailApt/detailApt",
-    "pages/rosterApt/rosterApt"
+    "pages/rosterApt/rosterApt",
+    "pages/site/site"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

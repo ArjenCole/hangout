@@ -1210,6 +1210,6 @@ icon {
 .weui-search-bar__cancel-btn {
   margin-left: 10px;
   line-height: 28px;
-  color: #09bb07;
+  color: #79899b;
   white-space: nowrap
 }

@@ -29,7 +29,7 @@
     </view>
     <view class="section">
       <view class="section__title">活动地点：</view>
-      <input name="Place" placeholder="XX路XX号……" value='{{showApt.place}}' />
+      <input name="Place" placeholder="XX路XX号……" value='{{showApt.place}}' />                       <image src="../../res/iconMap.png" style="width: 25px; height: 25px;" bindtap="bindSelectSite"></image>
     </view>
     <view class="section">
       <text class="section__title" space="ensp">联 络 人：</text>

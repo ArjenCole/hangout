@@ -155,6 +155,11 @@ Page({
       aptTimeEnd: e.detail.value
     })
   },
+  bindSelectSite: function (e) {
+    wx.navigateTo({
+      url: '../site/site'
+    })
+  },
 
   updateApt: function (pApt) {
     console.log(pApt)
