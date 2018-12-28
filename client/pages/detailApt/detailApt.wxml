@@ -48,7 +48,7 @@
   </view>
 
     <navigator url="../rosterApt/rosterApt?aptId={{showApt._id}}" class="page__bd page__bd_spacing">    
-        <view class="page__desc">参加：</view>
+        <view class="page__desc">点此查看报名名单：</view>
         <view class="box">
             <block wx:for="{{showApt.records}}" wx:for-item="record" wx:key="openId">
               <image class="item" src="{{record.avatarURL}}" wx:if="{{record.attends=='join'}}" />
