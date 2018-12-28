@@ -1,0 +1,158 @@
+/* client/pages/siteIndex/siteIndex.wxss */
+page {
+    background: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.userinfo, .uploader, .tunnel {
+    margin-top: 40rpx;
+    height: 140rpx;
+    width: 100%;
+    background: #FFF;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-left: none;
+    border-right: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 300ms ease;
+}
+
+.userinfo-avatar {
+    width: 100rpx;
+    height: 100rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.userinfo-nickname {
+    font-size: 32rpx;
+    color: #007AFF;
+    background-color: white; 
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
+
+.bottom50 {
+  position: fixed;
+  bottom: 20px;
+}
+
+.logInButton {    
+	width: 270px;
+	background: #79899b;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+}
+.plusButton {    
+	width: 300px;
+	background: #79899b;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
+}
+
+.weui_cell {
+	position: relative;
+	display: flex;
+	padding: 15px;
+	-webkit-box-align: left;
+	-ms-flex-align: left;
+	align-items: left;
+	border-bottom: 1px solid #dadada;
+}
+.weui_cell_hd {
+	display: inline-block;
+	width: 20px;
+	margin-right: 5px;
+}
+
+.weui_cell_bd {
+	display: inline-block;
+}
+.weui_cell_bd_t {
+	font-size: 16px;
+	color: #292929;
+}
+.weui_cell_bd_p {
+	font-size: 14px;
+	color: #939393;
+}
+
+
+/*!
+ * WeUI v1.1.1 (https://github.com/weui/weui-wxss)
+ * Copyright 2017 Tencent, Inc.
+ * Licensed under the MIT license
+ */
+.weui-flex {
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center
+}
+
+.weui-cells {
+	margin-top: 0;
+	opacity: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	-webkit-transition: .3s;
+	transition: .3s
+}
+
+.weui-cells:after,.weui-cells:before {
+	display: none
+}
+
+.weui-cells_show {
+	opacity: 1;
+	-webkit-transform: translateY(0);
+	transform: translateY(0)
+}
+
+.weui-cell:before {
+	right: 15px
+}
+
+.kind-list__item {
+	margin: 10px 0;
+	background-color: #ffffffe1;
+	color: #79899b;
+  font-size: 17px;
+  font-weight:500;
+	border-radius: 6px;
+	overflow: hidden
+}
+
+.kind-list__item:first-child {
+	margin-top: 0
+}
+
+.kind-list__img {
+	width: 30px;
+	height: 30px
+}
+
+.kind-list__item-hd {
+	padding: 20px;
+	-webkit-transition: opacity .3s;
+	transition: opacity .3s
+}
+
+.kind-list__item-hd_show {
+	opacity: .4
+}
+
+.kind-list__item-bd {
+	height: 0;
+	overflow: hidden
+}
+
+.kind-list__item-bd_show {
+	height: auto
+}

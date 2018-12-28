@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--client/pages/siteIndex/siteIndex.wxml-->
 <view class="page">
  <!-- 用户登录测试 -->
     <view class="weui-cell weui-cell_access">
@@ -10,7 +10,7 @@
         ></image>
         <view>
             <button class="logInButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button>
-            <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewItem"> 发 起 活 动 </button>
+            <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewSite"> 新 增 场 馆 </button>
             <text class="page__title" wx:else>{{userInfo.nickName}}</text>
         </view>
     </view>
