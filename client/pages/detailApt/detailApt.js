@@ -64,10 +64,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (ops) {
-    var tTitle = ""; var tPath = "";
+    var tTitle = '邀请你参加活动';; var tPath = "";
     //if (ops.from === 'button') {
-      // 来自页面内转发按钮        
-      tTitle = app.globalData.userInfo.nickName + '邀请你参加活动';
+      // 来自页面内转发按钮
+      if(app.globalData.userInfo!==null){
+        tTitle = app.globalData.userInfo.nickName + tTitle
+      }
       tPath = '/pages/index/index?aptId=' + this.data.apt._id;//分享地址
       //tPath = '/pages/detailApt/detailApt?aptId=' + this.data.apt._id;//分享地址
 
