@@ -32,13 +32,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "测试群0",
 					"pathName": "pages/index/index",
 					"query": "aptId=XCS9ud7E7L4w8uvX",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "pxlL_Ws0649btIGCq8HYyrJH-RmRtjkNVOfM98fIVs0@cr4dev",
+						"shareKey": "gcyazXgHnYsWUXQQE8qlTxmYWTJV4I1rNzs6JfYJQcwsm8x5qQL2ldx4cazAT5bTPuzqtJffJABCMExf_jU61g~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "场地模式",
+					"pathName": "pages/siteIndex/siteIndex",
+					"query": "",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",

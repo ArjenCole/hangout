@@ -1,72 +1,48 @@
 <!--client/pages/siteIndex/siteIndex.wxml-->
 <view class="page">
  <!-- 用户登录测试 -->
-    <view class="weui-cell weui-cell_access">
-        <image
-            class="userinfo-avatar"
-            src="{{logged ? userInfo.avatarUrl : '../../res/user-unlogin.png'}}"
-            background-size="cover"
-            bindtap='bindSwitch'
-        ></image>
-        <view>
-            <button class="logInButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button>
-            <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewSite"> 新 增 场 馆 </button>
-            <text class="page__title" wx:else>{{userInfo.nickName}}</text>
-        </view>
+  <view class="weui-cell weui-cell_access">
+    <image
+      class="userinfo-avatar"
+      src="{{logged ? userInfo.avatarUrl : '../../res/user-unlogin.png'}}"
+      background-size="cover"
+      bindtap='bindSwitch'
+    ></image>
+    <view>
+      <button class="logInButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button>
+      <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewSite"> 新 增 场 馆 </button>
+      <text class="page__title" wx:else>{{userInfo.nickName}}</text>
     </view>
-</view>
-
-
-        <!--image
-            class="userinfo-avatar"
-            src="{{xcxCodeImageData.fileID}}"
-            background-size="cover"
-        ></image>  
-<button class="logInButton" bindtap="bindGetAccessToken"> AT </button>
-<button class="logInButton" bindtap="bindGetMiniProgrameCode"> 小程序码 </button-->
-
-    
-<view class="page__bd page__bd_spacing">
-  <view class="kind-list">
-        <block wx:for="{{list}}" wx:for-item="list" wx:key="id">
-                <view class="kind-list__item">
-                    <view id="{{list.id}}" class="weui-flex kind-list__item-hd {{list.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
-                        <view class="weui-flex__item">{{list.name}}</view>
-                        <!--image class="kind-list__img" src="images/icon_nav_{{item.id}}.png"></image-->
-                    </view>
-                    <view class="kind-list__item-bd {{list.open ? 'kind-list__item-bd_show' : ''}}">
-                        <view class="weui-cells {{list.open ? 'weui-cells_show' : ''}}">
-                            <block wx:for="{{list.showApts}}" wx:for-item="item" wx:key="_id" wx:for-index="idx" wx:if="{{(!item.overDue)||(list.id=='post')}}">
-                                <navigator url="../detailApt/detailApt?list={{list.id}}&idx={{idx}}" class="weui-cell weui-cell_access">
-                                    <!--view class="weui-cell__ft weui-cell__ft_in-access"></view-->
-                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                                      <view class="weui-media-box__title">{{item.title}}</view>
-                                      <view class="weui-media-box__desc">{{item.timeStart}}~{{item.timeEnd}}</view>
-                                      <view class="weui-media-box__desc">地址:{{item.place}}</view>
-                                      <view class="weui-media-box__desc">联系人:{{item.liaisons}}</view>
-                                    </view>
-                                    <view class="weui-cell__ft">{{item.date}}</view>
-                                </navigator>
-
-                            </block>
-                        </view>
-                    </view>
-                </view>
-        </block>
-        <view class="weui-footer">
-            <!--view class="weui-footer__links">
-                <navigator url="" class="weui-footer__link">报名首页</navigator>
-            </view-->       
-            <image src="../../res/181222arjencole.png" style="width: 100px; height: 19px;"></image>
-        </view>
   </view>
 
-</view>
+  <view class="weui-cell">
+    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+      <image src="../../res/user-unlogin.png" style="width: 80px; height: 80px; display: block"/>
+      <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view>场馆名称</view>
+      <view style="font-size: 13px;color: #888888;">摘要信息</view>
+    </view>
+    <view class="weui-badge" style="margin-left: 5px;">New</view>
+  </view>
 
-
-
-<view class="container">
-  <view class="bottom50">
-    <button class="plusButton" wx:if="{{false}}" bindtap="bindNewItem"> 发 起 活 动 </button>
+  <view class="weui-cell">
+    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+      <image src="../../res/user-unlogin.png" style="width: 80px; height: 80px; display: block"/>
+      <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</view>
+    </view>
+    <view class="weui-cell__bd">
+      <view>场馆名称</view>
+      <view style="font-size: 13px;color: #888888;">摘要信息</view>
+    </view>
+    <view class="weui-badge" style="margin-left: 5px;">New</view>
+  </view>
+  
+  <view class="weui-footer">
+    <!--view class="weui-footer__links">
+      <navigator url="" class="weui-footer__link">报名首页</navigator>
+    </view-->       
+    <image src="../../res/181222arjencole.png" style="width: 100px; height: 19px;"></image>
   </view>
 </view>
