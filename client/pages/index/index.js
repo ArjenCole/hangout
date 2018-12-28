@@ -51,7 +51,7 @@ Page({
   },
   bindSwitch: function () {
     wx.showActionSheet({
-      itemList: ['切换为场地模式'],
+      itemList: ['切换为场馆模式'],
       success: function (res) {
         if (!res.cancel) {
           console.log(res.tapIndex)      
