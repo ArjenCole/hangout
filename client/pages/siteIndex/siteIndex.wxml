@@ -24,7 +24,7 @@
       <view>场馆名称</view>
       <view style="font-size: 13px;color: #888888;">摘要信息</view>
     </view>
-    <view class="weui-badge" style="margin-left: 5px;">New</view>
+    <view class="weui-badge" style="margin-left: 5px;">8orders</view>
   </view>
 
   <view class="weui-cell">
