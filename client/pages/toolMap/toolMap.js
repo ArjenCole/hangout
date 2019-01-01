@@ -323,7 +323,7 @@ Page({
    */
   uploadInfoClick: function () {
     var that = this;
-    that.adjustViewStatus(false, true, false);
+    //that.adjustViewStatus(false, true, false);
     that.updateCenterLocation(that.data.latitude, that.data.longitude);
     that.regeocodingAddress();
   },
@@ -499,10 +499,13 @@ Page({
    */
   regeocodingAddress: function () {
     var that = this;
+    console.log("1")
+
     //不在发布页面，不进行逆地址解析，节省调用次数，腾讯未申请额度前一天只有10000次
     if (!that.data.showConfirm) {
       return;
     }
+    console.log("2")
     //通过经纬度解析地址
     qqmapsdk.reverseGeocoder({
       location: {
@@ -510,6 +513,7 @@ Page({
         longitude: that.data.centerLongitude
       },
       success: function (res) {
+        console.log("3")
         console.log(res);
         that.setData({
           centerAddressBean: res.result,

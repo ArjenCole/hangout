@@ -7,13 +7,11 @@
       bindtap='bindMapTap'>
       <!--顶部提示-->
       <cover-view class='cover-tip-wrapper' wx:if='{{showTopTip}}' bindtap='showNewMarkerClick'>
-        <cover-image class='tip-bg' src='../../res/tip-bg.png'>
-        </cover-image>
+        <cover-image class='tip-bg' src='../../res/tip-bg.png'></cover-image>
         <cover-view class='cover-tip-content'>
-          <cover-image class='trumpet-icon' src='../../res/iconMap.png'>
-          </cover-image>
+          <cover-image class='trumpet-icon' src='../../res/iconMap.png'></cover-image>
           <cover-view class='tip-text'>{{warningText}}</cover-view>
-          <cover-image class='right-arrow' src='../../res/right-arrow.png'></cover-image>
+          <!--cover-image class='right-arrow' src='../../res/right-arrow.png'></cover-image-->
         </cover-view>
       </cover-view>
     </map>
@@ -31,36 +29,7 @@
   <!--底部布局-->
   <view class='bottom-layout' id='bottom-layout'>
     <view class='bottom-wrapper'>
-      <view upload-wrapper wx:if='{{showConfirm}}'>
-        <!--点击上传信息-->
-        <form bindsubmit='confirmClick'>
-          <view class='cancel-publish-layout'>
-            <view class='cancel-btn flex-center' bindtap='cancelClick'>取消</view>
-            <button class='confirm-btn flex-center' form-type='submit'>发布</button>
-            <view class='split-blur-bg' style='position:absolute;top:0'></view>
-          </view>
-          <view class='line'></view>
-          <view class='location-wrapper' bindtap='chooseAddress'>
-            <image class='location-icon' src='../../img/location-icon.png'></image>
-            <view class='address-wrapper'>
-              <text class='location-address'>{{selectAddress}}</text>
-            </view>
-          </view>
-
-          <view class='info-wrapper'>
-            <textarea class='info-text' placeholder='您想对其他人说些什么？' name='message' placeholder-style='color:#CCCCCC'></textarea>
-          </view>
-          <view class='upload-image-root'>
-            <view class='upload-image-wrapper'>
-              <image class='default-image' src='../../img/default-camera-image.png' bindtap='takePhoto' wx:if='{{!uploadImagePath}}'></image>
-              <image class='default-image' src='{{uploadImagePath}}' bindtap='previewSelectImage' wx:if='{{uploadImagePath}}' mode='aspectFill'></image>
-              <!--删除图片的图标-->
-              <image class='delete-image-icon' src='../../img/delete-icon.png' wx:if='{{uploadImagePath}}' bindtap='deleteSelectImage'></image>
-            </view>
-          </view>
-        </form>
-      </view>
-
+      <!--changeMapHeight回调函数用到，不能删-->
     </view>
   </view>
 </view>
