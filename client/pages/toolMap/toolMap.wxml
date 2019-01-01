@@ -10,7 +10,7 @@
         <cover-image class='tip-bg' src='../../res/tip-bg.png'></cover-image>
         <cover-view class='cover-tip-content'>
           <cover-image class='trumpet-icon' src='../../res/iconMap.png'></cover-image>
-          <cover-view class='tip-text'>{{warningText}}</cover-view>
+          <cover-view class='tip-text'>{{selectAddress}}</cover-view>
           <!--cover-image class='right-arrow' src='../../res/right-arrow.png'></cover-image-->
         </cover-view>
       </cover-view>
