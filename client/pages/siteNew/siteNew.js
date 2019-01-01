@@ -98,4 +98,9 @@ Page({
       checkboxItems: checkboxItems
     });
   },
+  bindMap: function (e) {
+    wx.navigateTo({
+      url: '../toolMap/toolMap'
+    })
+  },
 })
