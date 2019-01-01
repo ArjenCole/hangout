@@ -1,0 +1,2 @@
+<!--client/pages/toolMap/toolMap.wxml-->
+<map id="myMap" longitude="90" latitude="90" ></map>

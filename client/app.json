@@ -8,7 +8,8 @@
     "pages/rosterApt/rosterApt",
     "pages/site/site",
     "pages/siteIndex/siteIndex",
-    "pages/siteNew/siteNew"
+    "pages/siteNew/siteNew",
+    "pages/toolMap/toolMap"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
