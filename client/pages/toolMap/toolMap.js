@@ -160,8 +160,8 @@ Page({
   showNewMarkerClick: function () {
     var that = this;
     wx.showModal({
-      title: '提示',
-      content: '你点击了顶部提示框',
+      title: '门牌地址',
+      content: this.data.centerAddressBean.address_component.nation + " " +this.data.centerAddressBean.address_component.province + " " +this.data.centerAddressBean.address_component.city + " " +this.data.centerAddressBean.address_component.district + " " + this.data.centerAddressBean.address_component.street_number,
       showCancel: false
     })
   },
