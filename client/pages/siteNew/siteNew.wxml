@@ -33,7 +33,7 @@
     <view class="section">
       <!--input name="District" class='item' value='{{address_component.district}}' />
       <view class="section__title">区 </view-->
-      <input name="Place" class='item__width' placeholder="    XX区XX路XX号………" value='{{address}}' />
+      <input name="Place" class='item__width' placeholder="    XX区XX路XX号………" value='{{address_component.district}}{{address_component.street_number}}' />
       <image src="../../res/iconMap.png" class='item' style="width: 25px; height: 25px;" bindtap="bindMap"></image>
     </view>
   </view>
