@@ -105,7 +105,7 @@ Page({
   bindMap: function (e) {
     var tURL = '../toolMap/toolMap'
     if(this.data.location!==null){
-      tURL=tURL+'?longitude='+this.data.location.longitude+'&latitude='+this.data.location.latitude
+      tURL=tURL+ '?address'+this.data.address +'&longitude='+this.data.location.longitude+'&latitude='+this.data.location.latitude
     };
     wx.navigateTo({
       url: tURL
