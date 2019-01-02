@@ -120,7 +120,6 @@ Page({
     //如果刚从选择地址页面带数据回调回来，则显示选择的地址
     //consoleUtil.log(that.data.callbackAddressInfo)
     if (that.data.callbackAddressInfo == null) {
-      console.log('onshow')
       //that.getCenterLocation();
       //正在上传的话，不去请求地理位置信息
       if (that.data.showUpload) {
@@ -475,7 +474,6 @@ Page({
     var that = this;
     // 改变中心点位置  
     if (res.type == "end") {
-      console.log('region')
       that.getCenterLocation();
     }
   },
@@ -605,6 +603,21 @@ Page({
         // 新的版本下载失败
       })
     }
+  },
+
+  bindSelectLocation: function (e) {
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage= pages[pages.length - 2];
+
+    console.log(this.data.centerAddressBean.address_component)
+    prevPage.setData({
+      address_component: this.data.centerAddressBean.address_component,
+      address:this.data.selectAddress,
+      latitude: this.data.centerLatitude,
+      longitude: this.data.centerLongitude
+    })
+    wx.navigateBack()
   },
 
   getUserInfo: function (e) {

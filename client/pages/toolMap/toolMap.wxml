@@ -21,7 +21,7 @@
     </cover-view>
     <!--上传信息按钮-->
     <cover-view wx:if='{{showUpload}}' class='home-btn-layout' style='left:{{homeActionLeftDistance}}' id='home-action-wrapper'>
-      <cover-image class='home-action-btn' src='../../res/home-btn.png' bindtap='uploadInfoClick'>
+      <cover-image class='home-action-btn' src='../../res/home-btn.png' bindtap='bindSelectLocation'>
       </cover-image>
     </cover-view>
   </view>
