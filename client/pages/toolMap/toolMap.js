@@ -88,6 +88,8 @@ Page({
 
   onLoad: function (options) {
     var that = this;
+    var prevPage = this.getPrevPage()
+
     //检测更新
     that.checkUpdate();
     if (app.globalData.userInfo) {
@@ -607,9 +609,7 @@ Page({
 
   bindSelectLocation: function (e) {
     if (this.data.centerAddressBean == null) { return }
-    var pages = getCurrentPages();
-    var currPage = pages[pages.length - 1];   //当前页面
-    var prevPage= pages[pages.length - 2];
+    var prevPage= this.getPrevPage()
 
     console.log(this.data.centerAddressBean.address_component)
     prevPage.setData({
@@ -619,6 +619,13 @@ Page({
       longitude: this.data.centerLongitude
     })
     wx.navigateBack()
+  },
+
+  getPrevPage: function () {
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];
+    return prevPage
   },
 
   getUserInfo: function (e) {
