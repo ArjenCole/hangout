@@ -32,11 +32,8 @@ Page({
     //地图缩放级别
     scale: defaultScale,
     markers: [],
-    showTopTip: true,
     warningText: '顶部提示',
-    showUpload: true,
-    showConfirm: false,
-    showComment: false,
+    //showUpload: true,
     //地图高度
     mapHeight: 0,
     infoAddress: '',
@@ -88,22 +85,17 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    console.log(options)
     if (typeof (options.longitude) !== 'undefined') {
-
       var tLocation = {}
       tLocation.longitude = parseFloat(options.longitude)
       tLocation.latitude = parseFloat(options.latitude)
-
       var tCallbackAddressInfo = {}
       tCallbackAddressInfo.title=options.address
       tCallbackAddressInfo.location=tLocation
-
       this.setData({
         callbackAddressInfo: tCallbackAddressInfo
       })
     } 
-    console.log(this.data.callbackAddressInfo)
 
     //检测更新
     that.checkUpdate();
@@ -139,9 +131,9 @@ Page({
     if (that.data.callbackAddressInfo == null) {
       //that.getCenterLocation();
       //正在上传的话，不去请求地理位置信息
-      if (that.data.showUpload) {
+      //if (that.data.showUpload) {
         that.requestLocation();
-      }
+      //}
     } else {
       that.setData({
         selectAddress: that.data.callbackAddressInfo.title,
@@ -179,9 +171,9 @@ Page({
    */
   setHomeActionLeftDistance: function () {
     var that = this;
-    if (!that.data.showUpload) {
+    /*if (!that.data.showUpload) {
       return;
-    }
+    }*/
     wx.getSystemInfo({
       success: function (res) {
         windowHeight = res.windowHeight;
@@ -414,75 +406,13 @@ Page({
    */
   bindMapTap: function () {
     //恢复到原始页
-    this.adjustViewStatus(true, false, false);
+    //this.adjustViewStatus(true, false, false);
   },
 
-  adjustViewStatus: function (uploadStatus, confirmStatus, commentStatus) {
-    var that = this;
-    that.setData({
-      //显示上传情报按钮
-      showUpload: uploadStatus,
-      //开始上传情报
-      showConfirm: confirmStatus,
-      //显示情报详情
-      showComment: commentStatus,
-    })
-    that.changeMapHeight();
-  },
+
 
   onShareAppMessage: function (res) {
 
-  },
-
-  /**
-   * 预览图片
-   */
-  previewImage: function () {
-    var that = this;
-    wx.previewImage({
-      urls: [that.data.warningIconUrl],
-    })
-  },
-
-  /**
-   * 选择照片
-   */
-  takePhoto: function () {
-    var that = this;
-    wx.chooseImage({
-      sizeType: sizeType[1],
-      count: 1,
-      success: function (res) {
-        that.setData({
-          uploadImagePath: res.tempFilePaths[0],
-        })
-        that.adjustViewStatus(false, true, false);
-      },
-    })
-  },
-
-  /**
-   * 删除已选照片
-   */
-  deleteSelectImage: function () {
-    this.resetPhoto();
-  },
-
-  /**
-   * 重置照片
-   */
-  resetPhoto: function () {
-    var that = this;
-    that.setData({
-      uploadImagePath: '',
-    })
-  },
-
-  previewSelectImage: function () {
-    var that = this;
-    wx.previewImage({
-      urls: [that.data.uploadImagePath],
-    })
   },
 
   /**
@@ -508,7 +438,6 @@ Page({
         console.log(res);
         that.updateCenterLocation(res.latitude, res.longitude);
         that.regeocodingAddress();
-        that.queryMarkerInfo();
       }
     })
   },
@@ -545,52 +474,6 @@ Page({
     });
   },
 
-  /**
-   * 查询 marker 信息
-   */
-  queryMarkerInfo: function () {
-    var that = this;
-    //consoleUtil.log('查询当前坐标 marker 点信息')
-    //调用请求 marker 点的接口就好了
-  },
-
-  /**
-   * 创建marker
-   */
-  createMarker: function (dataList) {
-    var that = this;
-    var currentMarker = [];
-    var markerList = dataList.data;
-    for (var key in markerList) {
-      var marker = markerList[key];
-      marker.id = marker.info_id;
-      marker.latitude = marker.lat;
-      marker.longitude = marker.lng;
-      marker.width = 40;
-      marker.height = 40;
-      if (marker.image) {
-        marker.iconPath = '../../img/dog-select.png';
-      } else {
-        marker.iconPath = '../../img/dog-yellow.png';
-      }
-    }
-    currentMarker = currentMarker.concat(markerList);
-    //consoleUtil.log('-----------------------');
-    //consoleUtil.log(currentMarker);
-    that.setData({
-      markers: currentMarker
-    })
-  },
-
-  /**
-   * 选择地址
-   */
-  chooseAddress: function () {
-    var that = this;
-    wx.navigateTo({
-      url: '../chooseAddress/chooseAddress?city=' + that.data.centerAddressBean.address_component.city + '&street=' + that.data.centerAddressBean.address_component.street,
-    })
-  },
 
   /**
    * 版本更新

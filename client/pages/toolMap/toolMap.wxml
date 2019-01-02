@@ -6,7 +6,7 @@
     <map class='map' id='myMap' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true" markers="{{markers}}" bindmarkertap="bindMakertap" bindcontroltap='controlTap' bindregionchange='regionChange' controls='{{controls}}'
       bindtap='bindMapTap'>
       <!--顶部提示-->
-      <cover-view class='cover-tip-wrapper' wx:if='{{showTopTip}}' bindtap='showNewMarkerClick'>
+      <cover-view class='cover-tip-wrapper' bindtap='showNewMarkerClick'>
         <cover-image class='tip-bg' src='../../res/tip-bg.png'></cover-image>
         <cover-view class='cover-tip-content'>
           <cover-image class='trumpet-icon' src='../../res/iconMap.png'></cover-image>
@@ -20,7 +20,7 @@
       <cover-image class='self-location' src='../../res/self-location.png'></cover-image>
     </cover-view>
     <!--上传信息按钮-->
-    <cover-view wx:if='{{showUpload}}' class='home-btn-layout' style='left:{{homeActionLeftDistance}}' id='home-action-wrapper'>
+    <cover-view class='home-btn-layout' style='left:{{homeActionLeftDistance}}' id='home-action-wrapper'>
       <cover-image class='home-action-btn' src='../../res/home-btn.png' bindtap='bindSelectLocation'>
       </cover-image>
     </cover-view>
