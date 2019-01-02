@@ -88,11 +88,22 @@ Page({
 
   onLoad: function (options) {
     var that = this;
+    console.log(options)
     if (typeof (options.longitude) !== 'undefined') {
+
+      var tLocation = {}
+      tLocation.longitude = parseFloat(options.longitude)
+      tLocation.latitude = parseFloat(options.latitude)
+
+      var tCallbackAddressInfo = {}
+      tCallbackAddressInfo.title=options.address
+      tCallbackAddressInfo.location=tLocation
+
       this.setData({
-        
+        callbackAddressInfo: tCallbackAddressInfo
       })
     } 
+    console.log(this.data.callbackAddressInfo)
 
     //检测更新
     that.checkUpdate();
@@ -134,7 +145,8 @@ Page({
     } else {
       that.setData({
         selectAddress: that.data.callbackAddressInfo.title,
-        callbackLocation: that.data.callbackAddressInfo.location
+        latitude: that.data.callbackAddressInfo.location.latitude,
+        longitude: that.data.callbackAddressInfo.location.longitude,
       })
       //置空回调数据，即只使用一次，下次中心点变化后就不再使用
       that.setData({
