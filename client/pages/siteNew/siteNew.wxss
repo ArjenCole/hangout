@@ -13,7 +13,8 @@
 .section{
   display: flex;  
   flex-direction: row;
-  margin: 35rpx;
+  margin-left: 35rpx;
+  margin-bottom: 35rpx;
   flex-wrap: nowrap;
   justify-content:space-between;
 	color: #79899b;
