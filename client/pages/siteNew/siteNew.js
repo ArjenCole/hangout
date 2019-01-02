@@ -21,7 +21,12 @@ Page({
     accounts: ["微信号", "QQ", "Email"],
     accountIndex: 0,
 
-    isAgree: false
+    isAgree: false,
+
+    address_component:{},
+    address:'',
+    longitude: '',
+    latitude: '',
   },
 
   /**
