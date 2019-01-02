@@ -120,7 +120,8 @@ Page({
     //如果刚从选择地址页面带数据回调回来，则显示选择的地址
     //consoleUtil.log(that.data.callbackAddressInfo)
     if (that.data.callbackAddressInfo == null) {
-      that.getCenterLocation();
+      console.log('onshow')
+      //that.getCenterLocation();
       //正在上传的话，不去请求地理位置信息
       if (that.data.showUpload) {
         that.requestLocation();
@@ -274,7 +275,8 @@ Page({
     qqmapsdk = new QQMapWX({
       key: constant.tencentAk
     });
-    that.getCenterLocation();
+    //console.log('initmap')
+    //that.getCenterLocation();
   },
 
   //请求地理位置
@@ -473,6 +475,7 @@ Page({
     var that = this;
     // 改变中心点位置  
     if (res.type == "end") {
+      console.log('region')
       that.getCenterLocation();
     }
   },
@@ -499,7 +502,7 @@ Page({
    */
   regeocodingAddress: function () {
     var that = this;
-
+    console.log('regeo')
     //不在发布页面，不进行逆地址解析，节省调用次数，腾讯未申请额度前一天只有10000次
     if (!that.data.showConfirm) {
       //return;
