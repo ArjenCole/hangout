@@ -25,8 +25,7 @@ Page({
 
     address_component:{},
     address:'',
-    longitude: '',
-    latitude: '',
+    location:null,
   },
 
   /**
@@ -104,8 +103,12 @@ Page({
     });
   },
   bindMap: function (e) {
+    var tURL = '../toolMap/toolMap'
+    if(this.data.location!==null){
+      tURL=tURL+'?longitude='+this.data.location.longitude+'&latitude='+this.data.location.latitude
+    };
     wx.navigateTo({
-      url: '../toolMap/toolMap'
+      url: tURL
     })
   },
 })

@@ -88,7 +88,11 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    var prevPage = this.getPrevPage()
+    if (typeof (options.longitude) !== 'undefined') {
+      this.setData({
+        
+      })
+    } 
 
     //检测更新
     that.checkUpdate();
@@ -612,11 +616,13 @@ Page({
     var prevPage= this.getPrevPage()
 
     console.log(this.data.centerAddressBean.address_component)
+    var tLocation={}
+    tLocation.latitude = this.data.centerLatitude
+    tLocation.longitude = this.data.centerLongitude
     prevPage.setData({
       address_component: this.data.centerAddressBean.address_component,
       address:this.data.selectAddress,
-      latitude: this.data.centerLatitude,
-      longitude: this.data.centerLongitude
+      location:tLocation
     })
     wx.navigateBack()
   },
