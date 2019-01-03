@@ -8,10 +8,9 @@
             background-size="cover"
             bindtap='bindSwitch'
         ></image>
-        <view>
+        <view class='logIn'>
             <button class="logInButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button>
-            <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewItem"> 发 起 活 动 </button>
-            <text class="page__title" wx:else>{{userInfo.nickName}}</text>
+            <button class="logInButton" wx:else bindtap="bindNewItem"> 发 起 活 动 </button>
         </view>
     </view>
 </view>

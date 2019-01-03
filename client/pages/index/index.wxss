@@ -25,6 +25,7 @@ page {
     height: 100rpx;
     margin: 20rpx;
     border-radius: 50%;
+    flex-grow: 0;
 }
 
 .userinfo-nickname {
@@ -41,9 +42,10 @@ page {
   position: fixed;
   bottom: 20px;
 }
-
-.logInButton {    
-	width: 270px;
+.logIn{
+  flex-grow: 2;
+}
+.logInButton {
 	background: #79899b;
 	color: #fff;
 	text-align: center;
