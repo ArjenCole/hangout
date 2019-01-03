@@ -21,13 +21,13 @@
       <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</view>
     </view>
     <view class="weui-cell__bd">
-      <view>场馆名称</view>
-      <view style="font-size: 13px;color: #888888;">摘要信息</view>
+      <view>场馆模式敬请期待</view>
+      <view style="font-size: 13px;color: #888888;">coming soon</view>
     </view>
-    <view class="weui-badge" style="margin-left: 5px;">8orders</view>
+    <view class="weui-badge" style="margin-left: 5px;">new</view>
   </view>
 
-  <view class="weui-cell">
+  <!--view class="weui-cell">
     <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
       <image src="../../res/user-unlogin.png" style="width: 80px; height: 80px; display: block"/>
       <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</view>
@@ -37,7 +37,7 @@
       <view style="font-size: 13px;color: #888888;">摘要信息</view>
     </view>
     <view class="weui-badge" style="margin-left: 5px;">New</view>
-  </view>
+  </view-->
   
   <view class="weui-footer">
     <!--view class="weui-footer__links">
