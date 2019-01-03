@@ -1,8 +1,15 @@
 <!--client/pages/siteNew/siteNew.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
 <view class="page">
   <view class="page__hd">
     <view class="page__title">新建场馆</view>
-  </view>    
+  </view>   
+  <view class='sheet'>
+    <view class="weui-cells__title">场馆名称：</view>
+    <view class='section'>
+      <input name="Name" class='item__left' value='{{}}' />
+    </view>
+  </view> 
   <view class="sheet">
     <view class="weui-cells__title">场馆类型，可多选：</view>
     <checkbox-group bindchange="checkboxChange">
@@ -37,4 +44,19 @@
       <image src="../../res/iconMap.png" class='item' style="width: 25px; height: 25px;" bindtap="bindMap"></image>
     </view>
   </view>
+  <view class='sheet'>
+    <view class="weui-cells__title">联系方式：</view>
+    <view class='section'>
+      <input name="Name" class='item__left' value='{{}}' />
+    </view>
+    <view class="weui-cell weui-cell_link">
+      <view>添加更多</view>
+    </view>
+  </view> 
+  <view class='sheet__button'>
+    <button formType="submit">提交</button>
+    <button formType="reset">重置</button>
+  </view>
 </view>
+
+</form>

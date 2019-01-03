@@ -10,6 +10,9 @@
   margin-bottom: 15px;
   border-radius: 10px;
 }
+.sheet__button{
+  margin-bottom: 15px;
+}
 .section{
   display: flex;  
   flex-direction: row;
@@ -22,14 +25,30 @@
   padding-bottom: 5px;
 	border-bottom: 1px solid #dadada;
 }
+
 .item{
   text-align:center;
-  color: #999;
+  color: rgb(0, 0, 0);
   font-size: 14px;
+}
+.item__left{
+  text-align:left;
+  color: #79899b;
+  font-size: 18px;
+  width: 100%;
 }
 .item__width{
   text-align:center;
   color: #999;
   font-size: 14px;
-  width: 260px;
+  width: 90%;
+}
+
+button{  
+  margin-top: 10px;
+	width: 300px;
+	background: #79899b;
+	color: #fff;
+	text-align: center;
+	font-size: 15px;
 }
