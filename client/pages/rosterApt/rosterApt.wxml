@@ -12,7 +12,7 @@
                       <image src="{{item.avatarURL}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
                   </view>
                   <view class="weui-cell__bd">{{item.nickName}}</view>
-                  <view class="weui-cell__ft">参加</view>
+                  <!--view class="weui-cell__ft">参加</view-->
               </view>
           </view>
         </block>
