@@ -32,13 +32,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "测试群0",
 					"pathName": "pages/index/index",
-					"query": "aptId=XCS9ud7E7L4w8uvX",
+					"query": "aptId=XC4VMHffS3SWdsHd",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",

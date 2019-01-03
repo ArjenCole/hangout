@@ -18,10 +18,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     if (typeof (options.aptId)=='undefined'){
       this.getAptFromIndex(options)
     } else {
-      this.getApt(options._id)
+      this.getApt(options.aptId)
     }
   },
   getAptFromIndex: function (options) {
