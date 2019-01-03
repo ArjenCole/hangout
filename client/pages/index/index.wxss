@@ -121,7 +121,7 @@ page {
 
 .kind-list__item {
 	margin: 10px 0;
-	background-color: #ffffffe1;
+	background-color: #ffffff;
 	color: #79899b;
   font-size: 17px;
   font-weight:500;
