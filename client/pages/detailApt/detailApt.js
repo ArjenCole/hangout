@@ -95,6 +95,7 @@ Page({
   },
   bindDenyTap: function () {
     if (app.globalData.userInfo !== null) { 
+      util.showBusy('正在取消')
       this.updateApt(this.updateArr(this.data.apt.records, "deny"), "deny")
     }else{
       console.log("尚未登陆")
@@ -102,6 +103,7 @@ Page({
   },
   bindJoinTap: function () {
     if (app.globalData.userInfo !== null) {
+      util.showBusy('正在报名')
       this.updateApt(this.updateArr(this.data.apt.records, "join"), "join")
     }
   },
@@ -217,6 +219,7 @@ Page({
       data: tUser,
       success: function (res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+        util.showSuccess('报名成功')
       }
     })
   },
@@ -228,7 +231,7 @@ Page({
         apts: _.push(this.data.apt._id)
       },
       success: function (res) {
-        
+        util.showSuccess('报名成功')
       },
       fail: function (e) {
         console.log(e);
@@ -270,7 +273,7 @@ Page({
         apts: partList
       },
       success: function (res) {
-
+        util.showSuccess('取消成功')
       },
       fail: function (e) {
         console.log(e);
