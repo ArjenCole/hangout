@@ -113,6 +113,7 @@ Page({
     var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
     if (this.data.inApt !== null) {
       newApt._id=this.data.inApt._id
+      newApt.records=this.data.inApt.records
       this.updateApt(newApt)
     } else {
       this.addRecord(newApt)
