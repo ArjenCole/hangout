@@ -234,6 +234,7 @@ Page({
         util.showSuccess('报名成功')
       },
       fail: function (e) {
+        util.showModel('报名失败', e)
         console.log(e);
       }
     })
@@ -276,6 +277,7 @@ Page({
         util.showSuccess('取消成功')
       },
       fail: function (e) {
+        util.showModel('取消失败', e)
         console.log(e);
       }
     })

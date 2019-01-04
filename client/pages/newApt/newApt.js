@@ -189,6 +189,7 @@ Page({
         //console.log(res);
       },
       fail: function (e) {
+        util.showModel('提交失败', e)
         console.log(e);
       }
     })
