@@ -100,6 +100,7 @@ Page({
       return;
     }
 
+    util.showBusy('正在提交')
 
     this.setData({
       warn: "",
@@ -182,6 +183,7 @@ Page({
           apt: pApt,
           showApt: util.showAppointment(pApt, app.globalData.userInfo)
         })
+        util.showSuccess('提交成功')
 
         wx.navigateBack()
         console.log(res);
