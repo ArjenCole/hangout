@@ -113,8 +113,10 @@ Page({
 
     var newApt = util.newAppointment(tUserInfo, Title, tAptDate, tAptTimeStart, tAptTimeEnd, Place, Liaisons, Tips);
     if (this.data.inApt !== null) {
-      newApt._id=this.data.inApt._id
-      newApt.records=this.data.inApt.records
+      newApt._id = this.data.inApt._id
+      newApt._openid = this.data.inApt._openid
+      newApt.logged = true
+      newApt.records = this.data.inApt.records
       this.updateApt(newApt)
     } else {
       this.addRecord(newApt)
@@ -164,7 +166,6 @@ Page({
   },
 
   updateApt: function (pApt) {
-    console.log(pApt)
     app.globalData.aptCollection.doc(pApt._id).update({
       data: {
         title:pApt.title,
@@ -186,7 +187,7 @@ Page({
         util.showSuccess('提交成功')
 
         wx.navigateBack()
-        console.log(res);
+        //console.log(res);
       },
       fail: function (e) {
         console.log(e);
