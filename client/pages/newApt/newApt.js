@@ -115,7 +115,6 @@ Page({
     if (this.data.inApt !== null) {
       newApt._id = this.data.inApt._id
       newApt._openid = this.data.inApt._openid
-      newApt.logged = true
       newApt.records = this.data.inApt.records
       this.updateApt(newApt)
     } else {
