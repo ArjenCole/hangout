@@ -85,7 +85,10 @@ page {
 	font-size: 14px;
 	color: #939393;
 }
-
+.footer_version {
+	font-size: 12px;
+	color: #b6b6b66e;
+}
 
 /*!
  * WeUI v1.1.1 (https://github.com/weui/weui-wxss)
