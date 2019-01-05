@@ -165,7 +165,9 @@ Page({
       // handle error
     })
   },
-
+  bindCancelSave: function () {
+    this.setData({ showWXAcode: false })
+  },
   // 获得用户信息
   autoGetUserInfo: function () {
     util.showBusy('正在登录')
@@ -350,7 +352,7 @@ Page({
         id: this.data.apt._id,
       },
       complete: res => {
-        console.log('getImage: ', res)
+        util.showSuccess('加载成功')
         this.setData({
           showWXAcode:true,
           wxCodeImage: res.result.fileID
@@ -359,6 +361,7 @@ Page({
     })
   },
   getAccessToken: function () {
+    util.showBusy('正在加载')
     wx.cloud.callFunction({
       name: 'getAccessToken',
     })

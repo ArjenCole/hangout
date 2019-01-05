@@ -68,9 +68,9 @@
 </view>
 
 <view class="mask"wx:if="{{showWXAcode}}">
-  <image class='maskImage' src="../../res/mask.png"/>
+  <image class='maskImage' bindtap="bindCancelSave" src="../../res/mask.png"/>
   <view class='WXACode' >
-    <image class='WXACodeImage' src="{{wxCodeImage}}"/>
+    <image class='WXACodeImage' bindtap="bindSaveWXCodeTap" src="{{wxCodeImage}}"/>
     <button class="buttonSaveWXCode" bindtap="bindSaveWXCodeTap">存到本地</button>
   </view>
 </view>
