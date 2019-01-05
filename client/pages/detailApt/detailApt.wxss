@@ -9,7 +9,9 @@
   align-items:center;
   justify-content: space-between;
   flex-wrap: nowrap;
-  margin-right: 7px;
+}
+.shareBox{
+  margin-right: 15px;
 }
 .buttonShare {
   width: 120px;
@@ -124,3 +126,39 @@
   margin-left: 5px;
   border-radius: 50%;
 }
+
+
+
+ 
+
+ 
+.select_box {
+    background-color: #79899bc5;
+    padding: 0 10rpx;
+    width: 152px;
+    position: absolute;
+    top: 70px;
+    border-radius: 5px;
+    z-index: 1;
+    overflow: hidden;
+    animation: myfirst 0.5s;
+}
+ 
+@keyframes myfirst {
+    from {
+        height: 0rpx;
+    }
+ 
+    to {
+        height: 243rpx;
+    }
+}
+ 
+.select_one {
+    text-align: center;
+    color: #fff;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-top: 1px solid #ccc;
+}
+

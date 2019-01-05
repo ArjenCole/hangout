@@ -6,15 +6,19 @@
       <view class="page__desc" wx:if="{{!showApt.editAble}}">发起人:{{showApt.creatorNn}}</view>
       <view class="page__desc" wx:if="{{showApt.editAble}}">点此编辑活动</view>
     </view>    
-    <!--view class="page__hd">
-      <button class="buttonShare" open-type='share'>分享活动</button>
-    </view-->  
-    <view class='titleBox'>
-      <button class="buttonShare" open-type='share'>分享活动</button>
-      <button id="slide" class='buttonMore' bindtap="toggle">▼</button>
-    </view>  
+    <view class='shareBox'>
+      <view class='titleBox'>
+        <button class="buttonShare" open-type='share'>分享活动</button>
+        <button id="slide" class='buttonMore' bindtap='bindShowMsg'>▼</button>
+      </view>  
+      <view class="select_box" wx:if="{{select}}">
+        <view class="select_one" bindtap="mySelect" data-name="活动二维码">活动二维码</view>
+        <view class="select_one" bindtap="mySelect" data-name="活动海报">活动海报</view>
+        <view class="select_one" bindtap="mySelect" data-name="删除活动">删除活动</view>
+      </view>
+    </view>
   </view>
-    <view class="sheet">
+  <view class="sheet">
         <view class="sheet-preview">
             <view class="sheet-preview__bd">
                 <view class="weui-form-preview__item">
@@ -33,14 +37,14 @@
                     <view class="weui-form-preview__label">联系人</view>
                     <view class="weui-form-preview__value">{{showApt.liaisons}}</view>
                 </view>
-                <view class="weui-form-preview__item">
+                <!--view class="weui-form-preview__item">
                     <view class="weui-form-preview__label">备注</view>
                     <view class="weui-form-preview__value">{{showApt.tips}}</view>
-                </view>
+                </view-->
             </view>
 
         </view>
-    </view>
+  </view>
   <view class="buttonBox">
     <button class="buttonLogIn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{!showApt.logged}}">点 击 登 陆 参 加 活 动</button>
     <form name='pushMsgFm' class="buttonDeny" report-submit='true' bindsubmit='getFormID' wx:if="{{(showApt.attends=='join')&&(showApt.logged)}}"> 

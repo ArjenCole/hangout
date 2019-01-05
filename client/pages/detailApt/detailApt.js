@@ -12,19 +12,35 @@ Page({
     apt: {},
     showApt: {},
     prevPage: {},
+
+    select: false,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     if (typeof (options.aptId)=='undefined'){
       this.getAptFromIndex(options)
     } else {
       this.getApt(options.aptId)
     }
   },
+
+
+  bindShowMsg() {
+    this.setData({
+      select: !this.data.select
+    })
+  },
+  mySelect(e) {
+    var name = e.currentTarget.dataset.name
+    this.setData({
+      select: false
+    })
+  },
+
   getAptFromIndex: function (options) {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
