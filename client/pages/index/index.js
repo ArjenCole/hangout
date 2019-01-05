@@ -68,11 +68,16 @@ Page({
  * 生命周期函数--监听页面加载
  */
   onLoad: function (options) {
-    if (typeof (options.aptId) !== "undefined") {
-      wx.navigateTo({
-        url: '../detailApt/detailApt?aptId=' + options.aptId
-      })
+    var tURL=''
+    if (typeof (options.scene) !== 'undefined') {//小程序码进入
+      // scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
+      tURL = decodeURIComponent(options.scene)
+    } else if (typeof (options.aptId) !== "undefined") {
+      tURL = options.aptId
     }
+    wx.navigateTo({
+      url: '../detailApt/detailApt?aptId=' + tURL
+    })
   },
   onShow: function () {
     if (app.globalData.userInfo !== null) {
