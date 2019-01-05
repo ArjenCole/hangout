@@ -9,7 +9,8 @@
     <view class='shareBox'>
       <view class='titleBox'>
         <button class="buttonShare" open-type='share'>分享活动</button>
-        <button id="slide" class='buttonMore' bindtap='bindShowMsg'>▼</button>
+        <button id="slide" class='buttonMore' bindtap='bindShowSelectBox' wx:if="{{select}}">▲</button>
+        <button id="slide" class='buttonMore' bindtap='bindShowSelectBox' wx:else>▼</button>
       </view>  
       <view class="select_box" wx:if="{{select}}">
         <view class="select_one" bindtap="mySelect" data-name="活动二维码">活动二维码</view>

@@ -29,7 +29,7 @@ Page({
   },
 
 
-  bindShowMsg() {
+  bindShowSelectBox() {
     this.setData({
       select: !this.data.select
     })
