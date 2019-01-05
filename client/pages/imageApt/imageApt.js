@@ -8,16 +8,8 @@ Page({
    */
   data: {
     imgBG: "../../res/post/backGround.png",
-    wechat: "../../res/home-btn.png",
-    quan: "../../res/post/quan.png",
-    code: "E7AI98",
-    inputValue: "",
     maskHidden: false,
-    name: "",
-    touxiang: "",
-    code: "E7A93C"
   },
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -126,27 +118,6 @@ Page({
       }
     })
   },
-  //点击生成
-  formSubmit: function (e) {
-    console.log("shenchen")
-    var that = this;
-    this.setData({
-      maskHidden: false
-    });
-    that.createNewImg();
-    that.setData({
-      maskHidden: true
-    });
-
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -170,46 +141,4 @@ Page({
     }, 1000)
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function (res) {
-    return {
-      title: "这个是我分享出来的东西",
-      success: function (res) {
-        console.log(res, "转发成功")
-      },
-      fail: function (res) {
-        console.log(res, "转发失败")
-      }
-    }
-  }
 })
