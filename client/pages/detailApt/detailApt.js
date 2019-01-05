@@ -154,11 +154,13 @@ Page({
         success: function (res) { 
           console.log(res) 
           that.setData({ showWXAcode: false })
+          util.showSuccess('已保存到系统相册')
         }, 
         fail: function (res) { 
           console.log(res)            
           console.log('fail') 
           that.setData({ showWXAcode: false })
+          util.showModel('保存到系统相册失败', res)
         } 
       })
     }).catch(error => {
