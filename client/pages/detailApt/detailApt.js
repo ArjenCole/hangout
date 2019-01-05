@@ -21,9 +21,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (typeof (options.aptId)=='undefined'){
+    if (typeof (options.scene) !== 'undefined') {//小程序码进入
+      // scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
+      const scene = decodeURIComponent(options.scene)
+      console.log(scene)
+      this.getApt(scene)
+    } else if (typeof (options.aptId) == 'undefined') {//首页进入
       this.getAptFromIndex(options)
-    } else {
+    } else {//分享卡片进入
       this.getApt(options.aptId)
     }
   },
@@ -322,7 +327,7 @@ Page({
       data: {    // 小程序码所需的参数
         access_token: this.data.Access_Token,
         page: "pages/detailApt/detailApt",
-        id: "id123",
+        id: this.data.apt._id,
       },
       complete: res => {
         console.log('getImage: ', res)
