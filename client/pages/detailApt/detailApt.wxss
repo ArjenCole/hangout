@@ -127,11 +127,7 @@
   border-radius: 50%;
 }
 
-
-
- 
-
- 
+/*下拉菜单相关*/ 
 .select_box {
     background-color: #79899bc5;
     padding: 0 10rpx;
@@ -143,7 +139,6 @@
     overflow: hidden;
     animation: myfirst 0.5s;
 }
- 
 @keyframes myfirst {
     from {
         height: 0rpx;
@@ -153,7 +148,6 @@
         height: 243rpx;
     }
 }
- 
 .select_one {
     text-align: center;
     color: #fff;

@@ -13,18 +13,8 @@
             <button class="logInButton" wx:else bindtap="bindNewItem"> 发 起 活 动 </button>
         </view>
     </view>
-</view>
+</view> 
 
-
-        <!--image
-            class="userinfo-avatar"
-            src="{{xcxCodeImageData.fileID}}"
-            background-size="cover"
-        ></image>  
-<button class="logInButton" bindtap="bindGetAccessToken"> AT </button>
-<button class="logInButton" bindtap="bindGetMiniProgrameCode"> 小程序码 </button-->
-
-    
 <view class="page__bd page__bd_spacing">
   <view class="kind-list">
         <block wx:for="{{list}}" wx:for-item="list" wx:key="id">
@@ -62,8 +52,6 @@
   </view>
 
 </view>
-
-
 
 <view class="container">
   <view class="bottom50">
