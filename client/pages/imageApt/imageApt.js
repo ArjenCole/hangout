@@ -152,7 +152,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    this.setData({
+      maskHidden: false
+    });
+    wx.showToast({
+      title: '生成中...',
+      icon: 'loading',
+      duration: 1000
+    });
+    setTimeout(function () {
+      wx.hideToast()
+      that.createNewImg();
+      that.setData({
+        maskHidden: true
+      });
+    }, 1000)
   },
 
   /**
