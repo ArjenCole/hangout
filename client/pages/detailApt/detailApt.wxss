@@ -145,7 +145,7 @@
     }
  
     to {
-        height: 81rpx;/*243rpx;*/
+        height: 162rpx;/*243rpx;*/
     }
 }
 .select_one {

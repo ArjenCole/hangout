@@ -14,8 +14,8 @@
       </view>  
       <view class="select_box" wx:if="{{select}}">
         <view class="select_one" bindtap="mySelect" data-name="活动二维码">活动二维码</view>
-        <!--view class="select_one" bindtap="mySelect" data-name="活动海报">活动海报</view>
-        <view class="select_one" bindtap="mySelect" data-name="删除活动">删除活动</view-->
+        <view class="select_one" bindtap="mySelect" data-name="活动海报">活动海报</view>
+        <!--view class="select_one" bindtap="mySelect" data-name="删除活动">删除活动</view-->
       </view>
     </view>
   </view>
@@ -75,3 +75,4 @@
     <button class="buttonSaveWXCode" bindtap="bindSaveWXCodeTap">存到本地</button>
   </view>
 </view>
+

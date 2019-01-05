@@ -39,6 +39,10 @@ Page({
     var name = e.currentTarget.dataset.name
     if(name=='活动二维码'){
       this.getAccessToken()
+    } else if (name == '活动海报') {
+      wx.navigateTo({
+        url: '../imageApt/imageApt',
+      })
     }
     this.setData({//关起下拉菜单
       select: false
@@ -376,6 +380,8 @@ Page({
       })
       .catch(console.error)
   },   
+
+
 
   getFormID: function (e) {
     /*console.log(e.detail)
