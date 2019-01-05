@@ -36,6 +36,9 @@ Page({
   },
   mySelect(e) {
     var name = e.currentTarget.dataset.name
+    if(name=='活动二维码'){
+      this.getAccessToken()
+    }
     this.setData({//关起下拉菜单
       select: false
     })
@@ -312,6 +315,33 @@ Page({
       }
     })
   },
+
+  getMiniProgrameCode: function () {
+    wx.cloud.callFunction({
+      name: 'getImage',   // 云函数名称
+      data: {    // 小程序码所需的参数
+        access_token: this.data.Access_Token,
+        page: "pages/detailApt/detailApt",
+        id: "id123",
+      },
+      complete: res => {
+        console.log('getImage: ', res)
+      }
+    })
+  },
+  getAccessToken: function () {
+    wx.cloud.callFunction({
+      name: 'getAccessToken',
+    })
+      .then(res => {
+        console.log('getAccessToken: ', res.result.data[0].token)
+        this.setData({
+          Access_Token: res.result.data[0].token
+        })
+        this.getMiniProgrameCode()
+      })
+      .catch(console.error)
+  },   
 
   getFormID: function (e) {
     /*console.log(e.detail)

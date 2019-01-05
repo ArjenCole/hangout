@@ -345,36 +345,5 @@ Page({
         }
       })
     },
-
-
-
-
-  bindGetMiniProgrameCode : function () {
-    wx.cloud.callFunction({
-      name: 'getImage',   // 云函数名称
-      data: {    // 小程序码所需的参数
-        access_token: this.data.Access_Token,
-        page: "pages/detailApt/detailApt",
-        id: "id123",
-      },
-      complete: res => {
-        console.log('getImage: ', res)
-      }
-    })
-  },
-  bindGetAccessToken: function () {
-    wx.cloud.callFunction({
-      name: 'getAccessToken',
-    })
-      .then(res => {
-        console.log('getAccessToken: ', res)
-        this.setData({
-          Access_Token: res.result.data[0].token
-        })
-        console.log('Token: ', this.data.Access_Token)
-      })
-      .catch(console.error) 
-  },   
-
   
 })
