@@ -1,4 +1,5 @@
 // pages/prize/prize.js
+var util = require('../../utils/util.js')
 const app = getApp()
 Page({
 
@@ -6,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    img: "../../res/post/gobg.png",
+    imgBG: "../../res/post/backGround.png",
     wechat: "../../res/home-btn.png",
     quan: "../../res/post/quan.png",
     code: "E7AI98",
@@ -16,21 +17,8 @@ Page({
     touxiang: "",
     code: "E7A93C"
   },
-  //获取输入框的值
-  bindKeyInput: function (e) {
-    this.setData({
-      inputValue: e.detail.value
-    })
-  },
-  //点击提交按钮
-  btnclick: function () {
-    var text = this.data.inputValue
-    wx.showToast({
-      title: text,
-      icon: 'none',
-      duration: 2000
-    })
-  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -39,70 +27,60 @@ Page({
   },
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function () {
+    var pages = getCurrentPages()
+    var currPage = pages[pages.length - 1]  //当前页面
+    var prevPage= pages[pages.length - 2]
+    var tApt = util.showAppointment(prevPage.data.apt, app.globalData.userInfo) 
+
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
     context.setFillStyle("#ffe200")
     context.fillRect(0, 0, 375, 667)
-    var path = "../../res/post/gobg.png";
-    //将模板图片绘制到canvas,在开发工具中drawImage()函数有问题，不显示图片
-    //不知道是什么原因，手机环境能正常显示
-    context.drawImage(path, 0, 0, 375, 183);
-    var path1 = "../../res/home-btn.png";
-    console.log(path1, "path1")
-    //将模板图片绘制到canvas,在开发工具中drawImage()函数有问题，不显示图片
-    var path2 = "../../res/home-btn.png";
-    var path3 = "../../res/home-btn.png";
-    var path4 = "../../res/home-btn.png";
-    var path5 = "../../res/home-btn.png";
-    context.drawImage(path2, 126, 186, 120, 120);
-    //不知道是什么原因，手机环境能正常显示
-    // context.save(); // 保存当前context的状态
+    //将模板图片绘制到canvas
+    context.drawImage(this.data.imgBG, 0, -50, 375, 750);
 
-    var name = that.data.name;
-    //绘制名字
-    context.setFontSize(24);
-    context.setFillStyle('#333333');
+    context.setFontSize(48);
+    context.setFillStyle('#fff');
     context.setTextAlign('center');
-    context.fillText(name, 185, 340);
+    context.fillText(tApt.title, 185, 100);
     context.stroke();
-    //绘制一起吃面标语
-    context.setFontSize(14);
-    context.setFillStyle('#333333');
-    context.setTextAlign('center');
-    context.fillText("邀请你一起去吃面", 185, 370);
-    context.stroke();
-    //绘制验证码背景
-    context.drawImage(path3, 48, 390, 280, 84);
-    //绘制code码
-    context.setFontSize(40);
-    context.setFillStyle('#ffe200');
-    context.setTextAlign('center');
-    context.fillText(that.data.code, 185, 435);
-    context.stroke();
-    //绘制左下角文字背景图
-    context.drawImage(path4, 25, 520, 184, 82);
-    context.setFontSize(12);
-    context.setFillStyle('#333');
+
+    context.setFontSize(16);
+    context.setFillStyle('#fff');
     context.setTextAlign('left');
-    context.fillText("进入小程序输入朋友的邀请", 35, 540);
+    context.fillText("发起人："+tApt.creatorNn, 30, 150);
     context.stroke();
-    context.setFontSize(12);
-    context.setFillStyle('#333');
+
+    context.setFontSize(18);
+    context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("码，朋友和你各自获得通用", 35, 560);
+    context.fillText("日期：" + tApt.date, 30, 190);
     context.stroke();
-    context.setFontSize(12);
-    context.setFillStyle('#333');
+
+    context.setFontSize(18);
+    context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("优惠券1张哦~", 35, 580);
+    context.fillText("时间：" + tApt.timeStart + "~" + tApt.timeEnd, 30, 230);
     context.stroke();
-    //绘制右下角扫码提示语
-    context.drawImage(path5, 248, 578, 90, 25);
-    //绘制头像
-    context.arc(186, 246, 50, 0, 2 * Math.PI) //画出圆
-    context.strokeStyle = "#ffe200";
-    context.clip(); //裁剪上面的圆形
-    context.drawImage(path1, 136, 196, 100, 100); // 在刚刚裁剪的园上画图
+
+    context.setFontSize(18);
+    context.setFillStyle('#000');
+    context.setTextAlign('left');
+    context.fillText("地点：" + tApt.place, 30, 270);
+    context.stroke();
+
+    context.setFontSize(18);
+    context.setFillStyle('#000');
+    context.setTextAlign('left');
+    context.fillText("联系人：" + tApt.liaisons, 30, 310);
+    context.stroke();
+
+    context.setFontSize(18);
+    context.setFillStyle('#000');
+    context.setTextAlign('left');
+    context.fillText("备注：" + tApt.tips, 30, 350);
+    context.stroke();
+
     context.draw();
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
     setTimeout(function () {
@@ -155,18 +133,12 @@ Page({
     this.setData({
       maskHidden: false
     });
-    wx.showToast({
-      title: '装逼中...',
-      icon: 'loading',
-      duration: 1000
+    that.createNewImg();
+    that.setData({
+      maskHidden: true
     });
-    setTimeout(function () {
-      wx.hideToast()
-      that.createNewImg();
-      that.setData({
-        maskHidden: true
-      });
-    }, 1000)
+
+
   },
 
   /**

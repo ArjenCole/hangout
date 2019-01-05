@@ -1,8 +1,7 @@
 /* client/pages/imageApt/imageApt.wxss */
 .bgImg{
-  display: block;
   width: 100%;
-  height: 366rpx;
+  height: 4600;
 }
 .mine{
   display: block;
@@ -116,7 +115,7 @@ button[class="zfbtn m_l"]::after {
   margin-left: -40%;
   z-index: 10;
 }
-.baocun{
+.buttonSave{
   display: block;
   width: 80%;
   height: 80rpx;
@@ -126,10 +125,10 @@ button[class="zfbtn m_l"]::after {
   position: fixed;
   bottom: 50rpx;
   left: 10%;
-  background: #ffe200;
-  color: #333;
+  background: #79899b;
+  color: #fff;
   font-size: 32rpx;
-  border-radius: 44rpx;
+  border-radius: 5px;
 }
 button[class="baocun"]::after{
   border: 0;
