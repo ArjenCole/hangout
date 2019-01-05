@@ -3,7 +3,7 @@
   <view class="sheet">
     <view class="section">
       <view class="section__title">活动名称：</view>
-      <input name="Title" placeholder="足球、网球……" value='{{showApt.title}}' />
+      <input name="Title" placeholder="聚餐、运动……" value='{{showApt.title}}' />
     </view>
     <view class="section">
       <view class="section__title">活动日期：</view>
