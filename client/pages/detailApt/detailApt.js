@@ -36,7 +36,7 @@ Page({
   },
   mySelect(e) {
     var name = e.currentTarget.dataset.name
-    this.setData({
+    this.setData({//关起下拉菜单
       select: false
     })
   },
@@ -92,7 +92,9 @@ Page({
 
     //}
     console.log(tPath)
-
+    this.setData({//关起下拉菜单
+      select: false
+    })
     return {
       title: tTitle,//分享内容
       path: tPath,//分享地址
@@ -105,9 +107,15 @@ Page({
     wx.navigateTo({
       url: '../newApt/newApt?aptId=' + this.data.apt._id,
     })
+    this.setData({//关起下拉菜单
+      select: false
+    })
   },
   bindGetUserInfo: function () {
     this.autoGetUserInfo()
+    this.setData({//关起下拉菜单
+      select: false
+    })
   },
   bindDenyTap: function () {
     if (app.globalData.userInfo !== null) { 
@@ -116,12 +124,18 @@ Page({
     }else{
       console.log("尚未登陆")
     }
+    this.setData({//关起下拉菜单
+      select: false
+    })
   },
   bindJoinTap: function () {
     if (app.globalData.userInfo !== null) {
       util.showBusy('正在报名')
       this.updateApt(this.updateArr(this.data.apt.records, "join"), "join")
     }
+    this.setData({//关起下拉菜单
+      select: false
+    })
   },
 
   // 获得用户信息
