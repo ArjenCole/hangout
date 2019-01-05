@@ -6,9 +6,13 @@
       <view class="page__desc" wx:if="{{!showApt.editAble}}">发起人:{{showApt.creatorNn}}</view>
       <view class="page__desc" wx:if="{{showApt.editAble}}">点此编辑活动</view>
     </view>    
-    <view class="page__hd">
+    <!--view class="page__hd">
       <button class="buttonShare" open-type='share'>分享活动</button>
-    </view>    
+    </view-->  
+    <view class='titleBox'>
+      <button class="buttonShare" open-type='share'>分享活动</button>
+      <button id="slide" class='buttonMore' bindtap="toggle">▼</button>
+    </view>  
   </view>
     <view class="sheet">
         <view class="sheet-preview">
