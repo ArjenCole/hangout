@@ -1,7 +1,10 @@
 const cloud = require('wx-server-sdk')
 const axios = require('axios')
 var rp = require('request-promise');
-cloud.init()
+cloud.init({
+  env: 'test-f83f7a',
+  traceUser: true,
+})
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -17,12 +20,12 @@ exports.main = async (event, context) => {
       data: {
         page: event.page,
         width: 300,
-        scene: "id=" + event.id,
+        scene: event.id,
       },
     });
 
     return await cloud.uploadFile({
-      cloudPath: 'xcxcodeimages/' + Date.now() + '.png',
+      cloudPath: 'WXACodeUnlimit/' + event.id + '.png',
       fileContent: response.data,
     });
   } catch (err) {
