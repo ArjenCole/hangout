@@ -4,7 +4,7 @@
         <view class="page__title">{{apt.title}}</view>
     </view>
     <view class="sheet">
-        <view class="weui-cells__title">参加：</view>
+        <view class="weui-cells__title">报名人数：{{apt.records.length}} 人</view>
         <block wx:for="{{apt.records}}" wx:for-item="item" wx:key="id">
           <view class="weui-cells weui-cells_after-title" wx:if="{{item.attends=='join'}}">
               <view class="weui-cell">
