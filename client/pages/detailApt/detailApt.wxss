@@ -129,7 +129,7 @@
 
 /*下拉菜单相关*/ 
 .select_box {
-    background-color: #79899bc5;
+    background-color: #a7afb9;
     padding: 0 10rpx;
     width: 152px;
     position: absolute;
