@@ -67,10 +67,10 @@
     </navigator>
 </view>
 
-  <view class="mask"wx:if="{{showWXAcode}}">
-    <image class='maskImage' src="../../res/mask.png"/>
-    <view class='WXACode' >
-      <image class='WXACodeImage' src="{{wxCodeImage}}"/>
-      <button class="buttonSaveWXCode" bindtap="bindSaveWXCodeTap">存到本地</button>
-    </view>
+<view class="mask"wx:if="{{showWXAcode}}">
+  <image class='maskImage' src="../../res/mask.png"/>
+  <view class='WXACode' >
+    <image class='WXACodeImage' src="{{wxCodeImage}}"/>
+    <button class="buttonSaveWXCode" bindtap="bindSaveWXCodeTap">存到本地</button>
   </view>
+</view>
