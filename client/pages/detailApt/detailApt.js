@@ -14,7 +14,8 @@ Page({
     prevPage: {},
 
     select: false,
-
+    showWXAcode: false,
+    wxCodeImage:'',
   },
 
   /**
@@ -24,7 +25,6 @@ Page({
     if (typeof (options.scene) !== 'undefined') {//小程序码进入
       // scene 需要使用 decodeURIComponent 才能获取到生成二维码时传入的 scene
       const scene = decodeURIComponent(options.scene)
-      console.log(scene)
       this.getApt(scene)
     } else if (typeof (options.aptId) == 'undefined') {//首页进入
       this.getAptFromIndex(options)
@@ -143,6 +143,30 @@ Page({
     }
     this.setData({//关起下拉菜单
       select: false
+    })
+  },
+
+  bindSaveWXCodeTap: function () {
+    var that = this
+    wx.cloud.downloadFile({
+      fileID: this.data.wxCodeImage
+    }).then(res => {
+      // get temp file path
+      console.log(res.tempFilePath)
+      wx.saveImageToPhotosAlbum({ 
+        filePath: res.tempFilePath, 
+        success: function (res) { 
+          console.log(res) 
+          that.setData({ showWXAcode: false })
+        }, 
+        fail: function (res) { 
+          console.log(res)            
+          console.log('fail') 
+          that.setData({ showWXAcode: false })
+        } 
+      })
+    }).catch(error => {
+      // handle error
     })
   },
 
@@ -331,6 +355,10 @@ Page({
       },
       complete: res => {
         console.log('getImage: ', res)
+        this.setData({
+          showWXAcode:true,
+          wxCodeImage: res.result.fileID
+        })
       }
     })
   },

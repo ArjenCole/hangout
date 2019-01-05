@@ -19,6 +19,7 @@
       </view>
     </view>
   </view>
+
   <view class="sheet">
         <view class="sheet-preview">
             <view class="sheet-preview__bd">
@@ -65,3 +66,11 @@
         </view>
     </navigator>
 </view>
+
+  <view class="mask"wx:if="{{showWXAcode}}">
+    <image class='maskImage' src="../../res/mask.png"/>
+    <view class='WXACode' >
+      <image class='WXACodeImage' src="{{wxCodeImage}}"/>
+      <button class="buttonSaveWXCode" bindtap="bindSaveWXCodeTap">存到本地</button>
+    </view>
+  </view>
