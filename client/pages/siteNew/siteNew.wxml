@@ -1,9 +1,6 @@
 <!--client/pages/siteNew/siteNew.wxml-->
 <form bindsubmit="formSubmit" bindreset="formReset">
 <view class="page">
-  <view class="page__hd">
-    <view class="page__title">新建场馆</view>
-  </view>   
   <view class='sheet'>
     <view class="weui-cells__title">场馆名称：</view>
     <view class='section'>
