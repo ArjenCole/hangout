@@ -46,31 +46,33 @@ Page({
     context.setFontSize(18);
     context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("日期：" + tApt.date, 30, 190);
+    context.fillText("日期：", 50, 190);
+    context.setTextAlign('right');
+    context.fillText(tApt.date, 325, 190);
     context.stroke();
 
-    context.setFontSize(18);
-    context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("时间：" + tApt.timeStart + "~" + tApt.timeEnd, 30, 230);
+    context.fillText("时间：", 50, 230);
+    context.setTextAlign('right');
+    context.fillText(tApt.timeStart + "~" + tApt.timeEnd, 325, 230);
     context.stroke();
 
-    context.setFontSize(18);
-    context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("地点：" + tApt.place, 30, 270);
+    context.fillText("地点：", 50, 270);
+    context.setTextAlign('right');
+    context.fillText(tApt.place, 325, 270);
     context.stroke();
 
-    context.setFontSize(18);
-    context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("联系人：" + tApt.liaisons, 30, 310);
+    context.fillText("联系人：", 50, 310);
+    context.setTextAlign('right');
+    context.fillText(tApt.liaisons, 325, 310);
     context.stroke();
 
-    context.setFontSize(18);
-    context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("备注：" + tApt.tips, 30, 350);
+    context.fillText("备注：" , 50, 350);
+    context.setTextAlign('right');
+    context.fillText(tApt.tips, 325, 350);
     context.stroke();
 
     context.draw();
@@ -92,8 +94,7 @@ Page({
     }, 200);
   },
   //点击保存到相册
-  baocun: function () {
-    console.log(1)
+  bindSaveImage: function () {
     var that = this
     wx.saveImageToPhotosAlbum({
       filePath: that.data.imagePath,
@@ -106,13 +107,14 @@ Page({
           success: function (res) {
             if (res.confirm) {
               console.log('用户点击确定');
-              /* 该隐藏的隐藏 */
+              /* 该隐藏的隐藏 
               that.setData({
                 maskHidden: false
-              })
+              })*/
+              wx.navigateBack()
             }
           }, fail: function (res) {
-            console.log(11111)
+            console.log(res)
           }
         })
       }

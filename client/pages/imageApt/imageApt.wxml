@@ -3,7 +3,7 @@
   <!--生成海报  -->
   <view class='imagePathBox' hidden="{{maskHidden == false}}">
       <image src="{{imagePath}}" class='shengcheng'></image>
-      <button class='buttonSave' bindtap='baocun'>保存相册，分享到朋友圈</button>
+      <button class='buttonSave' bindtap='bindSaveImage'>保存相册，分享到朋友圈</button>
   </view>
   <view hidden="{{maskHidden == false}}" class="mask"></view> 
   <view class="canvas-box">
