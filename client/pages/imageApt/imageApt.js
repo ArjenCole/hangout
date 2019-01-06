@@ -9,15 +9,70 @@ Page({
   data: {
     imgBG: "",
     maskHidden: false,
+    prevPage:null,
+    Access_Token:'',
+    wxCodeImage:''
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var pages = getCurrentPages()
+    this.setData({
+      prevPage : pages[pages.length - 2]
+    })
+
     util.showBusy('正在生成')
-    this.downloadBackGroundPic()
+    this.getAccessToken()
   },
+  getAccessToken: function () {
+    wx.cloud.callFunction({
+      name: 'getAccessToken',
+    })
+      .then(res => {
+        console.log('getAccessToken: ', res.result.data[0].token)
+        this.setData({
+          Access_Token: res.result.data[0].token
+        })
+        this.getMiniProgrameCode()
+      })
+      .catch(console.error)
+  },   
+  getMiniProgrameCode: function () {
+    wx.cloud.callFunction({
+      name: 'getImage',   // 云函数名称
+      data: {    // 小程序码所需的参数
+        access_token: this.data.Access_Token,
+        page: "pages/index/index",
+        id: this.data.prevPage.data.apt._id,
+      },
+      complete: res => {
+        this.setData({
+          wxCodeImage: res.result.fileID
+        })
+
+        this.downloadWXCodePic()
+      }
+    })
+  },
+
+  downloadWXCodePic: function () {
+    var that = this
+    wx.cloud.downloadFile({
+      fileID: that.data.wxCodeImage
+    }).then(res => {
+      that.setData({
+        wxCodeImage: res.tempFilePath
+      })
+
+      that.downloadBackGroundPic()
+      
+    }).catch(error => {
+      console.log(error)
+    })
+  },
+
   downloadBackGroundPic: function () {
     var that = this
     wx.cloud.downloadFile({
@@ -53,10 +108,7 @@ Page({
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function () {
-    var pages = getCurrentPages()
-    var currPage = pages[pages.length - 1]  //当前页面
-    var prevPage= pages[pages.length - 2]
-    var tApt = util.showAppointment(prevPage.data.apt, app.globalData.userInfo) 
+    var tApt = util.showAppointment(this.data.prevPage.data.apt, app.globalData.userInfo) 
 
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
@@ -65,10 +117,12 @@ Page({
     //将模板图片绘制到canvas
     context.drawImage(this.data.imgBG, 0, -10, 375, 680);
 
-
     context.setFillStyle("rgba(255, 255, 255, 0.651)")
     context.fillRect(25, 160, 325, 240)
-    //context.drawImage("", 25, 140, 325, 300) 
+
+    console.log(this.data.wxCodeImage)
+    context.drawImage(this.data.wxCodeImage, 200, 480, 150, 150);
+
 
     context.setFontSize(48);
     context.setFillStyle('#fff');
