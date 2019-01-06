@@ -37,42 +37,46 @@ Page({
     context.fillText(tApt.title, 185, 100);
     context.stroke();
 
+    var leftDis=40
+    var rightDis=375-leftDis
+
+
     context.setFontSize(16);
     context.setFillStyle('#fff');
     context.setTextAlign('left');
-    context.fillText("发起人："+tApt.creatorNn, 30, 150);
+    context.fillText("发起人："+tApt.creatorNn, leftDis, 150);
     context.stroke();
 
     context.setFontSize(18);
     context.setFillStyle('#000');
     context.setTextAlign('left');
-    context.fillText("日期：", 50, 190);
+    context.fillText("日期：", leftDis, 190);
     context.setTextAlign('right');
-    context.fillText(tApt.date, 325, 190);
+    context.fillText(tApt.date, rightDis, 190);
     context.stroke();
 
     context.setTextAlign('left');
-    context.fillText("时间：", 50, 230);
+    context.fillText("时间：", leftDis, 230);
     context.setTextAlign('right');
-    context.fillText(tApt.timeStart + "~" + tApt.timeEnd, 325, 230);
+    context.fillText(tApt.timeStart + "~" + tApt.timeEnd, rightDis, 230);
     context.stroke();
 
     context.setTextAlign('left');
-    context.fillText("地点：", 50, 270);
+    context.fillText("地点：", leftDis, 270);
     context.setTextAlign('right');
-    context.fillText(tApt.place, 325, 270);
+    context.fillText(tApt.place, rightDis, 270);
     context.stroke();
 
     context.setTextAlign('left');
-    context.fillText("联系人：", 50, 310);
+    context.fillText("联系人：", leftDis, 310);
     context.setTextAlign('right');
-    context.fillText(tApt.liaisons, 325, 310);
+    context.fillText(tApt.liaisons, rightDis, 310);
     context.stroke();
 
     context.setTextAlign('left');
-    context.fillText("备注：" , 50, 350);
+    context.fillText("备注：", leftDis, 350);
     context.setTextAlign('right');
-    context.fillText(tApt.tips, 325, 350);
+    context.fillText(tApt.tips, rightDis, 350);
     context.stroke();
 
     context.draw();
