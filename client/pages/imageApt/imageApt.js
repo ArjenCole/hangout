@@ -63,11 +63,11 @@ Page({
     context.setFillStyle("#ffe200")
     context.fillRect(0, 0, 375, 667)
     //将模板图片绘制到canvas
-    context.drawImage(this.data.imgBG, 0, -50, 375, 750);
+    context.drawImage(this.data.imgBG, 0, -10, 375, 680);
 
 
     context.setFillStyle("rgba(255, 255, 255, 0.651)")
-    context.fillRect(25, 160, 325, 260)
+    context.fillRect(25, 160, 325, 240)
     //context.drawImage("", 25, 140, 325, 300) 
 
     context.setFontSize(48);
