@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgBG: "../../res/post/backGround.png",
+    imgBG: "",
     maskHidden: false,
   },
 
@@ -15,15 +15,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    util.showBusy('正在生成')
+    this.downloadBackGroundPic()
+  },
+  downloadBackGroundPic: function () {
+    var that = this
+    wx.cloud.downloadFile({
+      fileID: "cloud://test-f83f7a.7465-test-f83f7a/post/postBackGround.PNG"
+    }).then(res => {
+      that.setData({
+        imgBG: res.tempFilePath
+      })
+      that.drawPost()
+    }).catch(error => {
+      console.log(error)
+    })
+  },
+
+  drawPost: function () {
     var that = this;
     this.setData({
       maskHidden: false
     });
-    wx.showToast({
+    /*wx.showToast({
       title: '生成中...',
       icon: 'loading',
       duration: 1000
-    });
+    });*/
     setTimeout(function () {
       wx.hideToast()
       that.createNewImg();
@@ -32,7 +50,6 @@ Page({
       });
     }, 1000)
   },
-
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function () {
@@ -47,6 +64,11 @@ Page({
     context.fillRect(0, 0, 375, 667)
     //将模板图片绘制到canvas
     context.drawImage(this.data.imgBG, 0, -50, 375, 750);
+
+
+    context.setFillStyle("rgba(255, 255, 255, 0.651)")
+    context.fillRect(25, 160, 325, 260)
+    //context.drawImage("", 25, 140, 325, 300) 
 
     context.setFontSize(48);
     context.setFillStyle('#fff');
@@ -107,6 +129,7 @@ Page({
             imagePath: tempFilePath,
             canvasHidden: true
           });
+          util.showSuccess('生成成功')
         },
         fail: function (res) {
           console.log(res);
@@ -127,11 +150,6 @@ Page({
           confirmColor: '#333',
           success: function (res) {
             if (res.confirm) {
-              console.log('用户点击确定');
-              /* 该隐藏的隐藏 
-              that.setData({
-                maskHidden: false
-              })*/
               wx.navigateBack()
             }
           }, fail: function (res) {
