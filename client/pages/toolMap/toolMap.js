@@ -7,7 +7,7 @@ var constant = require('../../utils/constant.js');
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
 //定义全局变量
 var wxMarkerData = [];
-var bottomHeight = 0;
+var topHeight = 0;
 var windowHeight = 0;
 var windowWidth = 0;
 var mapId = 'myMap';
@@ -408,10 +408,10 @@ Page({
         var query = wx.createSelectorQuery();
 
         var query = wx.createSelectorQuery();
-        query.select('#bottom-layout').boundingClientRect()
+        query.select('#top-layout').boundingClientRect()
         query.exec(function (res) {
           //consoleUtil.log(res);
-          bottomHeight = res[0].height;
+          topHeight = res[0].height;
           that.setMapHeight();
         })
       },
@@ -420,7 +420,7 @@ Page({
   setMapHeight: function (params) {
     var that = this;
     that.setData({
-      mapHeight: (windowHeight - bottomHeight) + 'px'
+      mapHeight: (windowHeight -topHeight) + 'px'
     })
     var controlsWidth = 40;
     var controlsHeight = 48;
@@ -431,7 +431,7 @@ Page({
         iconPath: '../../res/center-location.png',
         position: {
           left: (windowWidth - controlsWidth) / 2,
-          top: (windowHeight - bottomHeight) / 2 - controlsHeight * 3 / 4,
+          top: (windowHeight - topHeight) / 2 - controlsHeight * 3 / 4,
           width: controlsWidth,
           height: controlsHeight
         },
@@ -439,6 +439,31 @@ Page({
       }]
     })
   },
+
+  //顶部搜索框
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    console.log(e)
+    this.setData({
+      inputVal: e.detail.value
+    });
+  },
+
   getPrevPage: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面

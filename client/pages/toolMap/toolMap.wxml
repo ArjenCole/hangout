@@ -1,20 +1,43 @@
 <!--client/pages/toolMap/toolMap.wxml-->
+
+
+
 <view class="container-layout">
+  <!--顶部布局-->
+  <view class='bottom-layout' id='top-layout'>
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{selectAddress}}" focus="{{inputShowed}}" bindblur='hideInput' />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+              <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text" wx:if="{{selectAddress==''}}">地址加载中……</view>
+          <view class="weui-search-bar__text" wx:else>{{selectAddress}}</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
 
   <!--地图-->
   <view class='map-wrapper' style='height:{{mapHeight}}'>
     <map class='map' id='myMap' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true" markers="{{markers}}" bindmarkertap="bindMakertap" bindcontroltap='controlTap' bindregionchange='regionChange' controls='{{controls}}'
       bindtap='bindMapTap'>
       <!--顶部提示-->
-      <cover-view class='cover-tip-wrapper' bindtap='showNewMarkerClick'>
+      <!--cover-view class='cover-tip-wrapper' bindtap='showNewMarkerClick'>
         <cover-image class='tip-bg' src='../../res/tip-bg.png'></cover-image>
         <cover-view class='cover-tip-content'>
           <cover-image class='trumpet-icon' src='../../res/iconMap.png'></cover-image>
           <cover-view class='tip-text' wx:if="{{selectAddress==''}}">地址加载中……</cover-view>
           <cover-view class='tip-text' wx:else>{{selectAddress}}</cover-view>
-          <!--cover-image class='right-arrow' src='../../res/right-arrow.png'></cover-image-->
+          <cover-image class='right-arrow' src='../../res/right-arrow.png'></cover-image>
         </cover-view>
-      </cover-view>
+      </cover-view-->
     </map>
     <!--定位当前位置-->
     <cover-view class='cover-layout' bindtap='selfLocationClick'>
@@ -27,10 +50,4 @@
     </cover-view>
   </view>
 
-  <!--底部布局-->
-  <view class='bottom-layout' id='bottom-layout'>
-    <view class='bottom-wrapper'>
-      <!--changeMapHeight回调函数用到，不能删-->
-    </view>
-  </view>
 </view>
