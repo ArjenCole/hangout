@@ -14,8 +14,8 @@ Page({
 
     aptName:"",
     aptDate: util.formatDate(new Date()),
-    aptTimeStart: util.formatHM(new Date("2018-01-01 12:00:00")),
-    aptTimeEnd: util.formatHM(new Date("2018-01-01 14:00:00")),
+    aptTimeStart: util.formatHM(new Date("2018/01/01 12:00:00")),
+    aptTimeEnd: util.formatHM(new Date("2018/01/01 14:00:00")),
 
     today: util.formatDate(new Date()),
     now: util.formatHM(new Date()),
