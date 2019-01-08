@@ -68,11 +68,16 @@
     </navigator>
 </view>
 
-<view class="mask"wx:if="{{showWXAcode}}">
+<!--view class="mask" wx:if="{{showWXAcode}}">
   <image class='maskImage' bindtap="bindCancelSave" src="../../res/mask.png"/>
   <view class='WXACode' >
     <image class='WXACodeImage' bindtap="bindSaveWXCodeTap" src="{{wxCodeImage}}"/>
     <button class="buttonSaveWXCode" bindtap="bindSaveWXCodeTap">存到本地</button>
   </view>
-</view>
+</view-->
 
+  <!--生成二维码  -->
+  <view class='imagePathBox' hidden="{{showWXAcode == false}}" bindtap="bindCancelSave" >
+      <image class='WXCodeImage' bindtap="bindSaveWXCodeTap" src="{{wxCodeImage}}"/>
+      <button class='buttonSave' bindtap='bindSaveWXCodeTap'>存到本地</button>
+  </view>
