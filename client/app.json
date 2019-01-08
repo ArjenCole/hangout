@@ -18,5 +18,10 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "signIn 报名",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+     "scope.userLocation": {
+      "desc": "你的位置信息将用于确定活动定位"
+    }
   }
 }
