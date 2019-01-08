@@ -32,6 +32,7 @@ Page({
     praiseCount: 0,
     commentList: [],
     selectAddress: '',
+    inputAddress: '',
     centerLongitude: '',
     centerLatitude: '',
     uploadImagePath: '',
@@ -252,6 +253,7 @@ Page({
    * 移动到中心点
    */
   moveTolocation: function () {
+    console.log("move")
     var mapCtx = wx.createMapContext(mapId);
     mapCtx.moveToLocation();
   },
@@ -284,9 +286,10 @@ Page({
    * 拖动地图回调
    */
   regionChange: function (res) {
+    console.log("region",res)
     var that = this;
     // 改变中心点位置  
-    if (res.type == "end") {
+    if (res.type == "end" && res.causedBy == "drag") {
       that.getCenterLocation();
     }
   },
@@ -342,8 +345,7 @@ Page({
   },
 
   /**
-   * 点击顶部横幅提示
-   */
+   * 
   showNewMarkerClick: function () {
     var that = this;
     wx.showModal({
@@ -351,8 +353,8 @@ Page({
       content: this.data.centerAddressBean.address_component.nation + " " + this.data.centerAddressBean.address_component.province + " " + this.data.centerAddressBean.address_component.city + " " + this.data.centerAddressBean.address_component.district + " " + this.data.centerAddressBean.address_component.street_number,
       showCancel: false
     })
-  },
-
+  },点击顶部横幅提示
+  */
 
   bindSelectLocation: function (e) {
     if (this.data.centerAddressBean == null) { return }
@@ -369,7 +371,7 @@ Page({
     })
     wx.navigateBack()
   },
-  /**
+/**
  * 设置上传情报按钮的左边距
  */
   setHomeActionLeftDistance: function () {
@@ -440,6 +442,28 @@ Page({
     })
   },
 
+  atuoGetLocation(e) {
+    var that=this
+    console.log("getloc",e)
+    qqmapsdk.geocoder({
+      address: e,   //用户输入的地址（注：地址中请包含城市名称，否则会影响解析效果），如：'北京市海淀区彩和坊路海淀西大街74号'
+      success: function(res) {
+        //that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
+        that.setData({
+          latitude: res.result.location.lat,
+          longitude: res.result.location.lng,
+        })
+        console.log(that.data.longitude,that.data.latitude);   //经纬度对象
+        that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
+        that.regeocodingAddress();
+      } ,
+      fail: function(err) {
+        console.log('无法定位到该地址，请确认地址信息！');
+      }
+    })
+  },
+
+
   //顶部搜索框
   showInput: function () {
     this.setData({
@@ -448,22 +472,24 @@ Page({
   },
   hideInput: function () {
     this.setData({
-      inputVal: "",
+      inputAddress: "",
       inputShowed: false
     });
   },
   clearInput: function () {
     this.setData({
-      inputVal: ""
+      inputAddress: ""
     });
   },
   inputTyping: function (e) {
-    console.log(e)
     this.setData({
-      inputVal: e.detail.value
+      inputAddress: e.detail.value
     });
+    console.log(this.data.inputAddress)
   },
-
+  inputConfirm: function(e) {
+    this.atuoGetLocation(this.data.inputAddress)
+  },
   getPrevPage: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
