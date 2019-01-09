@@ -33,8 +33,15 @@ Page({
     var prevPage = pages[pages.length - 2];   //前页面
 
     var prevApt =prevPage.data.apt
+    console.log(prevApt.location)
     var tAddressBean = {}
     tAddressBean.address=prevApt.place
+    if(typeof(prevApt.location)!=='undefined'){
+      var tLocation={}
+      tLocation.lng = prevApt.location.longitude
+      tLocation.lat = prevApt.location.latitude
+      tAddressBean.location=tLocation
+    }
     this.setData({
       inApt: prevApt,
       showApt: util.showAppointment(prevApt, app.globalData.userInfo),
@@ -176,16 +183,26 @@ Page({
   },
 
   updateApt: function (pApt) {
+    console.log(this.data.addressBean.location)
+    var tData = {
+      title: pApt.title,
+      date: pApt.date,
+      timeStart: pApt.timeStart,
+      timeEnd: pApt.timeEnd,
+      place: pApt.place,
+      liaisons: pApt.liaisons,
+      tips: pApt.tips,
+    }
+    if(typeof(this.data.addressBean.location)!=='undefined'){
+      var tLng = this.data.addressBean.location.lng
+      var tLat = this.data.addressBean.location.lat
+      tData.location = new app.globalData.db.Geo.Point(tLng,tLat)
+      pApt.location=tData.location
+    }
+    //tData.location = new app.globalData.db.Geo.Point(113, 23)
+    console.log(tData)
     app.globalData.aptCollection.doc(pApt._id).update({
-      data: {
-        title:pApt.title,
-        date: pApt.date,
-        timeStart: pApt.timeStart,
-        timeEnd: pApt.timeEnd,
-        place:pApt.place,
-        liaisons:pApt.liaisons,
-        tips:pApt.tips
-      },
+      data: tData,
       success: function (res) {
         var pages = getCurrentPages();
         var currPage = pages[pages.length - 1];   //当前页面
