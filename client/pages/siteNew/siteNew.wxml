@@ -26,18 +26,18 @@
   <view class="sheet">
     <view class="weui-cells__title">场馆地址：</view>  
     <view class="section">
-      <input name="Nation" class='item' value='{{address_component.nation}}' />
+      <input name="Nation" class='item' value='{{addressBean.address_component.nation}}' />
       <view class="section__title">国</view>
-      <input name="Province" class='item' value='{{address_component.province}}' />
+      <input name="Province" class='item' value='{{addressBean.address_component.province}}' />
       <view class="section__title">省</view>
-      <input name="City" class='item' value='{{address_component.city}}' />
+      <input name="City" class='item' value='{{addressBean.address_component.city}}' />
       <view class="section__title">市</view>
 
     </view>
     <view class="section">
       <!--input name="District" class='item' value='{{address_component.district}}' />
       <view class="section__title">区 </view-->
-      <input name="Place" class='item__width' placeholder="    XX区XX路XX号………" value='{{address_component.district}}{{address_component.street_number}}' />
+      <input name="Place" class='item__width' placeholder="    XX区XX路XX号………" value='{{addressBean.address_component.district}}{{addressBean.address_component.street_number}}' />
       <image src="../../res/iconMap.png" class='item' style="width: 25px; height: 25px;" bindtap="bindMap"></image>
     </view>
   </view>

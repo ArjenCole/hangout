@@ -23,9 +23,7 @@ Page({
 
     isAgree: false,
 
-    address_component:{},
-    address:'',
-    location:null,
+    addressBean:{},
   },
 
   /**
@@ -104,8 +102,10 @@ Page({
   },
   bindMap: function (e) {
     var tURL = '../toolMap/toolMap'
-    if(this.data.location!==null){
-      tURL=tURL+ '?address='+this.data.address +'&longitude='+this.data.location.longitude+'&latitude='+this.data.location.latitude
+    var tAddress = this.data.addressBean.address
+    var tLocation = this.data.addressBean.location
+    if (typeof (tLocation)!=='undefined'){
+      tURL = tURL + '?address=' + tAddress + '&longitude=' + tLocation.lng + '&latitude=' + tLocation.lat
     };
     wx.navigateTo({
       url: tURL

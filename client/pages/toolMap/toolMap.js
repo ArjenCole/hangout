@@ -55,7 +55,7 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log('onLoad')
+    //console.log('onLoad',options)
     var that = this;
     if (typeof (options.longitude) !== 'undefined') {
       var tLocation = {}
@@ -73,7 +73,7 @@ Page({
   },
 
   onShow: function () {
-    console.log('onShow');
+    //console.log('onShow');
     var that = this;
     that.changeMapHeight();
     that.setHomeActionLeftDistance();
@@ -123,7 +123,7 @@ Page({
 
   //拖动地图回调
   bindRegionChange: function (res) {
-    console.log("region", res)
+    //console.log("region", res)
     var that = this;
     // 改变中心点位置  
     if (res.type == "end" && res.causedBy == "drag") {
@@ -145,15 +145,9 @@ Page({
   bindSelectLocation: function (e) {
     if (this.data.centerAddressBean == null) { return }
     var prevPage = this.getPrevPage()
-
-    console.log(this.data.centerAddressBean.address_component)
-    var tLocation = {}
-    tLocation.latitude = this.data.centerLatitude
-    tLocation.longitude = this.data.centerLongitude
+    //console.log(this.data.centerAddressBean)
     prevPage.setData({
-      address_component: this.data.centerAddressBean.address_component,
-      address: this.data.selectAddress,
-      location: tLocation
+      addressBean : this.data.centerAddressBean,
     })
     wx.navigateBack()
   },
@@ -174,7 +168,7 @@ Page({
 
   //请求地理位置权限
   requestAuth: function () {
-    console.log("requestAuth")
+    //console.log("requestAuth")
     var that = this;
     wx.getLocation({
       type: 'gcj02',
@@ -184,7 +178,7 @@ Page({
           longitude: res.longitude,
           authorizeMap: true,
         })
-        console.log('res', res)
+        //console.log('requestAuth_su', res)
         that.initMap()
         that.onShow()
         that.getCenterLocation()
@@ -196,18 +190,17 @@ Page({
    * 初始化地图
    */
   initMap: function () {
-    console.log('initMap')
+    //console.log('initMap')
     var that = this;
     qqmapsdk = new QQMapWX({
       key: constant.tencentAk
     });
-    //console.log('initmap')
     //that.getCenterLocation();
   },
 
   //请求地理位置
   requestLocation: function () {
-    console.log("requestLocation")
+    //console.log("requestLocation")
     var that = this;
     if(that.data.longitude+that.data.latitude==0){
       wx.getLocation({
@@ -217,7 +210,7 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
           })
-          console.log("requestLocation_su")
+          //console.log("requestLocation_su")
           that.moveTolocation();
         },
       })
@@ -242,7 +235,7 @@ Page({
    * 移动到中心点
    */
   moveTolocation: function () {
-    console.log("move")
+    //console.log("move")
     var mapCtx = wx.createMapContext(mapId);
     mapCtx.moveToLocation();
   },
@@ -253,12 +246,11 @@ Page({
   getCenterLocation: function () {
     var that = this;
     if (!that.data.authorizeMap) { return }
-    console.log('getCenterLocation');
+    //console.log('getCenterLocation');
     var mapCtx = wx.createMapContext(mapId);
     mapCtx.getCenterLocation({
       success: function (res) {
-        console.log('getCenterLocation_su');
-        console.log(res);
+        //console.log('getCenterLocation_su',res);
         that.updateCenterLocation(res.latitude, res.longitude);
         that.regeocodingAddress();
       }
@@ -277,7 +269,7 @@ Page({
           latitude: res.result.location.lat,
           longitude: res.result.location.lng,
         })
-        console.log(that.data.longitude, that.data.latitude);   //经纬度对象
+        //console.log(that.data.longitude, that.data.latitude);   //经纬度对象
         that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
         that.regeocodingAddress();
       },
@@ -290,11 +282,7 @@ Page({
   //逆地址解析  坐标==》字符串
   regeocodingAddress: function () {
     var that = this;
-    console.log('regeo')
-    //不在发布页面，不进行逆地址解析，节省调用次数，腾讯未申请额度前一天只有10000次
-    if (!that.data.showConfirm) {
-      //return;
-    }
+    //console.log('regeocodingAddress')
     //通过经纬度解析地址
     qqmapsdk.reverseGeocoder({
       location: {
@@ -302,7 +290,7 @@ Page({
         longitude: that.data.centerLongitude
       },
       success: function (res) {
-        console.log(res);
+        //console.log('regeocodingAddress_su',res);
         that.setData({
           centerAddressBean: res.result,
           selectAddress: res.result.formatted_addresses.recommend,
