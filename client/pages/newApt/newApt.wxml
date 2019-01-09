@@ -1,45 +1,62 @@
 <!--client/pages/newApt/newApt.wxml-->
 <form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="sheet">
-    <view class="section">
+  <view class="page">
+    <view class='sheet'>
       <view class="section__title">活动名称：</view>
-      <input name="Title" placeholder="聚餐、运动……" value='{{showApt.title}}' />
-    </view>
-    <view class="section">
-      <view class="section__title">活动日期：</view>
-      <picker mode="date" value="{{aptDate}}" start="{{aptDate}}" end="2150-09-01" bindchange="bindDateChange">
-        <view class="picker">
-          {{aptDate}}
+      <view class='section'>
+        <input name="Title" class='item__width' placeholder="聚餐、运动……" value='{{showApt.title}}' />
+      </view>
+    </view> 
+
+    <view class='sheet'>
+      <view class='section__column'>
+        <view class="section__title">活动时间：</view>
+        <view class='section'>
+          <view class="item__title">活动日期：</view>
+          <picker mode="date" value="{{aptDate}}" class='item__width' start="{{aptDate}}" end="2150-09-01" bindchange="bindDateChange">
+            <view class="picker">
+              {{aptDate}}
+            </view>
+          </picker>
         </view>
-      </picker>
-    </view>
-    <view class="section">
-      <view class="section__title">起讫时间：</view>
-      <picker mode="time" value="{{aptTimeStart}}" start="00:00" end="23:59" bindchange="bindTimeStartChange">
-        <view class="picker">
-          {{aptTimeStart}}
+        <view class='section'>
+          <view class="item__title">起讫时间：</view>
+          <picker mode="time" value="{{aptTimeStart}}" class='item__width' start="00:00" end="23:59" bindchange="bindTimeStartChange">
+            <view class="picker">
+              {{aptTimeStart}}
+            </view>
+          </picker>
+          <text class="item__title" space="ensp">  ~  </text>
+          <picker mode="time" value="{{aptTimeEnd}}" class='item__width' start="00:00" end="23:59" bindchange="bindTimeEndChange">
+            <view class="picker">
+              {{aptTimeEnd}}
+            </view>
+          </picker>
         </view>
-      </picker>
-      <text class="section__title" space="ensp">   ~   </text>
-      <picker mode="time" value="{{aptTimeEnd}}" start="00:00" end="23:59" bindchange="bindTimeEndChange">
-        <view class="picker">
-          {{aptTimeEnd}}
-        </view>
-      </picker>
-    </view>
-    <view class="section">
+      </view>
+    </view> 
+
+    <view class='sheet'>
       <view class="section__title">活动地点：</view>
-      <input name="Place" placeholder="XX路XX号…" value='{{addressBean.address}}' />
-      <image src="../../res/iconMap.png" style="width: 25px; height: 25px;" bindtap="bindMap"></image>
-    </view>
-    <view class="section">
-      <text class="section__title" space="ensp">联 络 人：</text>
-      <input name="Liaisons" placeholder="选填" value='{{showApt.liaisons}}' /><!--type="number"-->
-    </view>
-    <view class="section">
-      <text class="section__title" space="ensp">备   注：</text>
-      <input name="Tips" placeholder="选填" value='{{showApt.tips}}' />
-    </view>
+      <view class='section'>      
+        <input name="Place" placeholder="XX路XX号…" class='item__width' value='{{addressBean.address}}' />
+        <image src="../../res/iconMap.png" style="width: 25px; height: 25px;" bindtap="bindMap"></image>
+      </view>
+    </view> 
+
+    <view class='sheet'>
+      <view class='section__column'>
+        <view class="section__title">其他信息：</view>
+        <view class='section'>
+          <text class="item__title" space="ensp">联 络 人：</text>
+          <input name="Liaisons" placeholder="小张 13x-xxxx-xxxx，选填" class='item__width' value='{{showApt.liaisons}}' /><!--type="number"-->
+        </view>
+        <view class='section'>
+          <text class="item__title" space="ensp">备   注：</text>
+          <input name="Tips" placeholder="其他注意事项，选填" class='item__width' value='{{showApt.tips}}' />
+        </view>
+      </view>
+    </view> 
 
     <view wx:if="{{isSubmit}}" class="warning">
       {{warn ? warn : ""}}
@@ -50,7 +67,7 @@
     <view class="container">
       <view class="btn-area">
         <button formType="submit">提交</button>
-        <button formType="reset">重置</button>
+        <!--button formType="reset">重置</button-->
       </view>
     </view>
   </view>
