@@ -246,7 +246,7 @@ Page({
   /**
    * 回到定位点
    */
-  selfLocationClick: function () {
+  bindSelfLocationClick: function () {
     var that = this;
     //还原默认缩放级别
     that.setData({

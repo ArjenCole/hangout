@@ -40,7 +40,7 @@
       </cover-view-->
     </map>
     <!--定位当前位置-->
-    <cover-view class='cover-layout' bindtap='selfLocationClick'>
+    <cover-view class='cover-layout' bindtap='bindSelfLocationClick'>
       <cover-image class='self-location' src='../../res/self-location.png'></cover-image>
     </cover-view>
     <!--上传信息按钮-->
