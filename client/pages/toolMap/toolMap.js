@@ -1,6 +1,7 @@
 // client/pages/toolMap/toolMap.js
 //获取应用实例
 const app = getApp();
+var util = require('../../utils/util.js')
 const defaultScale = 14;
 //var consoleUtil = require('../../utils/consoleUtil.js');
 var constant = require('../../utils/constant.js');
@@ -281,7 +282,7 @@ Page({
         that.regeocodingAddress();
       },
       fail: function (err) {
-        console.log('无法定位到该地址，请确认地址信息！');
+        util.showModel(err.message , '地址中请包含城市名称，否则会影响解析效果')
       }
     })
   },
