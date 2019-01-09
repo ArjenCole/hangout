@@ -103,7 +103,7 @@ Page({
   },
 
   //拖动地图回调
-  regionChange: function (res) {
+  bindRegionChange: function (res) {
     console.log("region", res)
     var that = this;
     // 改变中心点位置  
@@ -271,7 +271,7 @@ Page({
   /**
    * 点击控件时触发
    */
-  controlTap: function () {
+  bindControlTap: function () {
 
   },
 
