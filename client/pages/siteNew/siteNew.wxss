@@ -33,13 +33,13 @@
 }
 .item__left{
   text-align:left;
-  color: #79899b;
+  color: rgb(0, 0, 0);
   font-size: 18px;
   width: 100%;
 }
 .item__width{
-  text-align:center;
-  color: #999;
+  text-align:center;  
+  color: rgb(0, 0, 0);
   font-size: 14px;
   width: 90%;
 }
