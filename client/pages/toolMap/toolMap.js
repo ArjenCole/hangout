@@ -79,7 +79,40 @@ Page({
     that.requestAuth();
     //that.scopeSetting();
   },
-  //请求地理位置
+
+  onShow: function () {
+    console.log('onShow');
+    var that = this;
+    that.changeMapHeight();
+    that.setHomeActionLeftDistance();
+    if(!that.data.authorizeMap){return}
+    if (that.data.callbackAddressInfo == null) {
+        that.requestLocation();
+    } else {
+      //如果刚从选择地址页面带数据回调回来，则显示选择的地址
+      that.setData({
+        selectAddress: that.data.callbackAddressInfo.title,
+        latitude: that.data.callbackAddressInfo.location.latitude,
+        longitude: that.data.callbackAddressInfo.location.longitude,
+      })
+      //置空回调数据，即只使用一次，下次中心点变化后就不再使用
+      that.setData({
+        callbackAddressInfo: null
+      })
+    }
+  },
+
+  //拖动地图回调
+  regionChange: function (res) {
+    console.log("region", res)
+    var that = this;
+    // 改变中心点位置  
+    if (res.type == "end" && res.causedBy == "drag") {
+      that.getCenterLocation();
+    }
+  },
+
+  //请求地理位置权限
   requestAuth: function () {
     console.log("requestAuth")
     var that = this;
@@ -91,38 +124,12 @@ Page({
           longitude: res.longitude,
           authorizeMap: true,
         })
-        console.log('res',res)
+        console.log('res', res)
         that.initMap()
         that.onShow()
         that.getCenterLocation()
       },
     })
-  },
-  onShow: function () {
-    console.log('onShow');
-    var that = this;
-    that.changeMapHeight();
-    that.setHomeActionLeftDistance();
-    if(!that.data.authorizeMap){return}
-    //如果刚从选择地址页面带数据回调回来，则显示选择的地址
-    //consoleUtil.log(that.data.callbackAddressInfo)
-    if (that.data.callbackAddressInfo == null) {
-      //that.getCenterLocation();
-      //正在上传的话，不去请求地理位置信息
-      //if (that.data.showUpload) {
-        that.requestLocation();
-      //}
-    } else {
-      that.setData({
-        selectAddress: that.data.callbackAddressInfo.title,
-        latitude: that.data.callbackAddressInfo.location.latitude,
-        longitude: that.data.callbackAddressInfo.location.longitude,
-      })
-      //置空回调数据，即只使用一次，下次中心点变化后就不再使用
-      that.setData({
-        callbackAddressInfo: null
-      })
-    }
   },
 
   scopeSetting: function () {
@@ -282,17 +289,7 @@ Page({
 
   },
 
-  /**
-   * 拖动地图回调
-   */
-  regionChange: function (res) {
-    console.log("region",res)
-    var that = this;
-    // 改变中心点位置  
-    if (res.type == "end" && res.causedBy == "drag") {
-      that.getCenterLocation();
-    }
-  },
+
 
   /**
    * 得到中心点坐标
@@ -490,6 +487,8 @@ Page({
   inputConfirm: function(e) {
     this.atuoGetLocation(this.data.inputAddress)
   },
+
+  
   getPrevPage: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
