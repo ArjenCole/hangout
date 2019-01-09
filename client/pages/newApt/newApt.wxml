@@ -10,7 +10,7 @@
 
     <view class='sheet'>
       <view class='section__column'>
-        <view class="section__title">活动时间：</view>
+        <!--view class="section__title">活动时间：</view-->
         <view class='section'>
           <view class="item__title">活动日期：</view>
           <picker mode="date" value="{{aptDate}}" class='item__width' start="{{aptDate}}" end="2150-09-01" bindchange="bindDateChange">
@@ -46,7 +46,7 @@
 
     <view class='sheet'>
       <view class='section__column'>
-        <view class="section__title">其他信息：</view>
+        <!--view class="section__title">其他信息：</view-->
         <view class='section'>
           <text class="item__title" space="ensp">联 络 人：</text>
           <input name="Liaisons" placeholder="小张 13x-xxxx-xxxx，选填" class='item__width' value='{{showApt.liaisons}}' /><!--type="number"-->
@@ -58,17 +58,14 @@
       </view>
     </view> 
 
-    <view wx:if="{{isSubmit}}" class="warning">
-      {{warn ? warn : ""}}
-    </view>
-
-
-
     <view class="container">
       <view class="btn-area">
         <button formType="submit">提交</button>
         <!--button formType="reset">重置</button-->
       </view>
+    </view>
+    <view wx:if="{{isSubmit}}" class="warning">
+      {{warn ? warn : ""}}
     </view>
   </view>
 

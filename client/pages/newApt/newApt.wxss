@@ -53,7 +53,7 @@
 }
 .item__title{
   text-align:left;  
-  color: #999;
+  color: #79899b;
   font-size: 14px;
   flex-shrink: 0;
 }
@@ -69,7 +69,7 @@
   color: #d81919; 
 }
 button{  
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
 	width: 300px;
 	background: #79899b;
