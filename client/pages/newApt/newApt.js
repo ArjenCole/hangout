@@ -19,6 +19,8 @@ Page({
 
     today: util.formatDate(new Date()),
     now: util.formatHM(new Date()),
+
+    addressBean : {},
   },
 
   /**
@@ -31,9 +33,12 @@ Page({
     var prevPage = pages[pages.length - 2];   //前页面
 
     var prevApt =prevPage.data.apt
+    var tAddressBean = {}
+    tAddressBean.address=prevApt.place
     this.setData({
       inApt: prevApt,
       showApt: util.showAppointment(prevApt, app.globalData.userInfo),
+      addressBean : tAddressBean,
       aptDate: util.formatDate(prevApt.date),
       aptTimeStart: util.formatHM(prevApt.timeStart),
       aptTimeEnd: util.formatHM(prevApt.timeEnd),
@@ -158,9 +163,15 @@ Page({
       aptTimeEnd: e.detail.value
     })
   },
-  bindSelectSite: function (e) {
+  bindMap: function (e) {
+    var tURL = '../toolMap/toolMap'
+    var tAddress = this.data.addressBean.address
+    var tLocation = this.data.addressBean.location
+    if (typeof (tLocation) !== 'undefined') {
+      tURL = tURL + '?address=' + tAddress + '&longitude=' + tLocation.lng + '&latitude=' + tLocation.lat
+    };
     wx.navigateTo({
-      url: '../site/site'
+      url: tURL
     })
   },
 
