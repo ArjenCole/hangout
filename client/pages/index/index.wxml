@@ -47,7 +47,7 @@
                 <navigator url="" class="weui-footer__link">报名首页</navigator>
             </view-->       
             <image src="../../res/181222arjencole.png" style="width: 100px; height: 19px;"></image>
-            <view class="footer_version">1.2.7</view>
+            <view class="footer_version">1.2.9</view>
         </view>
   </view>
 
