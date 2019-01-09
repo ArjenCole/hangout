@@ -27,20 +27,11 @@ Page({
     //showUpload: true,
     //地图高度
     mapHeight: 0,
-    infoAddress: '',
-    commentCount: 0,
-    praiseCount: 0,
-    commentList: [],
     selectAddress: '',
     inputAddress: '',
     centerLongitude: '',
     centerLatitude: '',
-    uploadImagePath: '',
     currentMarkerId: 0,
-    praiseSrc: '../../res/bottom-unpraise.png',
-    warningIconUrl: '',
-    infoMessage: '',
-    isUp: false,
     //中心指针，不随着地图拖动而移动
     controls: [],
     //搜索到的中心区域地址信息,用于携带到选择地址页面
