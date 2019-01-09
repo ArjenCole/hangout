@@ -93,6 +93,33 @@ Page({
     }
   },
 
+  //顶部搜索框
+  bindInputShow: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  bindHideInput: function () {
+    this.setData({
+      inputAddress: "",
+      inputShowed: false
+    });
+  },
+  bindInputClear: function () {
+    this.setData({
+      inputAddress: ""
+    });
+  },
+  bindInputTyping: function (e) {
+    this.setData({
+      inputAddress: e.detail.value
+    });
+    //console.log(this.data.inputAddress)
+  },
+  bindInputConfirm: function (e) {
+    this.atuoGetLocation(this.data.inputAddress)
+  },
+
   //拖动地图回调
   bindRegionChange: function (res) {
     console.log("region", res)
@@ -101,6 +128,47 @@ Page({
     if (res.type == "end" && res.causedBy == "drag") {
       that.getCenterLocation();
     }
+  },
+
+  //回到定位点
+  bindSelfLocationClick: function () {
+    var that = this;
+    //还原默认缩放级别
+    that.setData({
+      scale: defaultScale
+    })
+    //必须请求定位，改变中心点坐标
+    that.requestLocation();
+  },
+
+  bindSelectLocation: function (e) {
+    if (this.data.centerAddressBean == null) { return }
+    var prevPage = this.getPrevPage()
+
+    console.log(this.data.centerAddressBean.address_component)
+    var tLocation = {}
+    tLocation.latitude = this.data.centerLatitude
+    tLocation.longitude = this.data.centerLongitude
+    prevPage.setData({
+      address_component: this.data.centerAddressBean.address_component,
+      address: this.data.selectAddress,
+      location: tLocation
+    })
+    wx.navigateBack()
+  },
+  /**
+   * 点击控件时触发
+   */
+  bindControlTap: function () {
+
+  },
+
+  /**
+   * 点击地图时触发
+   */
+  bindMapTap: function () {
+    //恢复到原始页
+    //this.adjustViewStatus(true, false, false);
   },
 
   //请求地理位置权限
@@ -120,44 +188,6 @@ Page({
         that.onShow()
         that.getCenterLocation()
       },
-    })
-  },
-
-  scopeSetting: function () {
-    var that = this;
-    wx.getSetting({
-      success(res) {
-        //地理位置
-        if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success(res) {
-              that.initMap();
-            },
-            fail() {
-              wx.showModal({
-                title: '提示',
-                content: '定位失败，你未开启定位权限，点击开启定位权限',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.openSetting({
-                      success: function (res) {
-                        if (res.authSetting['scope.userLocation']) {
-                          that.initMap();
-                        } else {
-                          //consoleUtil.log('用户未同意地理位置权限')
-                        }
-                      }
-                    })
-                  }
-                }
-              })
-            }
-          })
-        } else {
-          that.initMap();
-        }
-      }
     })
   },
 
@@ -197,33 +227,6 @@ Page({
   },
 
   /**
-   * 点击marker
-   */
-  bindMakertap: function (e) {
-    var that = this;
-    //设置当前点击的id
-    that.setData({
-      currentMarkerId: e.markerId
-    })
-    //重新设置点击marker为中心点
-    for (var key in that.data.markers) {
-      var marker = that.data.markers[key];
-      if (e.markerId == marker.id) {
-        that.setData({
-          longitude: marker.longitude,
-          latitude: marker.latitude,
-        })
-      }
-    }
-    wx.showModal({
-      title: '提示',
-      content: '你点击了marker',
-      showCancel: false,
-    })
-  },
-
-
-  /**
    * 更新上传坐标点
    */
   updateCenterLocation: function (latitude, longitude) {
@@ -235,19 +238,6 @@ Page({
   },
 
   /**
-   * 回到定位点
-   */
-  bindSelfLocationClick: function () {
-    var that = this;
-    //还原默认缩放级别
-    that.setData({
-      scale: defaultScale
-    })
-    //必须请求定位，改变中心点坐标
-    that.requestLocation();
-  },
-
-  /**
    * 移动到中心点
    */
   moveTolocation: function () {
@@ -255,32 +245,6 @@ Page({
     var mapCtx = wx.createMapContext(mapId);
     mapCtx.moveToLocation();
   },
-
-
-
-
-  /**
-   * 点击控件时触发
-   */
-  bindControlTap: function () {
-
-  },
-
-  /**
-   * 点击地图时触发
-   */
-  bindMapTap: function () {
-    //恢复到原始页
-    //this.adjustViewStatus(true, false, false);
-  },
-
-
-
-  onShareAppMessage: function (res) {
-
-  },
-
-
 
   /**
    * 得到中心点坐标
@@ -300,9 +264,29 @@ Page({
     })
   },
 
-  /**
-   * 逆地址解析
-   */
+  //解析地址 字符串==》坐标
+  atuoGetLocation(e) {
+    var that = this
+    console.log("getloc", e)
+    qqmapsdk.geocoder({
+      address: e,   //用户输入的地址（注：地址中请包含城市名称，否则会影响解析效果），如：'北京市海淀区彩和坊路海淀西大街74号'
+      success: function (res) {
+        //that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
+        that.setData({
+          latitude: res.result.location.lat,
+          longitude: res.result.location.lng,
+        })
+        console.log(that.data.longitude, that.data.latitude);   //经纬度对象
+        that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
+        that.regeocodingAddress();
+      },
+      fail: function (err) {
+        console.log('无法定位到该地址，请确认地址信息！');
+      }
+    })
+  },
+
+  //逆地址解析  坐标==》字符串
   regeocodingAddress: function () {
     var that = this;
     console.log('regeo')
@@ -332,33 +316,6 @@ Page({
     });
   },
 
-  /**
-   * 
-  showNewMarkerClick: function () {
-    var that = this;
-    wx.showModal({
-      title: '门牌地址',
-      content: this.data.centerAddressBean.address_component.nation + " " + this.data.centerAddressBean.address_component.province + " " + this.data.centerAddressBean.address_component.city + " " + this.data.centerAddressBean.address_component.district + " " + this.data.centerAddressBean.address_component.street_number,
-      showCancel: false
-    })
-  },点击顶部横幅提示
-  */
-
-  bindSelectLocation: function (e) {
-    if (this.data.centerAddressBean == null) { return }
-    var prevPage= this.getPrevPage()
-
-    console.log(this.data.centerAddressBean.address_component)
-    var tLocation={}
-    tLocation.latitude = this.data.centerLatitude
-    tLocation.longitude = this.data.centerLongitude
-    prevPage.setData({
-      address_component: this.data.centerAddressBean.address_component,
-      address:this.data.selectAddress,
-      location:tLocation
-    })
-    wx.navigateBack()
-  },
 /**
  * 设置上传情报按钮的左边距
  */
@@ -430,56 +387,6 @@ Page({
     })
   },
 
-  atuoGetLocation(e) {
-    var that=this
-    console.log("getloc",e)
-    qqmapsdk.geocoder({
-      address: e,   //用户输入的地址（注：地址中请包含城市名称，否则会影响解析效果），如：'北京市海淀区彩和坊路海淀西大街74号'
-      success: function(res) {
-        //that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
-        that.setData({
-          latitude: res.result.location.lat,
-          longitude: res.result.location.lng,
-        })
-        console.log(that.data.longitude,that.data.latitude);   //经纬度对象
-        that.updateCenterLocation(res.result.location.lat, res.result.location.lng);
-        that.regeocodingAddress();
-      } ,
-      fail: function(err) {
-        console.log('无法定位到该地址，请确认地址信息！');
-      }
-    })
-  },
-
-
-  //顶部搜索框
-  bindInputShow: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  bindHideInput: function () {
-    this.setData({
-      inputAddress: "",
-      inputShowed: false
-    });
-  },
-  bindInputClear: function () {
-    this.setData({
-      inputAddress: ""
-    });
-  },
-  bindInputTyping: function (e) {
-    this.setData({
-      inputAddress: e.detail.value
-    });
-    //console.log(this.data.inputAddress)
-  },
-  bindInputConfirm: function(e) {
-    this.atuoGetLocation(this.data.inputAddress)
-  },
-
-
   getPrevPage: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
@@ -494,5 +401,82 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  /**
+     * 点击marker
+  bindMakertap: function (e) {
+    var that = this;
+    //设置当前点击的id
+    that.setData({
+      currentMarkerId: e.markerId
+    })
+    //重新设置点击marker为中心点
+    for (var key in that.data.markers) {
+      var marker = that.data.markers[key];
+      if (e.markerId == marker.id) {
+        that.setData({
+          longitude: marker.longitude,
+          latitude: marker.latitude,
+        })
+      }
+    }
+    wx.showModal({
+      title: '提示',
+      content: '你点击了marker',
+      showCancel: false,
+    })
+  },
+*/
+/*原权限请求
+  scopeSetting: function () {
+    var that = this;
+    wx.getSetting({
+      success(res) {
+        //地理位置
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success(res) {
+              that.initMap();
+            },
+            fail() {
+              wx.showModal({
+                title: '提示',
+                content: '定位失败，你未开启定位权限，点击开启定位权限',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success: function (res) {
+                        if (res.authSetting['scope.userLocation']) {
+                          that.initMap();
+                        } else {
+                          //consoleUtil.log('用户未同意地理位置权限')
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          })
+        } else {
+          that.initMap();
+        }
+      }
+    })
+  },
+*/
+
+  /**
+   * 点击顶部横幅提示
+  showNewMarkerClick: function () {
+    var that = this;
+    wx.showModal({
+      title: '门牌地址',
+      content: this.data.centerAddressBean.address_component.nation + " " + this.data.centerAddressBean.address_component.province + " " + this.data.centerAddressBean.address_component.city + " " + this.data.centerAddressBean.address_component.district + " " + this.data.centerAddressBean.address_component.street_number,
+      showCancel: false
+    })
+  },
+  */
 })
