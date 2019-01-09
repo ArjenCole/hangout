@@ -462,33 +462,33 @@ Page({
 
 
   //顶部搜索框
-  showInput: function () {
+  bindInputShow: function () {
     this.setData({
       inputShowed: true
     });
   },
-  hideInput: function () {
+  bindHideInput: function () {
     this.setData({
       inputAddress: "",
       inputShowed: false
     });
   },
-  clearInput: function () {
+  bindInputClear: function () {
     this.setData({
       inputAddress: ""
     });
   },
-  inputTyping: function (e) {
+  bindInputTyping: function (e) {
     this.setData({
       inputAddress: e.detail.value
     });
-    console.log(this.data.inputAddress)
+    //console.log(this.data.inputAddress)
   },
-  inputConfirm: function(e) {
+  bindInputConfirm: function(e) {
     this.atuoGetLocation(this.data.inputAddress)
   },
 
-  
+
   getPrevPage: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面

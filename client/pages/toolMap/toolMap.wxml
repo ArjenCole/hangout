@@ -9,12 +9,12 @@
       <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputAddress}}" focus="{{inputShowed}}" bindinput='inputTyping' bindconfirm='inputConfirm' bindblur='hideInput' />
-          <view class="weui-icon-clear" wx:if="{{inputAddress.length > 0}}" bindtap="clearInput">
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputAddress}}" focus="{{inputShowed}}" bindinput='bindInputTyping' bindconfirm='bindInputConfirm' bindblur='bindHideInput' />
+          <view class="weui-icon-clear" wx:if="{{inputAddress.length > 0}}" bindtap="bindInputClear">
               <icon type="clear" size="14"></icon>
           </view>
         </view>
-        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="bindInputShow">
           <icon class="weui-icon-search" type="search" size="14"></icon>
           <view class="weui-search-bar__text" wx:if="{{selectAddress==''}}">地址加载中……</view>
           <view class="weui-search-bar__text" wx:else>{{selectAddress}}</view>
