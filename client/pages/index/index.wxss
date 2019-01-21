@@ -161,3 +161,32 @@ page {
 .kind-list__item-bd_show {
 	height: auto
 }
+
+.imagePathBox{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.buttonLogIn{
+  display: block;
+  width: 90%;
+  height: 80rpx;
+  padding: 0;
+  line-height: 80rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  margin-left: -45%; 
+  background: #79899b;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 5px;
+}
