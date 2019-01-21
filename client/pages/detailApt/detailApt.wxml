@@ -48,7 +48,7 @@
         </view>
   </view>
   <view class="buttonBox">
-    <button class="buttonLogIn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{!showApt.logged}}">点 击 登 陆 参 加 活 动</button>
+    <!--button class="buttonLogIn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" wx:if="{{!showApt.logged}}">点 击 登 陆 参 加 活 动</button-->
     <form name='pushMsgFm' class="buttonDeny" report-submit='true' bindsubmit='getFormID' wx:if="{{(showApt.attends=='join')&&(showApt.logged)}}"> 
       <button form-type='submit' class="buttonDeny" bindtap="bindDenyTap">取 消 报 名</button>
     </form>
@@ -80,4 +80,8 @@
   <view class='imagePathBox' hidden="{{showWXAcode == false}}" bindtap="bindCancelSave" >
       <image class='WXCodeImage' bindtap="bindSaveWXCodeTap" src="{{wxCodeImage}}"/>
       <button class='buttonSave' bindtap='bindSaveWXCodeTap'>存到本地</button>
+  </view>
+  <!--未登陆  -->
+  <view class='imagePathBox' hidden="{{showApt.logged == true}}" bindtap="bindCancelSave" >
+      <button class='buttonLogIn' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" >登 陆 查 看 详 情</button>
   </view>

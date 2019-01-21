@@ -78,18 +78,6 @@
   padding-right: 15px;
   margin-bottom: 25px; 
 }
-.buttonLogIn{
-  flex-grow: 1;
-  height: 37px;
-  border-radius: 0px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  background: #79899b;
-	color: #fff;
-	text-align: center;
-	font-size: 15px;
-}
-.buttonLogIn::after{ border: none; }  
 .buttonDeny{
   flex-grow: 1;
   height: 37px;
@@ -196,4 +184,22 @@
 }
 button[class="buttonSave"]::after{
   border: 0;
+}
+
+.buttonLogIn{
+  display: block;
+  width: 90%;
+  height: 80rpx;
+  padding: 0;
+  line-height: 80rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 50%;
+  margin-bottom: -40px;
+  left: 50%;
+  margin-left: -45%; 
+  background: #79899b;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 5px;
 }
