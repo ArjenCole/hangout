@@ -10,7 +10,7 @@
         ></image>
         <view class='logIn'>
             <!--button class="logInButton" wx:if="{{!logged}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点 击 登 陆 </button-->
-            <button class="logInButton" bindtap="bindNewItem"> 发 起 活 动 </button>
+            <button class="logInButton" wx:if="{{logged}}" bindtap="bindNewItem"> 发 起 活 动 </button>
         </view>
     </view>
 </view> 
