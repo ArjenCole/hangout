@@ -13,7 +13,7 @@
         <!--view class="section__title">活动时间：</view-->
         <view class='section'>
           <view class="item__title">活动日期：</view>
-          <picker mode="date" value="{{aptDate}}" class='item__width' start="{{aptDate}}" end="2150-09-01" bindchange="bindDateChange">
+          <picker mode="date" value="{{aptDate}}" class='item__width' start="{{today}}" end="2150-09-01" bindchange="bindDateChange">
             <view class="picker">
               {{aptDate}}
             </view>
