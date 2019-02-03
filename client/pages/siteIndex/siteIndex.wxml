@@ -20,9 +20,9 @@
       <image src="../../res/user-unlogin.png" style="width: 80px; height: 80px; display: block"/>
       <view class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</view>
     </view>
-    <view class="weui-cell__bd">
+    <view class="weui-cell__bd" bindtap='bindTestRequest'>
       <view>场馆模式敬请期待</view>
-      <view style="font-size: 13px;color: #888888;">coming soon</view>
+      <view style="font-size: 13px;color: #888888;">{{requestBackDetail}}</view>
     </view>
     <view class="weui-badge" style="margin-left: 5px;">new</view>
   </view>

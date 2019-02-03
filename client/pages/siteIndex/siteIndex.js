@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    requestBackDetail:"coming soon",
   },
 
   bindSwitch: function () {
@@ -26,7 +26,26 @@ Page({
       }
     });
   },
-  
+  bindTestRequest: function () {
+    var that = this
+    wx.request({
+      url: 'https://testdjango.arjen.club:8093/', 
+      data: {
+        x: '1' ,
+        y: '2'  },
+        method: 'GET',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },  
+        success: function(res) { 
+          console.log(res.data) 
+          console.log(res.data.detail) 
+          that.setData({
+            requestBackDetail: res.data.detail,
+          })
+        }
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
